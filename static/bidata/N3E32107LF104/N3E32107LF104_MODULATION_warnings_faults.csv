@@ -1,0 +1,5 @@
+combined_hours,Date,Time,LD1_Warning,LD1_Fault,LD2_Warning,LD2_Fault,LD3_Warning,LD3_Fault,Filename
+2.56583629893,07/16/2021,03:55:40 PM,Warnings=master diode voltage sensed low; slave diode voltage sensed low. , Faults=output over power.,,,,,N3E32107LF104_MODULATION
+2.56861317804,07/16/2021,03:55:50 PM,Warnings=master diode voltage sensed low; slave diode voltage sensed low. , Faults=output over power.,,,,,N3E32107LF104_MODULATION
+2.57139005716,07/16/2021,03:56:00 PM,Warnings=master diode voltage sensed low; slave diode voltage sensed low. , Faults=output over power.,,,,,N3E32107LF104_MODULATION
+2.57416693627,07/16/2021,03:56:10 PM,Warnings=master diode voltage sensed low; slave diode voltage sensed low. , Faults=output over power.,,,,,N3E32107LF104_MODULATION

@@ -1,0 +1,877 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <title>Live Burn-In Dashboard</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta http-equiv="refresh" content="120">
+
+  {% block head %}
+  <link rel="stylesheet" href="{{ url_for('static', filename='bootstrap-4.1.1/css/bootstrap.min.css') }}">
+
+  <script src="{{ url_for('static', filename='js/popper.min.js') }}"></script>
+
+  <script src="{{ url_for('static', filename='js/jquery-3.3.1.min.js') }}"></script>
+  <script src="{{ url_for('static', filename='bootstrap-4.1.1/js/bootstrap.min.js') }}"></script>
+
+  
+  <script src="{{ url_for('static', filename='js/isotope.pkgd.js') }}"></script>
+
+
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/card.css') }}">
+
+    <script type="text/javascript">
+        $(function () {
+            $('#popoverData').popover();
+            $('#popoverOption').popover({ trigger: "hover" });
+
+            $('[data-toggle="popover"]').popover({ trigger: "hover" })
+
+            $('.grid').isotope({
+                // options
+                itemSelector: '.grid-item',
+                layoutMode: 'fitRows'
+            });
+        })
+    </script>
+  {% endblock %}
+
+</head>
+<body>
+  <div class="container-fluid">
+
+    <h1><a href="\dash">Live Burn-In Dashboard </a><span class="badge badge-secondary">beta</span></h1>
+
+    <i>The page is auto-refreshed every 2 minutes.</i>
+
+    <button type="button" class="btn btn-sm btn-primary" data-toggle="modal" data-target="#help_modal">
+        Help
+    </button>
+
+    <!-- Set the maxIdle value -->
+    {% set maxIdle = 40.0 %}
+
+    <!-- Counters! -->
+    {% set counter_running = [0] %}
+    {% set counter_free = [0] %}
+    {% set counter_fault = [0] %}
+    {% set counter_reachmaxtime = [0] %}
+    {% set counter_idle = [0] %}
+
+
+    {% for row in data %}
+
+        <!-- Get the maxHour default or get the custom one -->
+        {% set maxHour = customHour['MASTER'][row[3]] | int %}
+        {% set timeLeft = 0 %}
+        {% if row[1] in customHour %}
+            {% set maxHour = customHour[row[1]][row[3]] | int %}
+        {% endif %}
+
+        {% set currentTotalTime = 0%}
+        {% if row[3] == 'CW' %}
+            {% set currentTotalTime = totalCW[row[1]] %}
+        {% else %}
+            {% set currentTotalTime = totalMOD[row[1]] %}
+        {% endif %}
+
+        {% set timeLeft = maxHour - currentTotalTime %}
+
+        <!-- set counter based on the conditions -->
+        {% if row[2] in benchStatus %}
+            {% if counter_free.append(counter_free.pop() + 1) %}{% endif %}
+        {% elif errorIndication[row[1]] == True %}
+            {% if counter_fault.append(counter_fault.pop() + 1) %}{% endif %}
+        {% elif timeDiff[row[2]] > maxIdle %}
+            {% if counter_idle.append(counter_idle.pop() + 1) %}{% endif %}
+        {% elif timeLeft <= 0 %}
+            {% if counter_reachmaxtime.append(counter_reachmaxtime.pop() + 1) %}{% endif %}
+        {% else %}
+            {% if counter_running.append(counter_running.pop() + 1) %}{% endif %}
+        {% endif %}
+        
+
+    {% endfor %}
+
+    <div class="container-fluid">
+        <h5>Summary</h5>
+        <table class="table table-responsive" style="width:50%;">
+            <thead>
+            <tr>
+                <th scope="col" class="table-light">Total</th> 
+                <th scope="col" class="table-success">Running</th> 
+                <th scope="col" class="table-danger">Fault</th> 
+                <th scope="col" class="table-warning">Reach Max</th>
+                <th scope="col" class="table-info">Free</th>  
+                <th scope="col" class="table-active">Idle</th>               
+            </tr>
+            </thead>
+            <tbody>
+            <tr>
+                <td>{{counter_running[0] + counter_free[0] + counter_fault[0] + counter_reachmaxtime[0] + counter_idle[0] }}</td>
+                <td>{{counter_running[0]}}</td>
+                <td>{{counter_fault[0]}}</td>
+                <td>{{counter_reachmaxtime[0]}}</td>
+                <td>{{counter_free[0]}}</td>
+                <td>{{counter_idle[0]}}</td>
+            </tr>
+            </tbody>
+        </table>
+    </div> <!-- eof container-fluid -->
+
+
+
+    <!-- Modal -->
+    <div class="modal fade" id="help_modal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-sm" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+            <h5 class="modal-title" id="exampleModalLabel">Color Info</h5>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+            </button>
+            </div>
+            <div class="modal-body">
+                <div class="container-fluid">
+                    <h4>Legend</h4>
+                    <p>
+                        P = Power (Watt)<br>
+                        I = Current (A)<br>
+
+                        T = Time (Minutes) <br>
+                        <small class="text-muted">Note: Default Max Burn-in time is 150min for CW and  50min for MOD</small>  
+                    </p>
+
+                    <h4>Color Info</h4>
+                    <div class="alert alert-success" role="alert">
+                        Currently running
+                    </div>
+                    <div class="alert alert-danger" role="alert">
+                        Faults
+                    </div>
+                    <div class="alert alert-info" role="alert">
+                        Bench has been freed
+                    </div>
+                    <div class="alert alert-warning" role="alert">
+                        TimeLeft <= 0 minutes
+                    </div>
+                    <div class="alert alert-dark" role="alert">
+                        No new data for more than {{ maxIdle }} minutes
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+            </div>
+        </div>
+        </div>
+    </div>
+
+    <hr />
+
+    {% set count = 0 %}
+    <div class="container-fluid">
+
+    <form action="/dash/download">
+        <input type="submit" value="Download CSV" />
+    </form>
+    
+    <br>
+    
+      <!-- <div class="card-columns"> -->
+      <div class="grid">
+
+      {% for row in data %}
+        <div class="grid-item">
+
+        <!-- Get the maxHour default or get the custom one -->
+        {% set maxHour = customHour['MASTER'][row[3]] | int %}
+        {% set timeLeft = 0 %}
+        {% if row[1] in customHour %}
+            {% set maxHour = customHour[row[1]][row[3]] | int %}
+        {% endif %}
+
+        {% set currentTotalTime = 0%}
+        {% if row[3] == 'CW' %}
+          {% set currentTotalTime = totalCW[row[1]] %}
+        {% else %}
+          {% set currentTotalTime = totalMOD[row[1]] %}
+        {% endif %}
+
+        {% set timeLeft = maxHour - currentTotalTime %}
+        
+
+        <!-- set the card color based on the conditions -->
+        {% set cardClass = 'card alert-success h-100' %}
+        {% if row[2] in benchStatus %}
+            {% set cardClass = 'card alert-info h-100 ' %}
+            {% if counter_free.append(counter_free.pop() + 1) %}{% endif %}
+        {% elif errorIndication[row[1]] == True %}
+            {% set cardClass = 'card alert-danger h-100 ' %}
+            {% if counter_fault.append(counter_fault.pop() + 1) %}{% endif %}
+        {% elif timeDiff[row[2]] > maxIdle %}
+            {% set cardClass = 'card alert-dark h-100 ' %}
+            {% if counter_idle.append(counter_idle.pop() + 1) %}{% endif %}
+        {% elif timeLeft <= 0 %}
+            {% set cardClass = 'card alert-warning h-100 ' %}
+            {% if counter_reachmaxtime.append(counter_reachmaxtime.pop() + 1) %}{% endif %}
+        {% else %}
+            {% if counter_running.append(counter_running.pop() + 1) %}{% endif %}
+        {% endif %}
+        
+        <div class="{{cardClass}}" style="width: 10rem; padding:0;">
+                <div class="card-header" style="padding:0; margin:0;">
+                    <small ><b>{{row[2]}}</b></small>
+                </div>
+            <div class="card-body" style="padding:0; margin:0;">
+               
+                <!-- <p class="card-text" align="left" style="padding:0;"> -->
+                  <table class="table table-sm table-borderless table-responsive" style="padding:0; margin:0;">
+                      <tbody class="small">
+                          <!-- <tr>
+                              <th colspan="2"><small ><b>{{row[2]}}</b></small></th>
+                          </tr>
+                          <tr>
+                              <td colspan="2">________________</td>
+                          </tr> -->
+                          <tr>
+                              <th>{{ row[1] }}</th>
+                              <th>{{ row[3] }}</th>
+                          </tr>
+                          <tr>
+                              <td scope="row">Current Run</td>
+                              <th>{{ "%.2f"|format(row[4]) }}</th>
+                          </tr>
+                          <tr>
+                              {% if row[3] == 'CW' %}
+                                <td scope="row">Total T CW</td>
+                                <th>{{ "%.2f"|format(totalCW[row[1]]) }}</th> 
+                              {% else %}
+                                <td scope="row">Total T MOD</td>
+                                <th>{{ "%.2f"|format(totalMOD[row[1]]) }}</th> 
+                              {% endif %}
+                          </tr>
+                          <tr>
+                              <td scope="row">T Left ({{maxHour}})</td>
+                              <th>
+                                 
+                                {{ "%.2f"|format(timeLeft) }}
+                                
+
+                              
+
+                              </th>
+                          </tr>
+
+                          <tr>
+                            {% if row[3] == 'CW' %}
+                                <td scope="row">Total T MOD</td>
+                                <th>
+                                    {% if row[1] in totalMOD %}
+                                        {{ "%.2f"|format(totalMOD[row[1]]) }}
+                                    {% else %}
+                                        -
+                                    {% endif %}
+                                </th> 
+                            {% else %}
+                                <td scope="row">Total T CW</td>
+                                <th>
+                                    {% if row[1] in totalCW %}
+                                        {{"%.2f"|format(totalCW[row[1]]) }}
+                                    {% else %}
+                                        -
+                                    {% endif %}
+                                </th> 
+                            {% endif %}
+                          </tr>
+
+                          <tr>
+                              <td>P={{"%.2f"|format(row[6]) }} W</td>
+                              {% if row[3] == 'CW' %}
+                                <td>I={{"%.2f"|format(row[7]) }} A</td>
+                              {% endif %}
+                          </tr>
+
+                          <tr>
+                              <!-- <th scope="row">Faults</th> -->
+                              <td colspan="2">
+                                <button type="button" class="badge badge-light" data-toggle="modal" data-target="#{{"customHr"+row[1]}}">
+                                    Edit T
+                                </button>
+    
+                                <!-- Button trigger modal -->
+                                {% if errorIndication[row[1]] == True %}
+                                    <button type="button" class="badge badge-danger" data-toggle="modal" data-target="#{{row[1]}}">
+                                        Faults
+                                    </button>
+                                {% else %}
+                                    <button type="button" class="badge badge-light" data-toggle="modal" data-target="#{{row[1]}}">
+                                        Faults
+                                    </button>                                
+                                {% endif %}
+
+                                <!-- Button trigger modal -->
+                                {% if warningIndication[row[1]] == True %}
+                                    <button type="button" class="badge badge-warning" data-toggle="modal" data-target="#{{'w'+row[1]}}">
+                                        Warning
+                                    </button>
+                                {% else %}
+                                    <button type="button" class="badge badge-light" data-toggle="modal" data-target="#{{'w'+row[1]}}">
+                                        Warning
+                                    </button>
+                                {% endif %}
+
+                                
+                            </td>
+
+                          </tr>
+
+
+                      </tbody>
+                  </table>
+                <!-- </p>  -->
+            </div> <!-- eof card-body -->
+
+            <div class="card-footer text-muted small" style=" padding:0;">
+                Updated {{"%.2f"|format(timeDiff[row[2]]) }} min ago
+            </div>
+
+            <!-- Free Bench section -->
+            <div class="card-footer" style=" padding:0;">
+                {% if row[2] in benchStatus%}
+                    
+                <form action="freeBench" method="POST" action={{ url_for('freeBench') }} class="form-signin form-inline">
+
+                        <div class="col-sm-9 small" > Idled {{"%.2f"|format(benchStatus[row[2]]['idleMinute']) }} min</div>
+                        <div class="col-sm-3 small" >
+                            <input type="hidden" id="bench" name="bench" value={{row[2]}}>
+                            <button type="submit" class="badge badge-info">x</button>   
+                        </div>
+                                                            
+
+                </form>
+                    
+                {% else %} 
+                    <form action="freeBench" method="POST" action={{ url_for('freeBench') }} class="form-signin form-inline">
+                        <div class="form-group row">
+                            <div class="col-sm-4">
+                                <input type="hidden" id="bench" name="bench" value={{row[2]}}>
+                            </div>
+                            <div class="col-sm-4 small">
+                                <button type="submit" class="badge badge-primary">Free Bench</button>
+                            </div>
+                            <div class="col-sm-4">
+                            </div>
+                        </div>    
+                    </form>
+                {% endif %}
+            </div>
+    
+
+    
+
+        </div> <!-- eof card  -->
+        </div> <!-- eof grid-item -->
+
+            <!-- Custom Hour Modal -->
+            <div class="modal fade" id={{"customHr"+row[1]}} tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                <div class="modal-dialog modal-lg" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">{{row[1]}} {{row[3]}} Edit Max Minute</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times</span>
+                    </button>
+                    </div>
+                    <div class="modal-body">
+                        <h5>Enter Hours</h5>
+                        <form action="updateCustomHour" method="POST" action={{ url_for('updateCustomHour') }} class="form-signin form-inline">
+                            <div class="form-group row">
+                                <div class="col-sm-8">
+                                    <input type="hidden" id="sn" name="sn" value={{row[1]}}>
+                                    <input type="hidden" id="type" name="type" value={{row[3]}}>
+                                    <input type="text" name="hour" class="form-control" placeholder={{minHour}}>
+                                </div>
+                                <div class="col-sm-4">
+                                    <button type="submit" class="btn btn-primary">Update</button>
+                                </div>
+                                
+                            </div>    
+                        </form>
+                    </div>
+                    <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                    </div>
+                </div>
+                </div>
+            </div>
+
+            <!-- Fault Modal -->
+            <div class="modal fade" id={{row[1]}} tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                <div class="modal-dialog modal-lg" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">{{row[1]}} {{row[3]}} Fault Message</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                    </div>
+                    <div class="modal-body">
+                            <h3>LD1</h3>
+                            <div class="alert alert-danger" role="alert"> {{row[13]}} </div>
+                            <h3>LD2</h3>
+                            <div class="alert alert-danger" role="alert"> {{row[15]}} </div>
+                            <h3>LD3</h3>
+                            <div class="alert alert-danger" role="alert"> {{row[17]}} </div>
+                                        
+                    </div>
+                    <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                    </div>
+                </div>
+                </div>
+            </div>
+
+
+            <!-- Warning Modal -->
+            <div class="modal fade" id={{'w'+row[1]}} tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                <div class="modal-dialog modal-lg" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">{{row[1]}} {{row[3]}} Warning Message</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                    </div>
+                    <div class="modal-body">
+
+                    <h3>LD1</h3>
+                    <div class="alert alert-warning" role="alert"> {{row[14]}} </div>
+                    <h3>LD2</h3>
+                    <div class="alert alert-warning" role="alert"> {{row[16]}} </div>
+                    <h3>LD3</h3>
+                    <div class="alert alert-warning" role="alert"> {{row[18]}} </div>
+
+                    </div>
+                    <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                    </div>
+                </div>
+                </div>
+            </div>
+        
+      {% endfor %}
+      </div> <!-- eof card column -->
+
+      
+
+    </div> <!-- container  -->
+
+    
+    <div class="container-fluid">
+        <hr>
+        <h5>Bench Utilization (Hours) </h5>
+        <table class="table table-responsive table-hover table-sm" >
+            <thead>
+            <tr>
+                <th scope="col" class="table-active">Bench Name</th> 
+                <th scope="col" class="table-active">Status</th> 
+                <th scope="col" class="table-active">SN</th> 
+                <th scope="col" class="table-active">Mode</th> 
+                <th scope="col" class="table-primary">Today</th>
+                <th scope="col" class="table-primary">% of {{ "%.2f"|format(totalUtil['hourNow']) }}h</th>
+                <th scope="col" class="table-warning">Yesterday</th>
+                <th scope="col" class="table-warning">% of 24h</th>  
+                <th scope="col" class="table-active">Last3Days</th>
+                <th scope="col" class="table-active">%</th>                 
+                <th scope="col" class="table-warning">Last7Days</th>
+                <th scope="col" class="table-warning">%</th>                 
+                <th scope="col" class="table-active">Last30Days</th>
+                <th scope="col" class="table-active">%</th>                 
+               
+            </tr>
+            </thead>
+            <tbody>
+
+                {% set total_bench = [0] %}
+                {% set total24h_summary = [0] %}
+                {% set totalYesterday_summary = [0] %}
+                {% set total3Days_summary = [0] %}
+                {% set total7Days_summary = [0] %}
+                {% set totalMonth_summary = [0] %}
+
+                {% for row in data %}
+                    {% if row[2] != 'DefaultBench' %}
+
+                        {% if total_bench.append(total_bench.pop() + 1) %}{% endif %}
+
+                        <!-- Get the maxHour default or get the custom one -->
+                        {% set maxHour = customHour['MASTER'][row[3]] | int %}
+                        {% set timeLeft = 0 %}
+                        {% if row[1] in customHour %}
+                            {% set maxHour = customHour[row[1]][row[3]] | int %}
+                        {% endif %}
+
+                        {% set currentTotalTime = 0 %}
+                        {% if row[3] == 'CW' %}
+                            {% set currentTotalTime = totalCW[row[1]] %}
+                        {% else %}
+                            {% set currentTotalTime = totalMOD[row[1]] %}
+                        {% endif %}
+
+                        {% set timeLeft = maxHour - currentTotalTime %}
+
+
+                        <tr>
+                            <!-- Bench Name Column -->
+                            <td>{{ row[2] }}</td>
+                            
+                            <!-- Status Column -->    
+                            <!-- set table row color based on the conditions -->
+                            {% if row[2] in benchStatus %}
+                                <td class="alert-info">Free</td>
+                            {% elif errorIndication[row[1]] == True %}
+                                <td class="alert-danger">Fault</td>{% set tdClass = 'table-danger' %}
+                            {% elif timeDiff[row[2]] > maxIdle %}
+                                <td class="alert-dark">Idle</td>
+                            {% elif timeLeft <= 0 %}
+                                <td class="alert-warning">ReachMax</td>
+                            {% else %}
+                                <td class="alert-success">Running</td>
+                            {% endif %}
+                            
+                            <!-- SN column -->
+                            <!-- Ming's request (June 2020) -->
+                            <td>{{ row[1] }}</td>
+                            
+                            <!-- Mode column -->
+                            <td>{{ row[3] }}</td>
+                            
+                            <!-- Today -->
+                            <td>
+                                {% set total24h_pct = 0 %}
+                                {% if row[2] in totalUtil['total24h'] %}
+                                    {{ "%.2f"|format(totalUtil['total24h'][row[2]]['totalTime']) }}
+                                    {% set total24h_pct = (totalUtil['total24h'][row[2]]['totalTime'])/totalUtil['hourNow'] * 100   %}
+                                    
+                                    {% if total24h_summary.append(total24h_summary.pop() + totalUtil['total24h'][row[2]]['totalTime'] ) %}{% endif %}
+                                {% else %}
+                                    -
+                                {% endif %}
+                            </td>
+                            <!-- Today % -->
+                            <td style="width:100px;">
+
+                                {% set barColor = 'bg-danger' %}
+                                {% if (50 <= total24h_pct) and (total24h_pct < 90) %}
+                                    {% set barColor = 'bg-warning' %}
+                                {% elif total24h_pct >= 90 %}
+                                    {% set barColor = 'bg-success' %}
+                                {% endif %}
+
+                                <div class="progress">
+                                    <div class="progress-bar progress-bar-striped progress-bar-animated {{barColor}}" role="progressbar" style="width: {{total24h_pct}}%; color: black;" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100">{{ "%.2f"|format(total24h_pct) }}%</div>
+                                </div>
+                            </td>
+
+                            <!-- Yesterday -->
+                            <td>
+                                {% set totalYesterday_pct = 0 %}
+                                {% if row[2] in totalUtil['totalYesterday'] %}
+                                    {{ "%.2f"|format(totalUtil['totalYesterday'][row[2]]['totalTime']) }}
+                                    {% set totalYesterday_pct = (totalUtil['totalYesterday'][row[2]]['totalTime'])/24 * 100   %}
+                                
+                                    {% if totalYesterday_summary.append(totalYesterday_summary.pop() + totalUtil['totalYesterday'][row[2]]['totalTime'] ) %}{% endif %}
+
+                                {% else %}
+                                    -
+                                {% endif %}
+                            </td>
+                            <!-- Yesterday % -->
+                            <td style="width:100px;">
+
+                                {% set barColor = 'bg-danger' %}
+                                {% if (50 <= totalYesterday_pct) and (totalYesterday_pct < 90) %}
+                                    {% set barColor = 'bg-warning' %}
+                                {% elif totalYesterday_pct >= 90 %}
+                                    {% set barColor = 'bg-success' %}
+                                {% endif %}
+        
+                                <div class="progress">
+                                    <div class="progress-bar {{barColor}}" role="progressbar" style="width: {{totalYesterday_pct}}%; color: black;" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100">{{ "%.2f"|format(totalYesterday_pct) }}%</div>
+                                </div>
+                            </td>
+
+
+                            <!-- The last 3 days -->
+                            <!-- Added per Ming's request  (June 2020) -->
+                            <td>
+                                {% set total3Days_pct = 0 %}
+                                {% if row[2] in totalUtil['total3Days'] %}
+                                    {{ "%.2f"|format(totalUtil['total3Days'][row[2]]['totalTime']) }}
+                                    {% set total3Days_pct = (totalUtil['total3Days'][row[2]]['totalTime'])/(24*3) * 100   %}
+                                
+                                    {% if total3Days_summary.append(total3Days_summary.pop() + totalUtil['total3Days'][row[2]]['totalTime'] ) %}{% endif %}
+
+                                {% else %}
+                                    -
+                                {% endif %}
+                            </td>
+                            <!-- The last 3 days % -->
+                            <td style="width:100px;">
+                                {% set barColor = 'bg-danger' %}
+                                {% if (50 <= total3Days_pct) and (total3Days_pct < 90) %}
+                                    {% set barColor = 'bg-warning' %}
+                                {% elif total3Days_pct >= 90 %}
+                                    {% set barColor = 'bg-success' %}
+                                {% endif %}
+        
+                                <div class="progress">
+                                    <div class="progress-bar {{barColor}}" role="progressbar" style="width: {{total3Days_pct}}%; color: black;" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100">{{ "%.2f"|format(total3Days_pct) }}%</div>
+                                </div>
+                            </td>
+
+                            
+                            <!-- The last 7 days -->
+                            <td>
+                                {% set total7Days_pct = 0 %}
+                                {% if row[2] in totalUtil['total7Days'] %}
+                                    {{ "%.2f"|format(totalUtil['total7Days'][row[2]]['totalTime']) }}
+                                    {% set total7Days_pct = (totalUtil['total7Days'][row[2]]['totalTime'])/(24*7) * 100   %}
+                                
+                                    {% if total7Days_summary.append(total7Days_summary.pop() + totalUtil['total7Days'][row[2]]['totalTime'] ) %}{% endif %}
+
+                                {% else %}
+                                    -
+                                {% endif %}
+                            </td>
+                            <!-- The last 7 days % -->
+                            <td style="width:100px;">
+                                {% set barColor = 'bg-danger' %}
+                                {% if (50 <= total7Days_pct) and (total7Days_pct < 90) %}
+                                    {% set barColor = 'bg-warning' %}
+                                {% elif total7Days_pct >= 90 %}
+                                    {% set barColor = 'bg-success' %}
+                                {% endif %}
+        
+                                <div class="progress">
+                                    <div class="progress-bar {{barColor}}" role="progressbar" style="width: {{total7Days_pct}}%; color: black;" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100">{{ "%.2f"|format(total7Days_pct) }}%</div>
+                                </div>
+                            </td>
+
+                            <!-- Last 30 days -->
+                            <td>
+                                {% set totalMonth_pct = 0 %}
+                                {% if row[2] in totalUtil['totalMonth'] %}
+                                    {{ "%.2f"|format(totalUtil['totalMonth'][row[2]]['totalTime']) }}
+                                    {% set totalMonth_pct = (totalUtil['totalMonth'][row[2]]['totalTime'])/(24*30) * 100   %}
+
+                                    {% if totalMonth_summary.append(totalMonth_summary.pop() + totalUtil['totalMonth'][row[2]]['totalTime'] ) %}{% endif %}
+
+                                {% else %}
+                                    -
+                                {% endif %}
+                            </td>
+                            <!-- Last 30 days % -->
+                            <td style="width:100px;">
+                                {% set barColor = 'bg-danger' %}
+                                {% if (50 <= totalMonth_pct) and (totalMonth_pct < 90) %}
+                                    {% set barColor = 'bg-warning' %}
+                                {% elif totalMonth_pct >= 90 %}
+                                    {% set barColor = 'bg-success' %}
+                                {% endif %}
+        
+                                <div class="progress">
+                                    <div class="progress-bar {{barColor}}" role="progressbar" style="width: {{totalMonth_pct}}%; color: black;" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100">{{ "%.2f"|format(totalMonth_pct) }}%</div>
+                                </div>
+                            </td>
+                        </tr>
+                    {% endif %}
+                {% endfor %}
+            
+                <tr>
+                    <td></td>
+                </tr>
+                {% set total24h_avg = (total24h_summary[0])/total_bench[0]   %}
+                {% set total24h_avg_pct = (total24h_avg)/(totalUtil['hourNow']) * 100   %};
+
+                {% set totalYesterday_avg = (totalYesterday_summary[0])/total_bench[0]   %}
+                {% set totalYesterday_avg_pct = (totalYesterday_avg)/24 * 100   %}
+                
+                {% set total3Days_avg = (total3Days_summary[0])/total_bench[0]   %}
+                {% set total3Days_avg_pct = (total3Days_avg)/(24*3) * 100   %}
+
+
+                {% set total7Days_avg = (total7Days_summary[0])/total_bench[0]   %}
+                {% set total7Days_avg_pct = (total7Days_avg)/(24*7) * 100   %}
+                
+                {% set totalMonth_avg = (totalMonth_summary[0])/total_bench[0]   %}
+                {% set totalMonth_avg_pct = (totalMonth_avg)/(24*30) * 100   %}
+
+                <tr class="table-warning">
+                    <th>Average Util </th>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td>{{ "%.2f" | format(total24h_avg) }} </td>
+                    <td>
+                        {% set barColor = 'bg-danger' %}
+                        {% if (50 <= total24h_avg_pct) and (total24h_avg_pct < 90) %}
+                            {% set barColor = 'bg-warning' %}
+                        {% elif total24h_avg_pct >= 90 %}
+                            {% set barColor = 'bg-success' %}
+                        {% endif %}
+
+                        <div class="progress">
+                            <div class="progress-bar progress-bar-striped progress-bar-animated {{barColor}}" role="progressbar" style="width: {{total24h_avg_pct}}%; color: black;" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100">{{ "%.2f"|format(total24h_avg_pct) }}%</div>
+                        </div>
+                    </td>
+                    <td>{{ "%.2f" | format(totalYesterday_avg) }} </td>
+                    <td>
+                        {% set barColor = 'bg-danger' %}
+                        {% if (50 <= totalYesterday_avg_pct) and (totalYesterday_avg_pct < 90) %}
+                            {% set barColor = 'bg-warning' %}
+                        {% elif totalYesterday_avg_pct >= 90 %}
+                            {% set barColor = 'bg-success' %}
+                        {% endif %}
+
+                        <div class="progress">
+                            <div class="progress-bar progress-bar-striped progress-bar-animated {{barColor}}" role="progressbar" style="width: {{totalYesterday_avg_pct}}%; color: black;" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100">{{ "%.2f"|format(totalYesterday_avg_pct) }}%</div>
+                        </div>
+                    </td>
+                    <td>{{ "%.2f" | format(total3Days_avg) }} </td>
+                    <td>
+                        {% set barColor = 'bg-danger' %}
+                        {% if (50 <= total3Days_avg_pct) and (total3Days_avg_pct < 90) %}
+                            {% set barColor = 'bg-warning' %}
+                        {% elif total3Days_avg_pct >= 90 %}
+                            {% set barColor = 'bg-success' %}
+                        {% endif %}
+
+                        <div class="progress">
+                            <div class="progress-bar progress-bar-striped progress-bar-animated {{barColor}}" role="progressbar" style="width: {{total7Days_avg_pct}}%; color: black;" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100">{{ "%.2f"|format(total7Days_avg_pct) }}%</div>
+                        </div>
+                    </td>
+                    <td>{{ "%.2f" | format(total7Days_avg) }} </td>
+                    <td>
+                        {% set barColor = 'bg-danger' %}
+                        {% if (50 <= total7Days_avg_pct) and (total7Days_avg_pct < 90) %}
+                            {% set barColor = 'bg-warning' %}
+                        {% elif total7Days_avg_pct >= 90 %}
+                            {% set barColor = 'bg-success' %}
+                        {% endif %}
+
+                        <div class="progress">
+                            <div class="progress-bar progress-bar-striped progress-bar-animated {{barColor}}" role="progressbar" style="width: {{total7Days_avg_pct}}%; color: black;" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100">{{ "%.2f"|format(total7Days_avg_pct) }}%</div>
+                        </div>
+                    </td>
+                    <td>{{ "%.2f" | format(totalMonth_avg) }} </td>
+                    <td>
+                        {% set barColor = 'bg-danger' %}
+                        {% if (50 <= totalMonth_avg_pct) and (totalMonth_avg_pct < 90) %}
+                            {% set barColor = 'bg-warning' %}
+                        {% elif totalMonth_avg_pct >= 90 %}
+                            {% set barColor = 'bg-success' %}
+                        {% endif %}
+
+                        <div class="progress">
+                            <div class="progress-bar progress-bar-striped progress-bar-animated {{barColor}}" role="progressbar" style="width: {{totalMonth_avg_pct}}%; color: black;" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100">{{ "%.2f"|format(totalMonth_avg_pct) }}%</div>
+                        </div>
+                    </td>
+
+                </tr>
+            </tbody>
+        </table>
+
+        
+        <div class="alert alert-primary col-md-4 col-md-offset-4" role="alert">
+            <h5>Notes:</h5>
+            <strong>Total Bench = {{total_bench[0]}} </strong> <i>(excluding 'DefaultBench')</i>
+            
+            <p>
+                Average Utility is divided by {{total_bench[0]}}.
+            </p>
+        </div>
+    </div>
+
+
+
+
+
+
+
+  </div>
+
+<!-- Footer -->
+<footer class="page-footer font-small pt-4">
+
+        <!-- Footer Links -->
+        <div class="container-fluid text-center text-md-left">
+    
+          <!-- Grid row -->
+          <div class="row">
+    
+            <!-- Grid column -->
+            <div class="col-md-6 mt-md-0 mt-3">
+    
+              <!-- Content -->
+              <h5 class="text-uppercase">We need your feedback!</h5>
+              <p>Please write us an email to <a href="mailto:amir.gafni@lumentum.com?Subject=Howdy" target="_top">amir.gafni@lumentum.com</a> or <a href="mailto:rudy.wahjudi@lumentum.com?Subject=Howdy" target="_top">rudy.wahjudi@lumentum.com</a></p>
+    
+            </div>
+            <!-- Grid column -->
+    
+            <hr class="clearfix w-100 d-md-none pb-3">
+    
+            <!-- Grid column -->
+            <div class="col-md-3 mb-md-0 mb-3">
+    
+                <!-- Links -->
+                <h5 class="text-uppercase">Links</h5>
+    
+                <ul class="list-unstyled">
+                  <li>
+                    <a href="\dash">Live Burn-In Dashboard</a>
+                  </li>
+                  <li>
+                    <a href="\showBIData">Burn-In Data</a>
+                  </li>
+   
+                </ul>
+    
+              </div>
+              <!-- Grid column -->
+    
+              <!-- Grid column -->
+              <div class="col-md-3 mb-md-0 mb-3">
+    
+                <!-- Links -->
+                <h5 class="text-uppercase">Links</h5>
+    
+                <ul class="list-unstyled">
+                  <li>
+                    <a href="\">Home</a>
+                  </li>
+                </ul>
+    
+              </div>
+              <!-- Grid column -->
+    
+          </div>
+          <!-- Grid row -->
+    
+        </div>
+        <!-- Footer Links -->
+    
+        <!-- Copyright -->
+        <div class="footer-copyright text-center py-3">© 2018 Copyright:
+            <a href="https://lumentum.com/"> Lumentum.com</a>
+        </div>
+        <!-- Copyright -->
+    
+      </footer>
+      <!-- Footer -->
+
+</body>
+</html>

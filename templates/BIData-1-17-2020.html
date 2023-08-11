@@ -1,0 +1,326 @@
+
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <title> Inspect - KW Fiber Laser Data</title>
+        <meta http-equiv="X-UA-Compatible" content="IE=11" />
+    <!--
+        <link href="http://getbootstrap.com/dist/css/bootstrap.min.css" rel="stylesheet">
+
+        <link href="http://getbootstrap.com/examples/jumbotron-narrow/jumbotron-narrow.css" rel="stylesheet">
+        <link href="http://getbootstrap.com/examples/jumbotron-narrow/jumbotron-narrow.css" rel="stylesheet">
+
+    -->
+
+        {% block head %}
+            <!-- <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous"> -->
+
+            <link rel="stylesheet" href="{{ url_for('static', filename='bootstrap-slider.css') }}">            
+            <!-- using Bootstrap-4.1.1 -->
+            <link rel="stylesheet" href="{{ url_for('static', filename='bootstrap-4.1.1/css/bootstrap.min.css') }}">
+            <link rel="stylesheet" href="{{ url_for('static', filename='jumbotron-narrow.css') }}">
+            <link rel="stylesheet" href="{{ url_for('static', filename='css/bidata.css') }}">
+
+            <!-- using the latest jquery -->
+            <script src="{{ url_for('static', filename='js/jquery-3.3.1.slim.min.js') }}"></script>
+            <script src="{{ url_for('static', filename='bootstrap-4.1.1/js/bootstrap.min.js') }}"></script>
+
+            <!-- <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+            <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
+            <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js" integrity="sha384-smHYKdLADwkXOn1EmN1qk/HfnUcbVRZyYmZ4qpPea6sjB/pTJ0euyQp0Mk8ck+5T" crossorigin="anonymous"></script> -->
+    
+            <script type="text/javascript">
+                $(document).ready(function(){
+                    $(".btn").click(function(){
+                        $("#myModal").modal('show');
+                        // $('#myModal').modal({backdrop: 'static', keyboard: false})  
+                    });
+
+                    // $("#exampleModal").modal('hide');
+
+                    $('#exampleModal').on('shown.bs.modal', function () {
+                        $('#exampleModal').trigger('focus')
+                    })
+                });
+            </script>
+        {% endblock %}
+    
+       
+    </head>
+
+    <body >
+
+        <nav aria-label="breadcrumb">
+            <ol class="breadcrumb">
+                <li class="breadcrumb-item"><a href="/">Home</a></li>
+                <li class="breadcrumb-item active" aria-current="page">Burn-In Data</li>
+            </ol>
+        </nav>
+
+
+    <div class="container-fluid">
+      <div class="header">
+        <!-- <nav>
+          <ul class="nav nav-pills pull-right">
+            <li role="presentation" class="active"><a href="/">Home</a></li>
+          </ul>
+        </nav> -->
+
+
+
+        <h3 class="text-muted">Burn-In Data</h3>
+      </div> <!-- eof header -->
+
+    <!-- Initialization -->
+    {% set RUNNING_MIN = minHour %}
+    {% set length_of_bi_dict = result['length_of_bi_dict'] %}
+    {% set sorted_list_of_bi_sn = result['sorted_list_of_bi_sn'] %}
+    {% set dict_of_dict_data_per_sn = result['dict_of_dict_data_per_sn']%}
+    {% set short_list = result['short_list']%}
+
+    <div class="container">
+        <h5>Search for specific Serial Number</h5>
+        <form action="searchPlot" method="POST" action={{ url_for('searchPlot') }} class="form-signin form-inline">
+            <div class="form-group row">
+                <div class="col-sm-6">
+                    <input type="text" name="text" class="form-control" placeholder="Enter S/N">
+                </div>
+                <div class="col-sm-1">
+                    <input class="form-check-input" type="radio" name="mode" id="inlineRadio1" value="CW" checked>
+                    <label class="form-check-label" for="inlineRadio1">CW</label>
+                </div>
+                <div class="col-sm-1">
+                    <input class="form-check-input" type="radio" name="mode" id="inlineRadio2" value="MOD">
+                    <label class="form-check-label" for="inlineRadio2">MOD</label>
+                </div>
+                <div class="col-sm-2">
+                    <button type="submit" class="btn btn-success" data-toggle="modal" data-target="#exampleModal" data-backdrop="static" data-keyboard="false">Search</button> 
+                </div>
+                
+            </div>
+            
+        </form>
+
+        <hr />
+
+        <h5>Enter Hours</h5>
+        <form action="showBIDataUpdate" method="POST" action={{ url_for('showBIDataUpdate') }} class="form-signin form-inline">
+            <div class="form-group row">
+                <div class="col-sm-8">
+                    <input type="text" name="hour" class="form-control" placeholder={{minHour}}>
+                </div>
+                <div class="col-sm-4">
+                    <button type="submit" class="btn btn-primary">Update</button>
+                </div>
+                
+            </div>    
+        </form>
+
+        <hr />
+
+    </div>
+    
+
+
+    <!-- refactored code -->
+
+    <div class="container">
+        <h2>All Engines</h2>
+        <h4>  Running Units (in the last {{RUNNING_MIN}} hours ago)</h4>
+
+        <table class="table table-hover ">
+            <thead>
+                <tr>
+                <th scope="col">#</th>
+                <th scope="col">SN</th>
+                <th scope="col">Updated</th>
+                <th scope="col">Status</th>
+                <th scope="col">Plot</th>
+                </tr>
+            </thead>
+            <tbody>
+        {% set total_count = [0] %}
+        {% set counter = length_of_bi_dict-1 %}
+        {% for item in sorted_list_of_bi_sn %}	
+            {% set key = item %}
+            
+                {% set MIN = dict_of_dict_data_per_sn[key]['MIN'] %}
+                {% set CW = dict_of_dict_data_per_sn[key]['CW'] %}
+                {% set MOD = dict_of_dict_data_per_sn[key]['MOD'] %}
+                
+                
+                {% set counter = counter-1 %}
+                
+                {% if  (MIN|float < RUNNING_MIN)  %}
+                    
+                    {% if total_count.append(total_count.pop() + 1) %}{% endif %}
+
+                    {% set button_class = "btn btn-lg btn-success" %}
+                    {% set STATUS = "RUNNING" %}
+                    {% if  MIN == CW and CW > 0.0 %}
+                        {% set STATUS = STATUS + "-CW" %}
+                    {% else %}
+                        {% set STATUS = STATUS + "-MOD" %}
+                    {% endif %}
+                    
+                    {% set href_link = url_for('showPlotFast', sn=key) %}
+                        <tr>
+                            <th scope="row">{{total_count[0]}}</th>
+                            <td>{{key}}</td>
+                            <td>{{MIN}} Hr ago</td>
+                            <td>{{STATUS}}</td>
+                            <td>
+                                {% if 'CW' in dict_of_dict_data_per_sn[key] %}
+                                    <a href={{href_link}} >
+                                        <button type="button" class="btn btn-primary btn-sm" data-toggle="modal" data-target="#exampleModal" data-backdrop="static" data-keyboard="false">
+                                            CW
+                                        </button>
+                                    </a>
+                                {% endif %}
+
+                                {% if 'MOD' in dict_of_dict_data_per_sn[key] and MIN == MOD %}
+                                    
+                                    {% set href_link_mod = url_for('showPlotFast', sn=key+"_MOD") %}
+                                    <a href={{href_link_mod}} >
+                                        <button type="button" class="btn btn-warning btn-sm" data-toggle="modal" data-target="#exampleModal" data-backdrop="static" data-keyboard="false">
+                                            MOD
+                                        </button>
+                                    </a>
+                                {% endif %}
+                            </td>
+                        </tr>
+                {% endif %}
+        {% endfor %}   
+            </tbody>
+        </table>
+
+        <h4>Total: {{ total_count.pop() }}</h4>
+        <hr />
+    </div>
+
+
+    <div class="container">
+        <h2>Per Engine Model</h2>
+    </div>
+
+
+    {% for shortCode in moduleList %}
+    <div class="container">
+        <div class="alert alert-primary" role="alert">
+            {{ shortCode }}
+        </div>
+        <table class="table table-hover ">
+            <thead>
+                <tr>
+                <th scope="col">#</th>
+                <th scope="col">SN</th>
+                <th scope="col">Updated</th>
+                <th scope="col">Status</th>
+                <th scope="col">Plot</th>
+                </tr>
+            </thead>
+            <tbody>
+        {% set total_count = [0] %}
+        {% set counter = length_of_bi_dict-1 %}
+        {% for item in sorted_list_of_bi_sn %}	
+            {% set key = item %}
+            
+                {% set MIN = dict_of_dict_data_per_sn[key]['MIN'] %}
+                {% set CW = dict_of_dict_data_per_sn[key]['CW'] %}
+                {% set MOD = dict_of_dict_data_per_sn[key]['MOD'] %}
+                
+                
+                {% set counter = counter-1 %}
+                
+                {% if  (MIN|float < RUNNING_MIN) and shortCode in key  %}
+                    
+                    {% if total_count.append(total_count.pop() + 1) %}{% endif %}
+
+                    {% set button_class = "btn btn-lg btn-success" %}
+                    {% set STATUS = "RUNNING" %}
+                    {% if  MIN == CW  %}
+                        {% set STATUS = STATUS + "-CW" %}
+                    {% else %}
+                        {% set STATUS = STATUS + "-MOD" %}
+                    {% endif %}
+                    
+                    
+                    {% set href_link = url_for('showPlotFast', sn=key) %}
+                        <tr>
+                            <th scope="row">{{total_count[0]}}</th>
+                            <td>{{key}}</td>
+                            <td>{{MIN}} Hr ago</td>
+                            <td>{{STATUS}}</td>
+                            <td>
+                                {% if 'CW' in dict_of_dict_data_per_sn[key] %}
+                                    <a href={{href_link}} >
+                                        <button type="button" class="btn btn-primary btn-sm" data-toggle="modal" data-target="#exampleModal" data-backdrop="static" data-keyboard="false">
+                                            CW
+                                        </button>
+                                    </a>
+                                {% endif %}
+
+                                {% if 'MOD' in dict_of_dict_data_per_sn[key] and MIN == MOD %}
+                                    
+                                    {% set href_link_mod = url_for('showPlotFast', sn=key+"_MOD") %}
+                                    <a href={{href_link_mod}} >
+                                        <button type="button" class="btn btn-warning btn-sm" data-toggle="modal" data-target="#exampleModal" data-backdrop="static" data-keyboard="false">
+                                            MOD
+                                        </button>
+                                    </a>
+                                {% endif %}
+                            </td>
+                        </tr>
+                {% endif %}
+        {% endfor %}   
+            </tbody>
+        </table>
+
+        <h4>Total: {{ total_count.pop() }}</h4>
+        <hr />
+    </div>
+    {% endfor %}
+    <!-- end of for loop of short_code list -->
+
+
+
+
+    <!-- Button trigger modal -->
+    <!-- <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">
+        Launch demo modal
+    </button> -->
+      
+    <!-- Modal -->
+    <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-sm modal-dialog-centered" role="document">
+        <div class="modal-content">
+        <div class="modal-header">
+            
+            <span aria-hidden="true" class="centered">Fetching Data</span>
+            </button>
+        </div>
+        <div class="modal-body">
+            <div class="loader centered"></div>
+
+        </div>
+        <div class="modal-footer">
+            <span class="centered">Please do not refresh the page. &#x1F590;</span>
+        </div>
+        </div>
+    </div>
+    </div>
+
+
+
+
+
+
+
+        <footer class="footer">
+        <p>&copy; Lumentum</p>
+        </footer>
+
+    </div>
+    </body>
+</html>
+

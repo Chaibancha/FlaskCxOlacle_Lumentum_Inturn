@@ -1,0 +1,70 @@
+
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <title> Inspect - KW Fiber Laser Data</title>
+        <meta http-equiv="X-UA-Compatible" content="IE=11" />
+    <!--
+        <link href="http://getbootstrap.com/dist/css/bootstrap.min.css" rel="stylesheet">
+
+        <link href="http://getbootstrap.com/examples/jumbotron-narrow/jumbotron-narrow.css" rel="stylesheet">
+        <link href="http://getbootstrap.com/examples/jumbotron-narrow/jumbotron-narrow.css" rel="stylesheet">
+
+    -->
+
+        {% block head %}
+            <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+
+            <link rel="stylesheet" href="{{ url_for('static', filename='bootstrap-slider.css') }}">
+            <!-- <link rel="stylesheet" href="{{ url_for('static', filename='bootstrap.min.css') }}"> -->
+            <!-- using Bootstrap-4.1.1 -->
+            <link rel="stylesheet" href="{{ url_for('static', filename='bootstrap-4.1.1/css/bootstrap.min.css') }}">
+
+            <link rel="stylesheet" href="{{ url_for('static', filename='jumbotron-narrow.css') }}">
+            <link rel="stylesheet" href="{{ url_for('static', filename='css/bidata.css') }}">
+
+        {% endblock %}
+    
+    </head>
+
+    <body >
+
+    <nav aria-label="breadcrumb">
+        <ol class="breadcrumb">
+                <li class="breadcrumb-item"><a href="/">Home</a></li>
+                <li class="breadcrumb-item"><a href="/showBIData">Burn-In Data</a></li>
+                <li class="breadcrumb-item active" aria-current="page">Burn-In Data Plot</li>
+        </ol>
+    </nav>
+
+    <div class="container-fluid" >
+      <div class="header">
+        <nav>
+          <ul class="nav nav-pills pull-right">
+            <li role="presentation" class="active"><a href="/showBIData">Back to Burn-In Data</a></li>
+          </ul>
+        </nav>
+        <h3 class="text-muted">Burn-In Data Plot</h3>
+      </div>
+      <!-- eof header -->
+
+    <div class="container">
+        <h2>SN: {{sn}}</h2>
+        <hr />
+        <h4>Error Message:</h4>
+        <div class="alert alert-danger" role="alert">
+            {{ errorMessage }}
+        </div>
+
+    </div>
+
+   
+
+      <footer class="footer">
+        <p>&copy; Lumentum</p>
+      </footer>
+
+    </div>
+  </body>
+</html>
+

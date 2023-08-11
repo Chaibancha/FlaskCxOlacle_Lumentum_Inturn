@@ -1,0 +1,176 @@
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>Inspect - Fiber Laser</title>
+<meta http-equiv="X-UA-Compatible" content="IE=11" />
+   <!--
+    <link href="http://getbootstrap.com/dist/css/bootstrap.min.css" rel="stylesheet">
+
+    <link href="http://getbootstrap.com/examples/jumbotron-narrow/jumbotron-narrow.css" rel="stylesheet">
+    <link href="../static/css/signup.css" rel="stylesheet">
+    <script src="../static/js/jquery-1.11.2.js"></script>
+    <script src="../static/js/signUp.js"></script>
+	-->
+	
+   {% block head %}
+        <link rel="stylesheet" href="{{ url_for('static', filename='bootstrap-slider.css') }}">
+		  <link rel="stylesheet" href="{{ url_for('static', filename='bootstrap.min.css') }}">
+		    <link rel="stylesheet" href="{{ url_for('static', filename='jumbotron-narrow.css') }}">
+      {% endblock %}
+  </head>
+
+  <body>
+
+    <div class="container">
+      <div class="header">
+        <nav>
+          <ul class="nav nav-pills pull-right">
+          
+              <li role="presentation" class="active"><a href="/">Home</a></li>
+             
+    <!--
+            <li role="presentation"><a href="#">Add inspection</a></li>
+            <li role="presentation" class="active"><a href="#">Add inspection 2</a></li>
+    -->
+          </ul>
+        </nav>
+        <h3 class="text-muted">Inspect - Fiber Laser </h3>
+      </div>
+
+      <div class="jumbotron">
+	  
+	  
+        <h3><b>Enter Serial Number </b></h3>
+<!--
+        <p align="left"> 1) Single DUT S/N - FMPT1602A05 </p>
+        <p align="left"> 2) Multiple DUT - separated by commas - SN1,SN2,SN3...  </p>
+        <!--<p align="left"> 3) All DUT available on server - Enter * </p>
+		
+		<p align="left"> 3) All DUT S/N containing specific Character - Enter Character and ~ 	</p>
+		<p align="left"> Some suggestions:		</p>
+		<p align="left" >  <font size="3">All 3KW engines:</font> FME3~	</p>
+		<p align="left"> <font size="3">All 2KW engines:</font> FME2~		</p>
+		<p align="left"> <font size="3">All Pump Trays:</font> FMP~		</p>
+		<p align="left"> <font size="3">All Pump Combiners: </font> MPC~	</p>
+		<p align="left"> <font size="3">All UNITS and assemblies manufactured in May 2016:</font> 1605~		</p>
+        <p align="left"> <font size="3">TO filter certain parameter names that contain specific characters, enter - and then a list of characters seperated by a comma:</font> FME3~-TEMP,RESULT,OPERATOR		</p>
+-->
+        <!--
+        <form class="form-signin" action="/index" >
+        <label for="inputName" class="sr-only">Name</label>
+        <input type="name" name="inputName" id="inputName" class="form-control" placeholder="Name" required autofocus>
+
+
+
+
+        <label for="inputEmail" class="sr-only">Email address</label>
+        <input type="email" name="inputEmail" id="inputEmail" class="form-control" placeholder="Email address" required autofocus>
+        <label for="inputPassword" class="sr-only">Password</label>
+        <input type="password" name="inputPassword" id="inputPassword" class="form-control" placeholder="Password" required>
+       
+       <a href="{{ url_for('showSignUp') }}"><button id="btnSignUp" class="btn btn-lg btn-primary btn-block" type="button"  href="{{ url_for('showSignUp') }}" type="submit"  >Query</button></a>
+<p><a href="{{ url_for('showSignUp') }}">see results</a></p>
+
+
+ <button input type="submit" name="submit" method="POST" href="{{ url_for('showSignUp') }}">
+          see results
+       
+    </button>
+      </form>
+
+--> 
+
+      <form action="showSignUp" method="POST" action="{{ url_for('showSignUp') }} class="form-signin" >
+      
+        <input type="text" name="text">
+        <input class="btn btn-lg btn-success" role="button" type="submit" >
+
+
+        
+    </form>
+
+ 
+
+      </div>
+	  
+	   </div>
+	  
+	  	 
+
+	  
+	  <!-- /.col-lg-8 -->
+	
+                <div class="col-lg-6" >
+                    <div class="panel panel-default">
+                        <div class="panel-heading">
+                            <i class="fa fa-bell fa-fw"></i> Latest tested units
+                        </div>
+                        <!-- /.panel-heading -->
+                        <div class="panel-body">
+                            <div class="list-group">
+	  
+	  
+	  
+	  
+	  {% set counter = 39 %}
+	  {% for key, dict_index in last_tested_dict.iteritems() %}
+      
+      {% set row_index = last_tested_dict[counter] %}
+	  
+	 
+	  
+	  {% set counter = counter-1 %}
+	  
+	  
+
+
+
+        
+    	 
+	 <form action="showSignUp" method="POST" action="{{ url_for('showSignUp') }}  >
+ <input type="text" name="text" value={{row_index[0]}}> 
+  <button type="submit" name="text" value={{row_index[0]}}  class="btn btn-lg btn-success">Query data for S/N : {{row_index[0]}}</button>
+  
+</form>  
+	  
+
+
+
+
+									<a href="#" class="list-group-item">
+                                    <i class="fa fa-comment fa-fw"></i> {{ row_index[0] }}  -  
+                                    
+									<span ><em>     	               {{ row_index[1] }}              </em>
+                                    </span>
+									
+									<span class="pull-right	 text-muted small"><em> {{ row_index[2] }} minutes ago</em>
+                                    </span>
+                                </a>
+{% endfor %}
+
+								
+
+								</div>
+                            <!-- /.list-group -->
+                          <!--   <a href="#" class="btn btn-default btn-block">View All Alerts</a> -->
+                        </div>
+                        <!-- /.panel-body -->
+                    </div>
+	  
+	  
+
+	 
+               
+
+        <footer class="footer">
+        <p>&copy; Lumentum</p>
+      </footer>
+
+
+
+
+    </div>
+  </body>
+</html>
+

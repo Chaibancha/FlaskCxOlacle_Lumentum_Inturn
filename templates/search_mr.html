@@ -1,0 +1,201 @@
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title> Inspect - KW Fiber Laser Data</title>
+	<meta http-equiv="X-UA-Compatible" content="IE=11" />
+   <!--
+    <link href="http://getbootstrap.com/dist/css/bootstrap.min.css" rel="stylesheet">
+
+    <link href="http://getbootstrap.com/examples/jumbotron-narrow/jumbotron-narrow.css" rel="stylesheet">
+        <link href="http://getbootstrap.com/examples/jumbotron-narrow/jumbotron-narrow.css" rel="stylesheet">
+
+-->
+
+<script src="{{ url_for('static', filename='jquery-3.5.1.js') }}"> </script>
+<script src="{{ url_for('static', filename='jquery.dataTables.min.js') }}"> </script>
+<link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='jquery.dataTables.min.css')}}"/>
+
+
+	{% block head %}
+		<link rel="stylesheet" href="{{ url_for('static', filename='bootstrap-slider.css') }}">
+		<link rel="stylesheet" href="{{ url_for('static', filename='bootstrap.min.css') }}">
+		<link rel="stylesheet" href="{{ url_for('static', filename='jumbotron-narrow.css') }}">
+	
+	{% endblock %}
+
+  </head>
+<div class="container-fluid px-4">
+  <body >
+
+
+    <div >
+      <div class="header">
+        <nav>
+          <ul class="nav nav-pills pull-right">
+            <li role="presentation" class="active"><a href="/">Home</a></li>
+
+          </ul>
+        </nav>
+        <h3 class="text-muted">Inspect - KW Fiber Laser Data</h3>
+      </div>
+	 </div>
+
+      <div class="jumbotron">
+		<h2>MantaRay DATA</h2>
+		</div>
+
+    <div class="jumbotron">
+
+        <h3><b>Enter  Mataray Serial Number</b></h3>
+
+
+      <form action="main" method="POST" action="{{ url_for('main') }} class="form-signin" >
+
+        <input type="text" name="text">
+        <input class="btn btn-lg btn-success" role="button" type="submit" >
+
+
+
+    </form>
+
+
+
+      </div>
+
+{% if data_table != [] %}
+<table id='myTable' class="display" style="width:100%">
+{% set counter_row = 0 %}
+{% for row_count in data_table %}
+	{%if counter_row == 0%}
+	<thead>
+        <tr>
+			{%for row_index in row_count%}
+				<th>{{ row_index }}</th>
+			{%endfor%}
+		</tr>
+        </thead>
+		<tbody>
+        {%else%}
+			<tr>
+			{%for row_index in row_count%}
+                <td>{{ row_index }}</td>
+			{%endfor%}
+            </tr>
+	{%endif%}
+    {% set counter_row = counter_row+1 %}
+	
+{%endfor%}
+
+	</tbody>
+</table>
+{% endif %}
+
+<!--
+<script>
+$(document).ready(function () {
+    var eventFired = function (type) {
+        var n = $('#demo_info')[0];
+        n.innerHTML += '<div>' + type + ' event - ' + new Date().getTime() + '</div>';
+        n.scrollTop = n.scrollHeight;
+    };
+ 
+    $('#myTable')
+        .on('order.dt', function () {
+            eventFired('Order');
+        })
+        .on('search.dt', function () {
+            eventFired('Search');
+        })
+        .on('page.dt', function () {
+            eventFired('Page');
+        })
+        .DataTable();
+});
+</script>
+-->
+
+
+<script>
+        $(document).ready(function () {
+            $("#myTable").DataTable();
+        });
+</script>
+
+<script type="text/javascript">
+        function tableToCSV() {
+
+            // Variable to store the final csv data
+            var csv_data = [];
+
+            // Get each row data
+            var rows = document.getElementsByTagName('tr');
+            for (var i = 0; i < rows.length; i++) {
+
+                // Get each column data
+                var cols = rows[i].querySelectorAll('td,th');
+
+                // Stores each csv row data
+                var csvrow = [];
+                for (var j = 0; j < cols.length; j++) {
+
+                    // Get the text data of each cell
+                    // of a row and push it to csvrow
+                    csvrow.push(cols[j].innerHTML);
+                }
+
+                // Combine each column value with comma
+                csv_data.push(csvrow.join(","));
+            }
+
+            // Combine each row data with new line character
+            csv_data = csv_data.join('\n');
+
+            // Call this function to download csv file
+            downloadCSVFile(csv_data);
+
+        }
+
+        function downloadCSVFile(csv_data) {
+
+            // Create CSV file object and feed
+            // our csv_data into it
+            CSVFile = new Blob([csv_data], {
+                type: "text/csv"
+            });
+
+            // Create to temporary link to initiate
+            // download process
+            var temp_link = document.createElement('a');
+
+            // Download csv file
+            temp_link.download = "Download.csv";
+            var url = window.URL.createObjectURL(CSVFile);
+            temp_link.href = url;
+
+            // This link should not be displayed
+            temp_link.style.display = "none";
+            document.body.appendChild(temp_link);
+
+            // Automatically click the link to
+            // trigger download
+            temp_link.click();
+            document.body.removeChild(temp_link);
+        }
+    </script>
+
+<center>
+<button type="button" onclick="tableToCSV()">
+            Download CSV
+        </button>
+    </center>
+    <br>
+<div>
+<footer class="footer">
+        <p>&copy; Lumentum  
+</footer>
+</div>
+</body>
+</div>
+
+</html>

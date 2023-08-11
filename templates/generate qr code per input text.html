@@ -1,0 +1,43 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
+        "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<script src="qrcode.min.js"></script>
+<!--<script src="{{ url_for('static', filename='qrcode.min.js') }}"> </script> -->
+<head>
+    <title>Test QR CODE</title>
+</head>
+<body>
+<div id="qrcode"></div>
+<script>
+// Get the input string
+var sn = {{serial_num}}
+var test_result = {{test_result}}
+var error_code = {{error_code}}
+var qrcode_txt = '[$getDateTime() S$sn T$test_result $error_code]';
+
+// Create the QR code
+var qrcode = new QRCode(document.getElementById("qrcode"), {
+  text: qrcode_txt,
+  width: 256,
+  height: 256,
+  colorDark: "#000000",
+  colorLight: "#ffffff",
+  correctLevel: QRCode.CorrectLevel.H
+});
+
+function getDateTime() {
+        const now = new Date();
+        const year = now.getFullYear();
+        const month = now.getMonth() + 1;
+        const day = now.getDate();
+        const hours = now.getHours();
+        const minutes = now.getMinutes();
+        const seconds = now.getSeconds();
+        const dateTime = `${month}/${day}/${year} ${hours}:${minutes}:${seconds}`;
+        return dateTime;
+    }
+</script>
+
+
+</body>
+</html>

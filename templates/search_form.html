@@ -1,0 +1,74 @@
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>Inspect - Fiber Laser</title>
+    <meta http-equiv="X-UA-Compatible" content="IE=11" />
+      {% block head %}
+        <link rel="stylesheet" href="{{ url_for('static', filename='bootstrap-slider.css') }}">
+		  <link rel="stylesheet" href="{{ url_for('static', filename='bootstrap.min.css') }}">
+		    <link rel="stylesheet" href="{{ url_for('static', filename='jumbotron-narrow.css') }}">
+      {% endblock %}
+  </head>
+
+  <body>
+    <div class="container">
+      <div class="header">
+        <nav>
+          <ul class="nav nav-pills pull-right">
+              <li role="presentation" class="active"><a href="/">Home</a></li>
+            <li role="presentation" class="active"><a href="/mr_search_form">MR Tracker</a></li>
+          </ul>
+        </nav>
+        <h3 class="text-muted">Fetch Manta Ray Data </h3>
+      </div>
+      <div class="jumbotron">
+
+        <h3><b>Enter  Mataray Serial Number</b></h3>
+
+
+      <form action="showData" method="POST" action="{{ url_for('showData') }} class="form-signin" >
+      
+		<div>
+        <!--<input type="text" name="text">-->
+		<textarea name="text" rows="10" cols="75"></textarea>
+		</div>
+		<p></p>
+		<div>
+		<input type="checkbox" name="onlypass" id="onlypass" checked>
+		<label for="onlypass">Last attemp with passed</label>
+		</div>
+		<p></p>
+		<div>
+        <input class="btn btn-lg btn-success" role="button" type="submit" >
+		</div>
+
+
+
+        
+    </form>
+
+	
+
+      </div>
+	  
+	<h5>*Single S/N example: MR-GJF611 <br>
+
+**Multiple S/N, Must use '|' symbol as delimiter. For example: MR-GJF611|MR-GKW452|MR-GMP853
+<br><br>
+<p>Feedback to <a href="mailto:aphiwat.wanta@lumentum.com?Subject=Howdy" target="_top">aphiwat.wanta@lumentum.com</a></p>
+</h5> 
+	
+	
+	
+        <footer class="footer">
+        <p>&copy; Lumentum</p>
+      </footer>
+
+
+
+
+    </div>
+  </body>
+</html>
+

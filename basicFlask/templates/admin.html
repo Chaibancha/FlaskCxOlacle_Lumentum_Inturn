@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    
+    {% if username == "chaibancha" %}
+        <h1>ยินดีต้อนรับเข้าสู่หน้า admin</h1>
+    {% else %}
+        <h1>คุณไมใช่ admin กรุณากลับหน้าแรก</h1>
+        <p>กรุณากลับหน้าแรก</p>
+        <ul>
+            <li><a href="/">Home</a></li>
+            <li><a href="/about">About</a></li>
+            <li><a href="/admin">Admin</a></li>
+        </ul>
+    {% endif %}
+</body>
+</html>

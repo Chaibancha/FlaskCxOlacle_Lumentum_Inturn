@@ -1,0 +1,52 @@
+
+	<html>
+  <head>
+    <title>image</title>
+	<script language="javascript">
+
+function fnSetTimer(image, src, counter, limit)
+{
+    image.onload = null;
+
+    if(counter < limit)
+    {
+        counter++;
+        setTimeout(function(){ fnSetTimer(image, src, counter, limit); },20);
+        image.src= src+ '?\\'+new Date().getMilliseconds();
+        //alert(counter); // show frame number
+    }
+} 
+</script>
+
+  </head>
+  <body>
+    
+<img src="/static/{{return_it}}"; id="refreshimage1" onload="fnSetTimer(this, this.src, 0, 5);" width="1200" />
+  </body>
+</html>
+
+
+ <!-- thermal_image2.html -->
+{# <!DOCTYPE html>
+<html>
+<head>
+    <title>Thermal Image</title>
+</head>
+<body>
+    <!-- Add your image display here -->
+    <img src="{{ url_for('static', filename=return_it) }}" alt="Thermal Image">
+
+    <!-- Add Download button -->
+    <form action="/download" method="post">
+        <input type="hidden" name="filename" value="{{ return_it }}">
+        <button type="submit">Download</button>
+    </form>
+
+    <!-- Add View button -->
+    <form action="/view" method="post">
+        <input type="hidden" name="filename" value="{{ return_it }}">
+        <button type="submit">View</button>
+    </form>
+</body>
+</html> #}
+

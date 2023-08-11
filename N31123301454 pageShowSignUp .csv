@@ -1,0 +1,700 @@
+TestHeaderID,Operation Name,StepID,Parameter Name,Value,Units,Min Limit,Max Limit
+38570167,PB3 P2P Stability Test,None,START TIME,2023-08-04 05:19:34,,,
+38570167,PB3 P2P Stability Test,None,END TIME,2023-08-04 05:38:33,,,
+38570167,PB3 P2P Stability Test,None,OPERATOR,72280,,,
+38570167,PB3 P2P Stability Test,None,STATION,356N6Z2,,,
+38570167,PB3 P2P Stability Test,46602457,Date,06.15.2023,None,None,None
+38570167,PB3 P2P Stability Test,46602457,Version,1.4.0,None,None,None
+38565475,PB3 Final Log,None,START TIME,2023-08-04 00:55:30,,,
+38565475,PB3 Final Log,None,END TIME,2023-08-04 02:07:53,,,
+38565475,PB3 Final Log,None,OPERATOR,72280,,,
+38565475,PB3 Final Log,None,STATION,356N6Z2,,,
+38565475,PB3 Final Log,46593121,ReportText,(For),None,None,None
+38697908,PB3 System Final Test,None,START TIME,2023-08-09 00:54:27,,,
+38697908,PB3 System Final Test,None,END TIME,2023-08-09 01:22:42,,,
+38697908,PB3 System Final Test,None,OPERATOR,85129,,,
+38697908,PB3 System Final Test,None,STATION,356N6Z2,,,
+38697908,PB3 System Final Test,46894862,Date,08.03.2023,None,None,None
+38697908,PB3 System Final Test,46894862,Version,1.4.1.5,None,None,None
+38570167,PB3 P2P Stability Test,46602458,ReportText,\\li.lumentuminc.net\data\pat\tds\Archive\202308\04\38570167\38570167_2.png,None,None,None
+38565475,PB3 Final Log,46593113,Date,06.15.2023,None,None,None
+38565475,PB3 Final Log,46593113,Version,1.4.0,None,None,None
+38697908,PB3 System Final Test,46894863,DC5 Board serial number,,None,None,None
+38697908,PB3 System Final Test,46894863,PT serial number,N31457,None,None,None
+38697908,PB3 System Final Test,46894863,FW Revision,v1.7.3-324362e11,None,None,None
+38697908,PB3 System Final Test,46894863,SPA serial number,N11469,None,None,None
+38697908,PB3 System Final Test,46894863,NLO Board serial number,FW134M004-01        ,None,None,None
+38697908,PB3 System Final Test,46894863,NLO serial number,1314910400005,None,None,None
+38697908,PB3 System Final Test,46894863,S3P serial number,N21465,None,None,None
+38697908,PB3 System Final Test,46894863,DC5 Revision,6,None,None,None
+38697908,PB3 System Final Test,46894863,NLO Revision,2,None,None,None
+38697908,PB3 System Final Test,46894863,PB3 Laser,N31123301454,None,None,None
+38697908,PB3 System Final Test,46894863,AD5 Board serial number,F3117N043-01,None,None,None
+38697908,PB3 System Final Test,46894863,AD5 Revision,6,None,None,None
+38565475,PB3 Final Log,46593116,ReportText,(For),None,None,None
+38565475,PB3 Final Log,46593117,ReportText,(For),None,None,None
+38565475,PB3 Final Log,46593118,ReportText,(For),None,None,None
+38565475,PB3 Final Log,46593119,ReportText,(For),None,None,None
+38565475,PB3 Final Log,46593120,ReportText,(For),None,None,None
+38697908,PB3 System Final Test,46894864,Output Power Laser,66.89,W,60,999
+38697908,PB3 System Final Test,46894864,PRF,700,kHz,None,None
+38697908,PB3 System Final Test,46894864,Average Power Gentec,71,W,60,999
+38697908,PB3 System Final Test,46894864,PoD Divider,1,None,None,None
+38697908,PB3 System Final Test,46894864,PoD relative power,100,%,None,None
+38697908,PB3 System Final Test,46894865,M2 Y,1.08,None,-999,1.2
+38697908,PB3 System Final Test,46894865,M2 X,1.1,None,-999,1.2
+38697908,PB3 System Final Test,46894865,Divergence X,0.05,mrad,None,None
+38697908,PB3 System Final Test,46894865,PRF,500,kHz,None,None
+38697908,PB3 System Final Test,46894865,DeltaM2,0.02,mrad,None,None
+38697908,PB3 System Final Test,46894865,Waist Width X,5016.41,um,None,None
+38697908,PB3 System Final Test,46894865,Astigmatism,0.3,None,None,None
+38697908,PB3 System Final Test,46894865,Waist Location Y,-884.53,mm,None,None
+38697908,PB3 System Final Test,46894865,Average Power Gentec,65.47,W,55,999
+38697908,PB3 System Final Test,46894865,Waist Location X,14037.26,mm,None,None
+38697908,PB3 System Final Test,46894865,PoD relative power,100,%,None,None
+38697908,PB3 System Final Test,46894865,Beam diameter@1m Y,4.94,mm,4.5,5.5
+38697908,PB3 System Final Test,46894865,Minimal Ellipticity,0.82,None,None,None
+38697908,PB3 System Final Test,46894865,Beam diameter@1m X,5.18,mm,4.5,5.5
+38697908,PB3 System Final Test,46894865,Asymmetry,1.015,None,None,None
+38697908,PB3 System Final Test,46894865,Divergence Y,0.05,mrad,None,None
+38697908,PB3 System Final Test,46894865,PoD Divider,1,None,None,None
+38697908,PB3 System Final Test,46894865,Waist Width Y,4941.17,um,None,None
+38697908,PB3 System Final Test,46894865,Output Power Laser,59.95,W,55,999
+38697908,PB3 System Final Test,46894866,Output Power Laser,41.64,W,None,None
+38697908,PB3 System Final Test,46894866,PRF,1000,kHz,None,None
+38697908,PB3 System Final Test,46894866,Average Power Gentec,42.85,W,None,None
+38697908,PB3 System Final Test,46894866,PoD Divider,1,None,None,None
+38697908,PB3 System Final Test,46894866,PoD relative power,100,%,None,None
+38697908,PB3 System Final Test,46894867,ReportText,\\li.lumentuminc.net\data\pat\tds\Archive\202308\09\38697908\38697908_6.png,None,None,None
+38570167,PB3 P2P Stability Test,46602459,Pulse to Pulse s,44.2,pVs,None,None
+38570167,PB3 P2P Stability Test,46602459,PRF,1000,kHz,None,None
+38570167,PB3 P2P Stability Test,46602459,Pulse to Pulse u,5.2,nVs,None,None
+38570167,PB3 P2P Stability Test,46602459,Pulse to Pulse Amplitude,0.3,V,None,None
+38570167,PB3 P2P Stability Test,46602459,PoD relative power,100,%,None,None
+38570167,PB3 P2P Stability Test,46602459,Pulse to Pulse Stability,0.85,% rms,-999,1
+38570167,PB3 P2P Stability Test,46602459,PoD Divider,1,None,None,None
+38697908,PB3 System Final Test,46894868,Pulse to Pulse s,48.2,pVs,None,None
+38697908,PB3 System Final Test,46894868,PRF,1000,kHz,None,None
+38697908,PB3 System Final Test,46894868,Pulse to Pulse u,5.8,nVs,None,None
+38697908,PB3 System Final Test,46894868,Pulse to Pulse Amplitude,0.3,V,None,None
+38697908,PB3 System Final Test,46894868,PoD relative power,100,%,None,None
+38697908,PB3 System Final Test,46894868,Pulse to Pulse Stability,0.84,% rms,-999,1
+38697908,PB3 System Final Test,46894868,PoD Divider,1,None,None,None
+38697908,PB3 System Final Test,46894869,Ellipticity,96.36,%,94,999
+38697908,PB3 System Final Test,46894869,PRF,500,kHz,None,None
+38697908,PB3 System Final Test,46894869,ReportText,\\li.lumentuminc.net\data\pat\tds\Archive\202308\09\38697908\38697908_8.png,None,None,None
+38697908,PB3 System Final Test,46894869,PoD relative power,100,%,None,None
+38697908,PB3 System Final Test,46894869,Beam diameter@1m Y,0,mm,None,None
+38697908,PB3 System Final Test,46894869,Beam diameter@1m X,0,mm,None,None
+38697908,PB3 System Final Test,46894869,D4sMaj,5009.84,um,None,None
+38697908,PB3 System Final Test,46894869,PoD Divider,1,None,None,None
+38697908,PB3 System Final Test,46894869,D4sMin,5198.94,um,None,None
+38697202,PB3 System Final Test,None,START TIME,2023-08-09 00:09:53,,,
+38697202,PB3 System Final Test,None,END TIME,2023-08-09 00:39:30,,,
+38697202,PB3 System Final Test,None,OPERATOR,85129,,,
+38697202,PB3 System Final Test,None,STATION,356N6Z2,,,
+38697202,PB3 System Final Test,46893226,Date,08.03.2023,None,None,None
+38697202,PB3 System Final Test,46893226,Version,1.4.1.5,None,None,None
+38697202,PB3 System Final Test,46893227,DC5 Board serial number,,None,None,None
+38697202,PB3 System Final Test,46893227,PT serial number,N31457,None,None,None
+38697202,PB3 System Final Test,46893227,FW Revision,v1.7.3-324362e11,None,None,None
+38697202,PB3 System Final Test,46893227,SPA serial number,N11469,None,None,None
+38697202,PB3 System Final Test,46893227,NLO Board serial number,FW134M004-01        ,None,None,None
+38697202,PB3 System Final Test,46893227,NLO serial number,1314910400005,None,None,None
+38697202,PB3 System Final Test,46893227,S3P serial number,N21465,None,None,None
+38697202,PB3 System Final Test,46893227,DC5 Revision,6,None,None,None
+38697202,PB3 System Final Test,46893227,NLO Revision,2,None,None,None
+38697202,PB3 System Final Test,46893227,PB3 Laser,N31123301454,None,None,None
+38697202,PB3 System Final Test,46893227,AD5 Board serial number,F3117N043-01,None,None,None
+38697202,PB3 System Final Test,46893227,AD5 Revision,6,None,None,None
+38697202,PB3 System Final Test,46893228,Output Power Laser,67.01,W,60,999
+38697202,PB3 System Final Test,46893228,PRF,700,kHz,None,None
+38697202,PB3 System Final Test,46893228,Average Power Gentec,66.4,W,60,999
+38697202,PB3 System Final Test,46893228,PoD Divider,1,None,None,None
+38697202,PB3 System Final Test,46893228,PoD relative power,100,%,None,None
+38697202,PB3 System Final Test,46893229,M2 Y,1.16,None,-999,1.2
+38697202,PB3 System Final Test,46893229,M2 X,1.06,None,-999,1.2
+38697202,PB3 System Final Test,46893229,Divergence X,0.05,mrad,None,None
+38697202,PB3 System Final Test,46893229,PRF,500,kHz,None,None
+38697202,PB3 System Final Test,46893229,DeltaM2,0.1,mrad,None,None
+38697202,PB3 System Final Test,46893229,Waist Width X,4862.62,um,None,None
+38697202,PB3 System Final Test,46893229,Astigmatism,0.28,None,None,None
+38697202,PB3 System Final Test,46893229,Waist Location Y,7705.7,mm,None,None
+38697202,PB3 System Final Test,46893229,Average Power Gentec,60.52,W,55,999
+38697202,PB3 System Final Test,46893229,Waist Location X,19136.24,mm,None,None
+38697202,PB3 System Final Test,46893229,PoD relative power,100,%,None,None
+38697202,PB3 System Final Test,46893229,Beam diameter@1m Y,4.28,mm,4.5,5.5
+38697202,PB3 System Final Test,46893229,Minimal Ellipticity,0.78,None,None,None
+38697202,PB3 System Final Test,46893229,Beam diameter@1m X,5.18,mm,4.5,5.5
+38697202,PB3 System Final Test,46893229,Asymmetry,1.157,None,None,None
+38697202,PB3 System Final Test,46893229,Divergence Y,0.06,mrad,None,None
+38697202,PB3 System Final Test,46893229,PoD Divider,1,None,None,None
+38697202,PB3 System Final Test,46893229,Waist Width Y,4202.23,um,None,None
+38697202,PB3 System Final Test,46893229,Output Power Laser,60.5,W,55,999
+38697202,PB3 System Final Test,46893230,Output Power Laser,41.98,W,None,None
+38697202,PB3 System Final Test,46893230,PRF,1000,kHz,None,None
+38697202,PB3 System Final Test,46893230,Average Power Gentec,40.66,W,None,None
+38697202,PB3 System Final Test,46893230,PoD Divider,1,None,None,None
+38697202,PB3 System Final Test,46893230,PoD relative power,100,%,None,None
+38697202,PB3 System Final Test,46893231,ReportText,\\li.lumentuminc.net\data\pat\tds\Archive\202308\09\38697202\38697202_6.png,None,None,None
+38697202,PB3 System Final Test,46893232,Pulse to Pulse s,45.9,pVs,None,None
+38697202,PB3 System Final Test,46893232,PRF,1000,kHz,None,None
+38697202,PB3 System Final Test,46893232,Pulse to Pulse u,5.5,nVs,None,None
+38697202,PB3 System Final Test,46893232,Pulse to Pulse Amplitude,0.3,V,None,None
+38697202,PB3 System Final Test,46893232,PoD relative power,100,%,None,None
+38697202,PB3 System Final Test,46893232,Pulse to Pulse Stability,0.83,% rms,-999,1
+38697202,PB3 System Final Test,46893232,PoD Divider,1,None,None,None
+38697202,PB3 System Final Test,46893233,Ellipticity,85.68,%,94,999
+38697202,PB3 System Final Test,46893233,PRF,500,kHz,None,None
+38697202,PB3 System Final Test,46893233,ReportText,\\li.lumentuminc.net\data\pat\tds\Archive\202308\09\38697202\38697202_8.png,None,None,None
+38697202,PB3 System Final Test,46893233,PoD relative power,100,%,None,None
+38697202,PB3 System Final Test,46893233,Beam diameter@1m Y,0,mm,None,None
+38697202,PB3 System Final Test,46893233,Beam diameter@1m X,0,mm,None,None
+38697202,PB3 System Final Test,46893233,D4sMaj,4364.67,um,None,None
+38697202,PB3 System Final Test,46893233,PoD Divider,1,None,None,None
+38697202,PB3 System Final Test,46893233,D4sMin,5094.38,um,None,None
+38702457,PB3 Final Log,None,START TIME,2023-08-09 02:40:36,,,
+38702457,PB3 Final Log,None,END TIME,2023-08-09 03:49:31,,,
+38702457,PB3 Final Log,None,OPERATOR,85129,,,
+38702457,PB3 Final Log,None,STATION,356N6Z2,,,
+38702457,PB3 Final Log,46902962,Date,06.15.2023,None,None,None
+38702457,PB3 Final Log,46902962,Version,1.4.0.4,None,None,None
+38702457,PB3 Final Log,46902965,ReportText,(For),None,None,None
+38702457,PB3 Final Log,46902966,ReportText,(For),None,None,None
+38702457,PB3 Final Log,46902967,ReportText,(For),None,None,None
+38702457,PB3 Final Log,46902968,ReportText,(For),None,None,None
+38702457,PB3 Final Log,46902969,ReportText,(For),None,None,None
+38702457,PB3 Final Log,46902970,ReportText,(For),None,None,None
+38637814,Power Stability Test,None,START TIME,2023-08-04 19:34:57,,,
+38637814,Power Stability Test,None,END TIME,2023-08-05 04:46:48,,,
+38637814,Power Stability Test,None,OPERATOR,63766,,,
+38637814,Power Stability Test,None,STATION,DE249921,,,
+38637814,Power Stability Test,46779606,Date,06.02.2023,None,None,None
+38637814,Power Stability Test,46779606,Version,1.4.0,None,None,None
+38637814,Power Stability Test,46779608,Power,0,W,None,None
+38637814,Power Stability Test,46779608,ChartLabel,Power vs Time,None,None,None
+38637814,Power Stability Test,46779608,Xunit,hrs,None,None,None
+38637814,Power Stability Test,46779608,Yunit,W,None,None,None
+38637814,Power Stability Test,46779608,Xlabel,Time,None,None,None
+38637814,Power Stability Test,46779608,Ylabel,Power,None,None,None
+38637814,Power Stability Test,46779608,ChartType,Line,None,None,None
+38637814,Power Stability Test,46779609,Power,0,W,None,None
+38637814,Power Stability Test,46779609,ChartLabel,Water temperature vs Time,None,None,None
+38637814,Power Stability Test,46779609,Xunit,hrs,None,None,None
+38637814,Power Stability Test,46779609,Yunit,?C,None,None,None
+38637814,Power Stability Test,46779609,Xlabel,Time,None,None,None
+38637814,Power Stability Test,46779609,Ylabel,Temperature,None,None,None
+38637814,Power Stability Test,46779609,ChartType,Line,None,None,None
+38637814,Power Stability Test,46779610,Power,0,W,None,None
+38637814,Power Stability Test,46779610,ChartLabel,X2  TEC Current vs Time,None,None,None
+38637814,Power Stability Test,46779610,Xunit,hrs,None,None,None
+38637814,Power Stability Test,46779610,Yunit,mA,None,None,None
+38637814,Power Stability Test,46779610,Xlabel,Time,None,None,None
+38637814,Power Stability Test,46779610,Ylabel,Itec X2,None,None,None
+38637814,Power Stability Test,46779610,ChartType,Line,None,None,None
+38637814,Power Stability Test,46779611,Itec X2 Slope,0.0001757138249649,mA/h,None,None
+38637814,Power Stability Test,46779611,Power s %,3.672559139436,%,-999,1
+38637814,Power Stability Test,46779611,Temperature,21.53319549561,C,15,45
+38637814,Power Stability Test,46779611,Power Peak to Peak %,32.5557403782,%,None,None
+38637814,Power Stability Test,46779611,Power Slope,-0.02479734060733,%/Hour,-999,-0.01
+38637814,Power Stability Test,46779611,RunDuration,7.969704138556,h,None,None
+38570167,PB3 P2P Stability Test,46602460,ReportText,\\li.lumentuminc.net\data\pat\tds\Archive\202308\04\38570167\38570167_4.png,None,None,None
+38570167,PB3 P2P Stability Test,46602461,Pulse to Pulse s,68,pVs,None,None
+38570167,PB3 P2P Stability Test,46602461,PRF,400,kHz,None,None
+38570167,PB3 P2P Stability Test,46602461,Pulse to Pulse u,5.6,nVs,None,None
+38570167,PB3 P2P Stability Test,46602461,Pulse to Pulse Amplitude,0.3,V,None,None
+38570167,PB3 P2P Stability Test,46602461,PoD relative power,100,%,None,None
+38570167,PB3 P2P Stability Test,46602461,Pulse to Pulse Stability,1.21,% rms,-999,2
+38570167,PB3 P2P Stability Test,46602461,PoD Divider,1,None,None,None
+38562193,PB3 System Final Test,None,START TIME,2023-08-03 23:41:15,,,
+38562193,PB3 System Final Test,None,END TIME,2023-08-04 00:13:46,,,
+38562193,PB3 System Final Test,None,OPERATOR,72280,,,
+38562193,PB3 System Final Test,None,STATION,356N6Z2,,,
+38562193,PB3 System Final Test,46586600,Date,06.20.2023,None,None,None
+38562193,PB3 System Final Test,46586600,Version,1.4.0,None,None,None
+38562193,PB3 System Final Test,46586601,DC5 Board serial number,,None,None,None
+38562193,PB3 System Final Test,46586601,PT serial number,N31457,None,None,None
+38562193,PB3 System Final Test,46586601,FW Revision,v1.7.3-324362e11,None,None,None
+38562193,PB3 System Final Test,46586601,SPA serial number,N11469,None,None,None
+38562193,PB3 System Final Test,46586601,NLO Board serial number,FW134M004-01        ,None,None,None
+38562193,PB3 System Final Test,46586601,NLO serial number,FW134M004-01        ,None,None,None
+38562193,PB3 System Final Test,46586601,S3P serial number,N21465,None,None,None
+38562193,PB3 System Final Test,46586601,DC5 Revision,6,None,None,None
+38562193,PB3 System Final Test,46586601,NLO Revision,2,None,None,None
+38562193,PB3 System Final Test,46586601,AD5 Board serial number,F3117N043-01,None,None,None
+38562193,PB3 System Final Test,46586601,AD5 Revision,6,None,None,None
+38562193,PB3 System Final Test,46586602,Output Power Laser,62.17,W,60,999
+38562193,PB3 System Final Test,46586602,PRF,700,kHz,None,None
+38562193,PB3 System Final Test,46586602,Average Power Gentec,65.93,W,60,999
+38562193,PB3 System Final Test,46586602,PoD Divider,1,None,None,None
+38562193,PB3 System Final Test,46586602,PoD relative power,100,%,None,None
+38562193,PB3 System Final Test,46586603,M2 Y,1.1,None,-999,1.2
+38562193,PB3 System Final Test,46586603,M2 X,1.14,None,-999,1.2
+38562193,PB3 System Final Test,46586603,Divergence X,0.05,mrad,None,None
+38562193,PB3 System Final Test,46586603,PRF,500,kHz,None,None
+38562193,PB3 System Final Test,46586603,DeltaM2,0.03,mrad,None,None
+38562193,PB3 System Final Test,46586603,Waist Width X,4992.11,um,None,None
+38562193,PB3 System Final Test,46586603,Astigmatism,0.32,None,None,None
+38562193,PB3 System Final Test,46586603,Waist Location Y,504.17,mm,None,None
+38562193,PB3 System Final Test,46586603,Average Power Gentec,65.88,W,55,999
+38562193,PB3 System Final Test,46586603,Waist Location X,16621.36,mm,None,None
+38562193,PB3 System Final Test,46586603,PoD relative power,100,%,None,None
+38562193,PB3 System Final Test,46586603,Beam diameter@1m Y,5.04,mm,4.5,5.5
+38562193,PB3 System Final Test,46586603,Minimal Ellipticity,0.82,None,None,None
+38562193,PB3 System Final Test,46586603,Beam diameter@1m X,5.24,mm,4.5,5.5
+38562193,PB3 System Final Test,46586603,Asymmetry,1.01,None,None,None
+38562193,PB3 System Final Test,46586603,Divergence Y,0.05,mrad,None,None
+38562193,PB3 System Final Test,46586603,PoD Divider,1,None,None,None
+38562193,PB3 System Final Test,46586603,Waist Width Y,5044.26,um,None,None
+38562193,PB3 System Final Test,46586603,Output Power Laser,60.16,W,55,999
+38562193,PB3 System Final Test,46586604,Output Power Laser,41.2,W,None,None
+38562193,PB3 System Final Test,46586604,PRF,1000,kHz,None,None
+38562193,PB3 System Final Test,46586604,Average Power Gentec,42.28,W,None,None
+38562193,PB3 System Final Test,46586604,PoD Divider,1,None,None,None
+38562193,PB3 System Final Test,46586604,PoD relative power,100,%,None,None
+38562193,PB3 System Final Test,46586605,ReportText,\\li.lumentuminc.net\data\pat\tds\Archive\202308\03\38562193\38562193_6.png,None,None,None
+38562193,PB3 System Final Test,46586606,Pulse to Pulse s,48.9,pVs,None,None
+38562193,PB3 System Final Test,46586606,PRF,1000,kHz,None,None
+38562193,PB3 System Final Test,46586606,Pulse to Pulse u,4.8,nVs,None,None
+38562193,PB3 System Final Test,46586606,Pulse to Pulse Amplitude,0.2,V,None,None
+38562193,PB3 System Final Test,46586606,PoD relative power,100,%,None,None
+38562193,PB3 System Final Test,46586606,Pulse to Pulse Stability,1.02,% rms,-999,1
+38562193,PB3 System Final Test,46586606,PoD Divider,1,None,None,None
+38562193,PB3 System Final Test,46586607,Ellipticity,95.79,%,94,999
+38562193,PB3 System Final Test,46586607,PRF,500,kHz,None,None
+38562193,PB3 System Final Test,46586607,ReportText,\\li.lumentuminc.net\data\pat\tds\Archive\202308\03\38562193\38562193_8.png,None,None,None
+38562193,PB3 System Final Test,46586607,PoD relative power,100,%,None,None
+38562193,PB3 System Final Test,46586607,Beam diameter@1m Y,0,mm,None,None
+38562193,PB3 System Final Test,46586607,Beam diameter@1m X,0,mm,None,None
+38562193,PB3 System Final Test,46586607,D4sMaj,4961.7,um,None,None
+38562193,PB3 System Final Test,46586607,PoD Divider,1,None,None,None
+38562193,PB3 System Final Test,46586607,D4sMin,5179.56,um,None,None
+38561433,AAT Test,None,START TIME,2023-08-03 22:47:53,,,
+38561433,AAT Test,None,END TIME,2023-08-03 23:30:57,,,
+38561433,AAT Test,None,OPERATOR,72280,,,
+38561433,AAT Test,None,STATION,356N6Z2,,,
+38561433,AAT Test,46585084,sha,c979fee119ce6fc1c216333bab4ebc87957cee01,None,None,None
+38561433,AAT Test,46585084,revision,fts/007,None,None,None
+38561433,AAT Test,46585085,sn,N31123301454,None,None,None
+38561433,AAT Test,46585087,pod_window,35,None,None,None
+38561433,AAT Test,46585087,pod_neg_delay,98,None,None,None
+38561433,AAT Test,46585088,irmon_offset,27.92401210172,None,None,None
+38561433,AAT Test,46585088,ReportText,\\li.lumentuminc.net\data\pat\tds\Archive\202308\03\38561433\38561433_5.png,None,None,None
+38561433,AAT Test,46585089,pod_window,35,None,None,None
+38561433,AAT Test,46585089,fcomp,1302000,None,None,None
+38561433,AAT Test,46585090,peak_min,0.04091,None,None,None
+38561433,AAT Test,46585090,ReportText,\\li.lumentuminc.net\data\pat\tds\Archive\202308\03\38561433\38561433_7.png,None,None,None
+38561433,AAT Test,46585090,peak_avg,0.04317095667798,None,None,None
+38561433,AAT Test,46585090,peak_max,0.045518,None,None,None
+38561433,AAT Test,46585090,peak_var,0.08677129923115,None,-999,0.15
+38561433,AAT Test,46585091,mainset_description,"PRF: 500.0 kHz
+Burst: 100.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0",None,None,None
+38561433,AAT Test,46585091,ReportText,\\li.lumentuminc.net\data\pat\tds\Archive\202308\03\38561433\38561433_8.png,None,None,None
+38561433,AAT Test,46585091,peak_std,0.0055920143086,None,None,None
+38561433,AAT Test,46585091,gui_rms_avg_10,0.5729103326797,None,None,None
+38561433,AAT Test,46585092,mainset_description,"PRF: 500.0 kHz
+Burst: 100.0 80.0 60.0 40.0 20.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0",None,None,None
+38561433,AAT Test,46585092,ReportText,\\li.lumentuminc.net\data\pat\tds\Archive\202308\03\38561433\38561433_9.png,None,None,None
+38561433,AAT Test,46585092,peak_std,0.002983315191923,None,None,None
+38561433,AAT Test,46585092,gui_rms_avg_10,0.140600296855,None,None,None
+38561433,AAT Test,46585093,mainset_description,"PRF: 1000.0 kHz
+Burst: 100.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0",None,None,None
+38561433,AAT Test,46585093,ReportText,\\li.lumentuminc.net\data\pat\tds\Archive\202308\03\38561433\38561433_10.png,None,None,None
+38561433,AAT Test,46585093,peak_std,0.002010552786849,None,None,None
+38561433,AAT Test,46585093,gui_rms_avg_10,0.1835650607944,None,None,None
+38561433,AAT Test,46585094,mainset_description,"PRF: 2000.0 kHz
+Burst: 100.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0",None,None,None
+38561433,AAT Test,46585094,ReportText,\\li.lumentuminc.net\data\pat\tds\Archive\202308\03\38561433\38561433_11.png,None,None,None
+38561433,AAT Test,46585094,peak_std,0.001005340654413,None,None,None
+38561433,AAT Test,46585094,gui_rms_avg_10,0.07858151867986,None,None,None
+38561433,AAT Test,46585095,mainset_description,"PRF: 2000.0 kHz
+Burst: 100.0 80.0 60.0 40.0 20.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0",None,None,None
+38561433,AAT Test,46585095,ReportText,\\li.lumentuminc.net\data\pat\tds\Archive\202308\03\38561433\38561433_12.png,None,None,None
+38561433,AAT Test,46585095,peak_std,0.0003038664955856,None,None,None
+38561433,AAT Test,46585095,gui_rms_avg_10,0.1488398879766,None,None,None
+38561433,AAT Test,46585096,mainset_description,"PRF: 2500.0 kHz
+Burst: 100.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0",None,None,None
+38561433,AAT Test,46585096,ReportText,\\li.lumentuminc.net\data\pat\tds\Archive\202308\03\38561433\38561433_13.png,None,None,None
+38561433,AAT Test,46585096,peak_std,0.0007281087133426,None,None,None
+38561433,AAT Test,46585096,gui_rms_avg_10,0.07844434455037,None,None,None
+38561433,AAT Test,46585097,mainset_description,"PRF: 500.0 kHz
+Burst: 100.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0",None,None,None
+38561433,AAT Test,46585097,ReportText,\\li.lumentuminc.net\data\pat\tds\Archive\202308\03\38561433\38561433_14.png,None,None,None
+38561433,AAT Test,46585098,mainset_description,"PRF: 500.0 kHz
+Burst: 100.0 80.0 60.0 40.0 20.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0",None,None,None
+38561433,AAT Test,46585098,ReportText,\\li.lumentuminc.net\data\pat\tds\Archive\202308\03\38561433\38561433_15.png,None,None,None
+38561433,AAT Test,46585099,mainset_description,"PRF: 1000.0 kHz
+Burst: 100.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0",None,None,None
+38561433,AAT Test,46585099,ReportText,\\li.lumentuminc.net\data\pat\tds\Archive\202308\03\38561433\38561433_16.png,None,None,None
+38561433,AAT Test,46585100,mainset_description,"PRF: 2000.0 kHz
+Burst: 100.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0",None,None,None
+38561433,AAT Test,46585100,ReportText,\\li.lumentuminc.net\data\pat\tds\Archive\202308\03\38561433\38561433_17.png,None,None,None
+38561433,AAT Test,46585101,mainset_description,"PRF: 2000.0 kHz
+Burst: 100.0 80.0 60.0 40.0 20.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0",None,None,None
+38561433,AAT Test,46585101,ReportText,\\li.lumentuminc.net\data\pat\tds\Archive\202308\03\38561433\38561433_18.png,None,None,None
+38561433,AAT Test,46585102,mainset_description,"PRF: 2500.0 kHz
+Burst: 100.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0",None,None,None
+38561433,AAT Test,46585102,ReportText,\\li.lumentuminc.net\data\pat\tds\Archive\202308\03\38561433\38561433_19.png,None,None,None
+38561433,AAT Test,46585103,ReportText,\\li.lumentuminc.net\data\pat\tds\Archive\202308\03\38561433\38561433_20.png,None,None,None
+38561433,AAT Test,46585103,Test Description,Plot the AT ext vs PoD triggered that is generated for every case of previous test,None,None,None
+38561433,AAT Test,46585104,mainset_description,"PRF: 400.0 kHz
+Burst: 100.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0",None,None,None
+38561433,AAT Test,46585104,gui_rms_avg_10,0.6096510529518,None,None,None
+38561433,AAT Test,46585105,mainset_description,"PRF: 500.0 kHz
+Burst: 100.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0",None,None,None
+38561433,AAT Test,46585105,gui_rms_avg_10,0.1828649759293,None,None,None
+38561433,AAT Test,46585106,mainset_description,"PRF: 626.0 kHz
+Burst: 100.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0",None,None,None
+38561433,AAT Test,46585106,gui_rms_avg_10,0.1925332412124,None,None,None
+38561433,AAT Test,46585107,mainset_description,"PRF: 781.0 kHz
+Burst: 100.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0",None,None,None
+38561433,AAT Test,46585107,gui_rms_avg_10,0.05075894668698,None,None,None
+38561433,AAT Test,46585108,mainset_description,"PRF: 976.2 kHz
+Burst: 100.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0",None,None,None
+38561433,AAT Test,46585108,gui_rms_avg_10,0.09218118861318,None,None,None
+38561433,AAT Test,46585109,mainset_description,"PRF: 1223.9 kHz
+Burst: 100.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0",None,None,None
+38561433,AAT Test,46585109,gui_rms_avg_10,0.225272385776,None,None,None
+38561433,AAT Test,46585110,mainset_description,"PRF: 1518.5 kHz
+Burst: 100.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0",None,None,None
+38561433,AAT Test,46585110,gui_rms_avg_10,0.2539293900132,None,None,None
+38561433,AAT Test,46585111,mainset_description,"PRF: 1907.0 kHz
+Burst: 100.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0",None,None,None
+38561433,AAT Test,46585111,gui_rms_avg_10,0.1187300212681,None,None,None
+38561433,AAT Test,46585112,mainset_description,"PRF: 2411.8 kHz
+Burst: 100.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0",None,None,None
+38561433,AAT Test,46585112,gui_rms_avg_10,0.158829587698,None,None,None
+38561433,AAT Test,46585113,mainset_description,"PRF: 3037.0 kHz
+Burst: 100.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0",None,None,None
+38561433,AAT Test,46585113,gui_rms_avg_10,-1,None,None,None
+38561433,AAT Test,46585114,mainset_description,"PRF: 400.0 kHz
+Burst: 20.0 40.0 100.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0",None,None,None
+38561433,AAT Test,46585114,gui_rms_avg_10,0.1851421430707,None,None,None
+38561433,AAT Test,46585115,mainset_description,"PRF: 500.0 kHz
+Burst: 20.0 40.0 100.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0",None,None,None
+38561433,AAT Test,46585115,gui_rms_avg_10,0.08954057320952,None,None,None
+38561433,AAT Test,46585116,mainset_description,"PRF: 626.0 kHz
+Burst: 20.0 40.0 100.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0",None,None,None
+38561433,AAT Test,46585116,gui_rms_avg_10,0.1891976505518,None,None,None
+38561433,AAT Test,46585117,mainset_description,"PRF: 781.0 kHz
+Burst: 20.0 40.0 100.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0",None,None,None
+38561433,AAT Test,46585117,gui_rms_avg_10,0.1970882251859,None,None,None
+38561433,AAT Test,46585118,mainset_description,"PRF: 976.2 kHz
+Burst: 20.0 40.0 100.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0",None,None,None
+38561433,AAT Test,46585118,gui_rms_avg_10,0.1817606806755,None,None,None
+38561433,AAT Test,46585119,mainset_description,"PRF: 1223.9 kHz
+Burst: 20.0 40.0 100.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0",None,None,None
+38561433,AAT Test,46585119,gui_rms_avg_10,0.4145489215851,None,None,None
+38561433,AAT Test,46585120,mainset_description,"PRF: 1518.5 kHz
+Burst: 20.0 40.0 100.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0",None,None,None
+38561433,AAT Test,46585120,gui_rms_avg_10,0.2245258271694,None,None,None
+38561433,AAT Test,46585121,mainset_description,"PRF: 1907.0 kHz
+Burst: 20.0 40.0 100.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0",None,None,None
+38561433,AAT Test,46585121,gui_rms_avg_10,0.1159052506089,None,None,None
+38561433,AAT Test,46585122,mainset_description,"PRF: 2411.8 kHz
+Burst: 20.0 40.0 100.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0",None,None,None
+38561433,AAT Test,46585122,gui_rms_avg_10,-1,None,None,None
+38561433,AAT Test,46585123,mainset_description,"PRF: 3037.0 kHz
+Burst: 20.0 40.0 100.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0",None,None,None
+38561433,AAT Test,46585123,gui_rms_avg_10,-1,None,None,None
+38561433,AAT Test,46585124,mainset_description,"PRF: 400.0 kHz
+Burst: 100.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 100.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0",None,None,None
+38561433,AAT Test,46585124,gui_rms_avg_10,0.1487596437335,None,None,None
+38561433,AAT Test,46585125,mainset_description,"PRF: 500.0 kHz
+Burst: 100.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 100.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0",None,None,None
+38561433,AAT Test,46585125,gui_rms_avg_10,0.04135457649827,None,None,None
+38561433,AAT Test,46585126,mainset_description,"PRF: 626.0 kHz
+Burst: 100.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 100.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0",None,None,None
+38561433,AAT Test,46585126,gui_rms_avg_10,0.06769045554101,None,None,None
+38561433,AAT Test,46585127,mainset_description,"PRF: 781.0 kHz
+Burst: 100.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 100.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0",None,None,None
+38561433,AAT Test,46585127,gui_rms_avg_10,0.08278970420361,None,None,None
+38561433,AAT Test,46585128,mainset_description,"PRF: 976.2 kHz
+Burst: 100.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 100.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0",None,None,None
+38561433,AAT Test,46585128,gui_rms_avg_10,0.1916604146361,None,None,None
+38561433,AAT Test,46585129,mainset_description,"PRF: 1223.9 kHz
+Burst: 100.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 100.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0",None,None,None
+38561433,AAT Test,46585129,gui_rms_avg_10,0.1065919578075,None,None,None
+38561433,AAT Test,46585130,mainset_description,"PRF: 1518.5 kHz
+Burst: 100.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 100.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0",None,None,None
+38561433,AAT Test,46585130,gui_rms_avg_10,0.2938136547804,None,None,None
+38561433,AAT Test,46585131,mainset_description,"PRF: 1907.0 kHz
+Burst: 100.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 100.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0",None,None,None
+38561433,AAT Test,46585131,gui_rms_avg_10,-1,None,None,None
+38561433,AAT Test,46585132,mainset_description,"PRF: 2411.8 kHz
+Burst: 100.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 100.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0",None,None,None
+38561433,AAT Test,46585132,gui_rms_avg_10,-1,None,None,None
+38561433,AAT Test,46585133,mainset_description,"PRF: 3037.0 kHz
+Burst: 100.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 100.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0",None,None,None
+38561433,AAT Test,46585133,gui_rms_avg_10,-1,None,None,None
+38561433,AAT Test,46585134,mainset_description,"PRF: 400.0 kHz
+Burst: 100.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 100.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0",None,None,None
+38561433,AAT Test,46585134,gui_rms_avg_10,0.1348871394992,None,None,None
+38561433,AAT Test,46585135,mainset_description,"PRF: 500.0 kHz
+Burst: 100.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 100.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0",None,None,None
+38561433,AAT Test,46585135,gui_rms_avg_10,0.1122192703187,None,None,None
+38561433,AAT Test,46585136,mainset_description,"PRF: 626.0 kHz
+Burst: 100.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 100.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0",None,None,None
+38561433,AAT Test,46585136,gui_rms_avg_10,0.09416465684772,None,None,None
+38561433,AAT Test,46585137,mainset_description,"PRF: 781.0 kHz
+Burst: 100.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 100.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0",None,None,None
+38561433,AAT Test,46585137,gui_rms_avg_10,0.07851024828851,None,None,None
+38561433,AAT Test,46585138,mainset_description,"PRF: 976.2 kHz
+Burst: 100.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 100.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0",None,None,None
+38561433,AAT Test,46585138,gui_rms_avg_10,0.147343622148,None,None,None
+38561433,AAT Test,46585139,mainset_description,"PRF: 1223.9 kHz
+Burst: 100.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 100.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0",None,None,None
+38561433,AAT Test,46585139,gui_rms_avg_10,-1,None,None,None
+38561433,AAT Test,46585140,mainset_description,"PRF: 1518.5 kHz
+Burst: 100.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 100.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0",None,None,None
+38561433,AAT Test,46585140,gui_rms_avg_10,-1,None,None,None
+38561433,AAT Test,46585141,mainset_description,"PRF: 1907.0 kHz
+Burst: 100.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 100.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0",None,None,None
+38561433,AAT Test,46585141,gui_rms_avg_10,-1,None,None,None
+38561433,AAT Test,46585142,mainset_description,"PRF: 400.0 kHz
+Burst: 100.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 100.0",None,None,None
+38561433,AAT Test,46585142,gui_rms_avg_10,0.1633213698864,None,None,None
+38561433,AAT Test,46585143,mainset_description,"PRF: 500.0 kHz
+Burst: 100.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 100.0",None,None,None
+38561433,AAT Test,46585143,gui_rms_avg_10,0.0900177128613,None,None,None
+38561433,AAT Test,46585144,mainset_description,"PRF: 626.0 kHz
+Burst: 100.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 100.0",None,None,None
+38561433,AAT Test,46585144,gui_rms_avg_10,0.2034115165472,None,None,None
+38561433,AAT Test,46585145,mainset_description,"PRF: 781.0 kHz
+Burst: 100.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 100.0",None,None,None
+38561433,AAT Test,46585145,gui_rms_avg_10,-1,None,None,None
+38561433,AAT Test,46585146,mainset_description,"PRF: 976.2 kHz
+Burst: 100.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 100.0",None,None,None
+38561433,AAT Test,46585146,gui_rms_avg_10,-1,None,None,None
+38561433,AAT Test,46585147,mainset_description,"PRF: 1223.9 kHz
+Burst: 100.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 100.0",None,None,None
+38561433,AAT Test,46585147,gui_rms_avg_10,-1,None,None,None
+38561433,AAT Test,46585148,mainset_description,"PRF: 1518.5 kHz
+Burst: 100.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 100.0",None,None,None
+38561433,AAT Test,46585148,gui_rms_avg_10,-1,None,None,None
+38561433,AAT Test,46585149,mainset_description,"PRF: 1907.0 kHz
+Burst: 100.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 100.0",None,None,None
+38561433,AAT Test,46585149,gui_rms_avg_10,-1,None,None,None
+38561433,AAT Test,46585150,mainset_description,"PRF: 400.0 kHz
+Burst: 100.0 100.0 100.0 100.0 100.0 100.0 100.0 100.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0",None,None,None
+38561433,AAT Test,46585150,gui_rms_avg_10,0.1109455525875,None,None,None
+38561433,AAT Test,46585151,mainset_description,"PRF: 400.0 kHz
+Burst: 10.0 20.0 30.0 40.0 50.0 60.0 80.0 100.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0",None,None,None
+38561433,AAT Test,46585151,gui_rms_avg_10,0.09444145709276,None,None,None
+38561433,AAT Test,46585152,mainset_description,"PRF: 400.0 kHz
+Burst: 5.0 10.0 15.0 20.0 25.0 30.0 35.0 40.0 45.0 50.0 55.0 60.0 65.0 70.0 75.0 80.0 85.0 90.0 95.0 100.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0",None,None,None
+38561433,AAT Test,46585152,gui_rms_avg_10,0.2512470796704,None,None,None
+38561433,AAT Test,46585153,mainset_description,"PRF: 400.0 kHz
+Burst: 100.0 100.0 100.0 100.0 100.0 100.0 100.0 100.0 100.0 100.0 100.0 100.0 100.0 100.0 100.0 100.0 100.0 100.0 100.0 100.0 100.0 100.0 100.0 100.0 100.0 100.0 100.0 100.0 100.0 100.0 100.0 100.0 100.0 100.0 100.0 100.0 100.0 100.0 100.0 100.0",None,None,None
+38561433,AAT Test,46585153,gui_rms_avg_10,0.2707787483931,None,None,None
+38561433,AAT Test,46585154,mainset_description,"PRF: 1000.0 kHz
+Burst: 20.0 40.0 100.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0",None,None,None
+38561433,AAT Test,46585154,gui_rms_avg_10,0.1775337204337,None,None,None
+38561433,AAT Test,46585155,mainset_description,"PRF: 1000.0 kHz
+Burst: 100.0 100.0 100.0 100.0 100.0 100.0 100.0 100.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0",None,None,None
+38561433,AAT Test,46585155,gui_rms_avg_10,0.2310891374946,None,None,None
+38561433,AAT Test,46585156,mainset_description,"PRF: 1000.0 kHz
+Burst: 10.0 20.0 30.0 40.0 50.0 60.0 80.0 100.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0",None,None,None
+38561433,AAT Test,46585156,gui_rms_avg_10,0.2581174328923,None,None,None
+38561433,AAT Test,46585157,mainset_description,"PRF: 1000.0 kHz
+Burst: 5.0 10.0 15.0 20.0 25.0 30.0 35.0 40.0 45.0 50.0 55.0 60.0 65.0 70.0 75.0 80.0 85.0 90.0 95.0 100.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0",None,None,None
+38561433,AAT Test,46585157,gui_rms_avg_10,0.1867598026991,None,None,None
+38561433,AAT Test,46585160,log_path,\\li.lumentuminc.net\data\PAT\Ultrafast\Builds\10_Logfiles\N31123301454\log_N31123301454_2023-08-03_parsed.csv,None,None,None
+38561433,AAT Test,46585161,config_path,\\li.lumentuminc.net\data\PAT\Ultrafast\Builds\10_Logfiles\N31123301454\log_N31123301454_2023-08-03.log.txt,None,None,None
+38570327,PB3 System Final Test,None,START TIME,2023-08-04 05:39:47,,,
+38570327,PB3 System Final Test,None,END TIME,2023-08-04 06:14:19,,,
+38570327,PB3 System Final Test,None,OPERATOR,72280,,,
+38570327,PB3 System Final Test,None,STATION,356N6Z2,,,
+38570327,PB3 System Final Test,46603082,Date,06.20.2023,None,None,None
+38570327,PB3 System Final Test,46603082,Version,1.4.0,None,None,None
+38570327,PB3 System Final Test,46603083,DC5 Board serial number,,None,None,None
+38570327,PB3 System Final Test,46603083,PT serial number,N31457,None,None,None
+38570327,PB3 System Final Test,46603083,FW Revision,v1.7.3-324362e11,None,None,None
+38570327,PB3 System Final Test,46603083,SPA serial number,N11469,None,None,None
+38570327,PB3 System Final Test,46603083,NLO Board serial number,FW134M004-01        ,None,None,None
+38570327,PB3 System Final Test,46603083,NLO serial number,FW134M004-01        ,None,None,None
+38570327,PB3 System Final Test,46603083,S3P serial number,N21465,None,None,None
+38570327,PB3 System Final Test,46603083,DC5 Revision,6,None,None,None
+38570327,PB3 System Final Test,46603083,NLO Revision,2,None,None,None
+38570327,PB3 System Final Test,46603083,AD5 Board serial number,F3117N043-01,None,None,None
+38570327,PB3 System Final Test,46603083,AD5 Revision,6,None,None,None
+38558671,Set System SN,None,START TIME,2023-08-03 21:59:26,,,
+38558671,Set System SN,None,END TIME,2023-08-03 21:59:36,,,
+38558671,Set System SN,None,OPERATOR,85382,,,
+38558671,Set System SN,None,STATION,356N6Z2,,,
+38558671,Set System SN,46579532,Date,06.15.2023,None,None,None
+38558671,Set System SN,46579532,Version,1.4.0,None,None,None
+38558671,Set System SN,46579533,serial_number,N31123301454,None,None,None
+38570327,PB3 System Final Test,46603086,Output Power Laser,42.42,W,None,None
+38570327,PB3 System Final Test,46603086,PRF,1000,kHz,None,None
+38570327,PB3 System Final Test,46603086,Average Power Gentec,40.48,W,None,None
+38570327,PB3 System Final Test,46603086,PoD Divider,1,None,None,None
+38570327,PB3 System Final Test,46603086,PoD relative power,100,%,None,None
+38570327,PB3 System Final Test,46603087,ReportText,\\li.lumentuminc.net\data\pat\tds\Archive\202308\04\38570327\38570327_6.png,None,None,None
+38570327,PB3 System Final Test,46603088,Pulse to Pulse s,46.5,pVs,None,None
+38570327,PB3 System Final Test,46603088,PRF,1000,kHz,None,None
+38570327,PB3 System Final Test,46603088,Pulse to Pulse u,5.8,nVs,None,None
+38570327,PB3 System Final Test,46603088,Pulse to Pulse Amplitude,0.3,V,None,None
+38570327,PB3 System Final Test,46603088,PoD relative power,100,%,None,None
+38570327,PB3 System Final Test,46603088,Pulse to Pulse Stability,0.8,% rms,-999,1
+38570327,PB3 System Final Test,46603088,PoD Divider,1,None,None,None
+38570327,PB3 System Final Test,46603089,Ellipticity,96.82,%,94,999
+38570327,PB3 System Final Test,46603089,PRF,500,kHz,None,None
+38570327,PB3 System Final Test,46603089,ReportText,\\li.lumentuminc.net\data\pat\tds\Archive\202308\04\38570327\38570327_8.png,None,None,None
+38570327,PB3 System Final Test,46603089,PoD relative power,100,%,None,None
+38570327,PB3 System Final Test,46603089,Beam diameter@1m Y,0,mm,None,None
+38570327,PB3 System Final Test,46603089,Beam diameter@1m X,0,mm,None,None
+38570327,PB3 System Final Test,46603089,D4sMaj,4958.91,um,None,None
+38570327,PB3 System Final Test,46603089,PoD Divider,1,None,None,None
+38570327,PB3 System Final Test,46603089,D4sMin,5121.93,um,None,None
+38700612,PB3 System Final Test,None,START TIME,2023-08-09 02:09:35,,,
+38700612,PB3 System Final Test,None,END TIME,2023-08-09 02:38:06,,,
+38700612,PB3 System Final Test,None,OPERATOR,85129,,,
+38700612,PB3 System Final Test,None,STATION,356N6Z2,,,
+38700612,PB3 System Final Test,46899640,Date,08.03.2023,None,None,None
+38700612,PB3 System Final Test,46899640,Version,1.4.1.5,None,None,None
+38700612,PB3 System Final Test,46899641,DC5 Board serial number,,None,None,None
+38700612,PB3 System Final Test,46899641,PT serial number,N31457,None,None,None
+38700612,PB3 System Final Test,46899641,FW Revision,v1.7.3-324362e11,None,None,None
+38700612,PB3 System Final Test,46899641,SPA serial number,N11469,None,None,None
+38700612,PB3 System Final Test,46899641,NLO Board serial number,FW134M004-01        ,None,None,None
+38700612,PB3 System Final Test,46899641,NLO serial number,1314910400005,None,None,None
+38700612,PB3 System Final Test,46899641,S3P serial number,N21465,None,None,None
+38700612,PB3 System Final Test,46899641,DC5 Revision,6,None,None,None
+38700612,PB3 System Final Test,46899641,NLO Revision,2,None,None,None
+38700612,PB3 System Final Test,46899641,PB3 Laser,N31123301454,None,None,None
+38700612,PB3 System Final Test,46899641,AD5 Board serial number,F3117N043-01,None,None,None
+38700612,PB3 System Final Test,46899641,AD5 Revision,6,None,None,None
+38700612,PB3 System Final Test,46899642,Output Power Laser,67.87,W,60,999
+38700612,PB3 System Final Test,46899642,PRF,700,kHz,None,None
+38700612,PB3 System Final Test,46899642,Average Power Gentec,66.6,W,60,999
+38700612,PB3 System Final Test,46899642,PoD Divider,1,None,None,None
+38700612,PB3 System Final Test,46899642,PoD relative power,100,%,None,None
+38700612,PB3 System Final Test,46899643,M2 Y,1.08,None,-999,1.2
+38700612,PB3 System Final Test,46899643,M2 X,1.1,None,-999,1.2
+38700612,PB3 System Final Test,46899643,Divergence X,0.05,mrad,None,None
+38700612,PB3 System Final Test,46899643,PRF,500,kHz,None,None
+38700612,PB3 System Final Test,46899643,DeltaM2,0.02,mrad,None,None
+38700612,PB3 System Final Test,46899643,Waist Width X,4926.41,um,None,None
+38700612,PB3 System Final Test,46899643,Astigmatism,0.32,None,None,None
+38700612,PB3 System Final Test,46899643,Waist Location Y,-2033.21,mm,None,None
+38700612,PB3 System Final Test,46899643,Average Power Gentec,60.73,W,55,999
+38700612,PB3 System Final Test,46899643,Waist Location X,13456.58,mm,None,None
+38700612,PB3 System Final Test,46899643,PoD relative power,100,%,None,None
+38700612,PB3 System Final Test,46899643,Beam diameter@1m Y,4.9,mm,4.5,5.5
+38700612,PB3 System Final Test,46899643,Minimal Ellipticity,0.83,None,None,None
+38700612,PB3 System Final Test,46899643,Beam diameter@1m X,5.08,mm,4.5,5.5
+38700612,PB3 System Final Test,46899643,Asymmetry,1.007,None,None,None
+38700612,PB3 System Final Test,46899643,Divergence Y,0.05,mrad,None,None
+38700612,PB3 System Final Test,46899643,PoD Divider,1,None,None,None
+38700612,PB3 System Final Test,46899643,Waist Width Y,4893.64,um,None,None
+38700612,PB3 System Final Test,46899643,Output Power Laser,60.45,W,55,999
+38700612,PB3 System Final Test,46899644,Output Power Laser,43.47,W,None,None
+38700612,PB3 System Final Test,46899644,PRF,1000,kHz,None,None
+38700612,PB3 System Final Test,46899644,Average Power Gentec,41.23,W,None,None
+38700612,PB3 System Final Test,46899644,PoD Divider,1,None,None,None
+38700612,PB3 System Final Test,46899644,PoD relative power,100,%,None,None
+38700612,PB3 System Final Test,46899645,ReportText,\\li.lumentuminc.net\data\pat\tds\Archive\202308\09\38700612\38700612_6.png,None,None,None
+38700612,PB3 System Final Test,46899646,Pulse to Pulse s,48.9,pVs,None,None
+38700612,PB3 System Final Test,46899646,PRF,1000,kHz,None,None
+38700612,PB3 System Final Test,46899646,Pulse to Pulse u,5.5,nVs,None,None
+38700612,PB3 System Final Test,46899646,Pulse to Pulse Amplitude,0.3,V,None,None
+38700612,PB3 System Final Test,46899646,PoD relative power,100,%,None,None
+38700612,PB3 System Final Test,46899646,Pulse to Pulse Stability,0.89,% rms,-999,1
+38700612,PB3 System Final Test,46899646,PoD Divider,1,None,None,None
+38700612,PB3 System Final Test,46899647,Ellipticity,96.03,%,94,999
+38700612,PB3 System Final Test,46899647,PRF,500,kHz,None,None
+38700612,PB3 System Final Test,46899647,ReportText,\\li.lumentuminc.net\data\pat\tds\Archive\202308\09\38700612\38700612_8.png,None,None,None
+38700612,PB3 System Final Test,46899647,PoD relative power,100,%,None,None
+38700612,PB3 System Final Test,46899647,Beam diameter@1m Y,0,mm,None,None
+38700612,PB3 System Final Test,46899647,Beam diameter@1m X,0,mm,None,None
+38700612,PB3 System Final Test,46899647,D4sMaj,4958.87,um,None,None
+38700612,PB3 System Final Test,46899647,PoD Divider,1,None,None,None
+38700612,PB3 System Final Test,46899647,D4sMin,5163.64,um,None,None
+38570327,PB3 System Final Test,46603084,Output Power Laser,69.81,W,60,999
+38570327,PB3 System Final Test,46603084,PRF,700,kHz,None,None
+38570327,PB3 System Final Test,46603084,Average Power Gentec,70.2,W,60,999
+38570327,PB3 System Final Test,46603084,PoD Divider,1,None,None,None
+38570327,PB3 System Final Test,46603084,PoD relative power,100,%,None,None
+38570327,PB3 System Final Test,46603085,M2 Y,1.07,None,-999,1.2
+38570327,PB3 System Final Test,46603085,M2 X,1.1,None,-999,1.2
+38570327,PB3 System Final Test,46603085,Divergence X,0.05,mrad,None,None
+38570327,PB3 System Final Test,46603085,PRF,500,kHz,None,None
+38570327,PB3 System Final Test,46603085,DeltaM2,0.03,mrad,None,None
+38570327,PB3 System Final Test,46603085,Waist Width X,4934.95,um,None,None
+38570327,PB3 System Final Test,46603085,Astigmatism,0.25,None,None,None
+38570327,PB3 System Final Test,46603085,Waist Location Y,1298.35,mm,None,None
+38570327,PB3 System Final Test,46603085,Average Power Gentec,60.36,W,55,999
+38570327,PB3 System Final Test,46603085,Waist Location X,13565.91,mm,None,None
+38570327,PB3 System Final Test,46603085,PoD relative power,100,%,None,None
+38570327,PB3 System Final Test,46603085,Beam diameter@1m Y,4.89,mm,4.5,5.5
+38570327,PB3 System Final Test,46603085,Minimal Ellipticity,0.84,None,None,None
+38570327,PB3 System Final Test,46603085,Beam diameter@1m X,5.09,mm,4.5,5.5
+38570327,PB3 System Final Test,46603085,Asymmetry,1.01,None,None,None
+38570327,PB3 System Final Test,46603085,Divergence Y,0.05,mrad,None,None
+38570327,PB3 System Final Test,46603085,PoD Divider,1,None,None,None
+38570327,PB3 System Final Test,46603085,Waist Width Y,4887.85,um,None,None
+38570327,PB3 System Final Test,46603085,Output Power Laser,59.46,W,55,999
+38563059,PB3 System Final Test,None,START TIME,2023-08-04 00:33:48,,,
+38563059,PB3 System Final Test,None,END TIME,2023-08-04 00:51:11,,,
+38563059,PB3 System Final Test,None,OPERATOR,72280,,,
+38563059,PB3 System Final Test,None,STATION,356N6Z2,,,
+38563059,PB3 System Final Test,46588388,Date,06.20.2023,None,None,None
+38563059,PB3 System Final Test,46588388,Version,1.4.0,None,None,None
+38563059,PB3 System Final Test,46588389,DC5 Board serial number,,None,None,None
+38563059,PB3 System Final Test,46588389,PT serial number,N31457,None,None,None
+38563059,PB3 System Final Test,46588389,FW Revision,v1.7.3-324362e11,None,None,None
+38563059,PB3 System Final Test,46588389,SPA serial number,N11469,None,None,None
+38563059,PB3 System Final Test,46588389,NLO Board serial number,FW134M004-01        ,None,None,None
+38563059,PB3 System Final Test,46588389,NLO serial number,FW134M004-01        ,None,None,None
+38563059,PB3 System Final Test,46588389,S3P serial number,N21465,None,None,None
+38563059,PB3 System Final Test,46588389,DC5 Revision,6,None,None,None
+38563059,PB3 System Final Test,46588389,NLO Revision,2,None,None,None
+38563059,PB3 System Final Test,46588389,AD5 Board serial number,F3117N043-01,None,None,None
+38563059,PB3 System Final Test,46588389,AD5 Revision,6,None,None,None
+38563059,PB3 System Final Test,46588390,Output Power Laser,61.95,W,60,999
+38563059,PB3 System Final Test,46588390,PRF,700,kHz,None,None
+38563059,PB3 System Final Test,46588390,Average Power Gentec,70.44,W,60,999
+38563059,PB3 System Final Test,46588390,PoD Divider,1,None,None,None
+38563059,PB3 System Final Test,46588390,PoD relative power,100,%,None,None
+38563059,PB3 System Final Test,46588391,M2 Y,1.07,None,-999,1.2
+38563059,PB3 System Final Test,46588391,M2 X,1.12,None,-999,1.2
+38563059,PB3 System Final Test,46588391,Divergence X,0.05,mrad,None,None
+38563059,PB3 System Final Test,46588391,PRF,500,kHz,None,None
+38563059,PB3 System Final Test,46588391,DeltaM2,0.05,mrad,None,None
+38563059,PB3 System Final Test,46588391,Waist Width X,4978.79,um,None,None
+38563059,PB3 System Final Test,46588391,Astigmatism,0.28,None,None,None
+38563059,PB3 System Final Test,46588391,Waist Location Y,1545.33,mm,None,None
+38563059,PB3 System Final Test,46588391,Average Power Gentec,65.83,W,55,999
+38563059,PB3 System Final Test,46588391,Waist Location X,15604.86,mm,None,None
+38563059,PB3 System Final Test,46588391,PoD relative power,100,%,None,None
+38563059,PB3 System Final Test,46588391,Beam diameter@1m Y,4.91,mm,4.5,5.5
+38563059,PB3 System Final Test,46588391,Minimal Ellipticity,0.83,None,None,None
+38563059,PB3 System Final Test,46588391,Beam diameter@1m X,5.19,mm,4.5,5.5
+38563059,PB3 System Final Test,46588391,Asymmetry,1.015,None,None,None
+38563059,PB3 System Final Test,46588391,Divergence Y,0.05,mrad,None,None
+38563059,PB3 System Final Test,46588391,PoD Divider,1,None,None,None
+38563059,PB3 System Final Test,46588391,Waist Width Y,4906.55,um,None,None
+38563059,PB3 System Final Test,46588391,Output Power Laser,59.97,W,55,999
+38563059,PB3 System Final Test,46588392,Output Power Laser,40.45,W,None,None
+38563059,PB3 System Final Test,46588392,PRF,1000,kHz,None,None
+38563059,PB3 System Final Test,46588392,Average Power Gentec,41.45,W,None,None
+38563059,PB3 System Final Test,46588392,PoD Divider,1,None,None,None
+38563059,PB3 System Final Test,46588392,PoD relative power,100,%,None,None
+38563059,PB3 System Final Test,46588393,ReportText,\\li.lumentuminc.net\data\pat\tds\Archive\202308\04\38563059\38563059_6.png,None,None,None
+38563059,PB3 System Final Test,46588394,Pulse to Pulse s,71.5,pVs,None,None
+38563059,PB3 System Final Test,46588394,PRF,1000,kHz,None,None
+38563059,PB3 System Final Test,46588394,Pulse to Pulse u,6.7,nVs,None,None
+38563059,PB3 System Final Test,46588394,Pulse to Pulse Amplitude,0.3,V,None,None
+38563059,PB3 System Final Test,46588394,PoD relative power,100,%,None,None
+38563059,PB3 System Final Test,46588394,Pulse to Pulse Stability,1.07,% rms,-999,1
+38563059,PB3 System Final Test,46588394,PoD Divider,1,None,None,None
+38563059,PB3 System Final Test,46588395,Ellipticity,96,%,94,999
+38563059,PB3 System Final Test,46588395,PRF,500,kHz,None,None
+38563059,PB3 System Final Test,46588395,ReportText,\\li.lumentuminc.net\data\pat\tds\Archive\202308\04\38563059\38563059_8.png,None,None,None
+38563059,PB3 System Final Test,46588395,PoD relative power,100,%,None,None
+38563059,PB3 System Final Test,46588395,Beam diameter@1m Y,0,mm,None,None
+38563059,PB3 System Final Test,46588395,Beam diameter@1m X,0,mm,None,None
+38563059,PB3 System Final Test,46588395,D4sMaj,4978.91,um,None,None
+38563059,PB3 System Final Test,46588395,PoD Divider,1,None,None,None
+38563059,PB3 System Final Test,46588395,D4sMin,5186.42,um,None,None

@@ -1,0 +1,56 @@
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>Inspect API Service - Fiber Laser</title>
+<meta http-equiv="X-UA-Compatible" content="IE=11" />
+   
+   {% block head %}
+        <link rel="stylesheet" href="{{ url_for('static', filename='bootstrap-slider.css') }}">
+        <link rel="stylesheet" href="{{ url_for('static', filename='bootstrap.min.css') }}">
+        <link rel="stylesheet" href="{{ url_for('static', filename='jumbotron-narrow.css') }}">
+    {% endblock %}
+   
+  </head>
+
+  <body>
+
+    <div>
+      <body>
+    <h1>TDS Query API</h1>
+    <p><strong>Description:</strong> The TDS Query API provides a RESTful interface for querying Mataray data from a TDS Kaizen using HTTP requests.</p>
+    <h2>Endpoints:</h2>
+    <ul>
+      <li><code>GET /data:</code> Retrieves data from the TDS database based on user-specified query parameters.</li>
+      <li><code>POST /data:</code> Submits a new data point to be added to the TDS database.</li>
+    </ul>
+    <h2>Request Parameters:</h2>
+    <ul>
+      <li><code>sn (required):</code> Mataray serial number (e.g. "MR-GMP853").</li>
+      <li><code>param (required):</code> Parameter to query (e.g. "Power").</li>
+    </ul>
+    <h2>Response Format:</h2>
+    <p>Responses are returned in JSON format with the following fields:</p>
+    <ul>
+      <li><code>status:</code> The HTTP status code of the response.</li>
+      <li><code>response:</code> A brief message describing the result of the request.</li>
+    </ul>
+
+	<div>
+	<p></p>
+	<br>
+	<br>
+	<br>
+    <p>Contact -  <a href="mailto:aphiwat.wanta@lumentum.com?Subject=Howdy" target="_top">aphiwat.wanta@lumentum.com</a></p>
+    </div>		
+        <footer class="footer">
+        <p>&copy; Lumentum</p>
+      </footer>
+
+
+
+
+    </div>
+  </body>
+</html>
+

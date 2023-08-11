@@ -1,0 +1,355 @@
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title> Inspect - KW Fiber Laser Data</title>
+<meta http-equiv="X-UA-Compatible" content="IE=11" />
+   <!--
+    <link href="http://getbootstrap.com/dist/css/bootstrap.min.css" rel="stylesheet">
+
+    <link href="http://getbootstrap.com/examples/jumbotron-narrow/jumbotron-narrow.css" rel="stylesheet">
+        <link href="http://getbootstrap.com/examples/jumbotron-narrow/jumbotron-narrow.css" rel="stylesheet">
+
+-->
+
+
+
+{% block head %}
+        <link rel="stylesheet" href="{{ url_for('static', filename='bootstrap-slider.css') }}">
+		  <link rel="stylesheet" href="{{ url_for('static', filename='bootstrap.min.css') }}">
+		    <link rel="stylesheet" href="{{ url_for('static', filename='jumbotron-narrow.css') }}">
+			
+			
+		    
+			
+			
+      {% endblock %}
+
+
+
+   
+  </head>
+
+  <body >
+
+
+
+
+
+
+
+<!--
+
+<div class="well">
+        <input id="ex1" data-slider-id='ex1Slider' type="text"
+            data-slider-min="-5" data-slider-max="20"
+            data-slider-step="1" data-slider-value="14" />
+    </div>
+=-->
+
+
+
+<script>
+function searchTable() {
+    var input, filter, found, table, tr, td, i, j;
+    input = document.getElementById("myInput");
+    filter = input.value.toUpperCase();
+    table = document.getElementById("myTable");
+    tr = table.getElementsByTagName("tr");
+    for (i = 1; i < tr.length; i++) {
+        td = tr[i].getElementsByTagName("td");
+        for (j = 0; j < td.length; j++) {
+            if (td[j].innerHTML.toUpperCase().indexOf(filter) > -1) {
+                found = true;
+            }
+        }
+        if (found) {
+            tr[i].style.display = "";
+            found = false;
+        } else {
+            tr[i].style.display = "none";
+        }
+    }
+}
+</script>
+
+
+<script>
+function searchTable2() {
+    var input2, filter2, found2, table2, tr2, td2, i2, j2;
+    input2 = document.getElementById("myInput2");
+    filter2 = input2.value.toUpperCase();
+    table2 = document.getElementById("myTable2");
+    tr2 = table2.getElementsByTagName("tr");
+    for (i2 = 1; i2 < tr2.length; i2++) {
+        td2 = tr2[i2].getElementsByTagName("td");
+        for (j2 = 0; j2 < td2.length; j2++) {
+            if (td2[j2].innerHTML.toUpperCase().indexOf(filter2) > -1) {
+                found2 = true;
+            }
+        }
+        if (found2) {
+            tr2[i2].style.display = "";
+            found2 = false;
+        } else {
+            tr2[i2].style.display = "none";
+        }
+    }
+}
+</script>
+
+
+
+
+
+
+    <div >
+      <div class="header">
+        <nav>
+          <ul class="nav nav-pills pull-right">
+            <li role="presentation" class="active"><a href="/">Home</a></li>
+  <!--          
+            <li role="presentation"><a href="#">Add function</a></li>
+ 	    <li role="presentation"><a href="/showSignUp">Add function</a></li>
+ -->	    
+          </ul>
+        </nav>
+        <h3 class="text-muted">Inspect - KW Fiber Laser Data</h3>
+      </div>
+
+      <div class="jumbotron">
+      
+        <h3>MRB TRACKER</h3> 
+        <p class="lead"></p>
+      <!--  <h3>DUT THAT WERE NOT FOUND ON SERVER:</h3> <h9>{{list_of_sn_that_were_not_found}}</h9>  --> 
+        <p class="lead"></p>
+<!--
+
+class="container" margin-left: 15px;
+
+        <p><a class="btn btn-lg btn-success" href="showSignUp" role="button">Check</a></p>
+
+        <h3>Enter
+        S/N</h3>
+    <h2>(it will be converted to uppercase)</h2>
+   --> 
+
+      </div>
+
+      <div class="row marketing">
+        <div class="col-lg-6">
+    
+	
+    <div  style=" margin: 0 auto;float:left "> 
+			
+			
+				<form action="/scrap_pareto"    >
+				  <label for="cars">Select Model to review MRB Pareto charts: </label>
+				  <select type="text" name="model">
+				  {% for mod in models_list %}
+					<option value="{{mod}}">{{mod}}</option>
+					{% endfor %}
+					</select>
+					
+					<input  type="hidden" name="date_start" value="">
+					<input  type="hidden" name="date_end" value="">
+				  </select>
+				  <input type="submit" class="btn btn-primary"  value="Submit">
+				</form>
+			
+			</div>      
+       <br>
+	   <br>
+	   
+	   <h6>The table below contains all MRB data history, select model above to review Pareto for a specific model</h6> 
+	   
+	
+
+<!-- open OCAP table-->
+	
+                <div class="col-lg-6" style="min-width: 1520px; max-width: 1700px; max-height: 300px; margin: 0 auto;float:left ;font-size: 10px">
+                    <div class="panel panel-default">
+                        <div class="panel-heading">
+                            <i  class="fa fa-bell fa-fw"></i> <b style="color:Red;" >MRB Data </b>  &nbsp;&nbsp;&nbsp;&nbsp; Type something to filter the table: <input id='myInput' onkeyup='searchTable()' type='text'>	
+                        </div>
+                        <!-- /.panel-heading -->
+                        <div class="panel-body">
+                            <div   class="pre-scrollable"  style=" max-height: 260px">
+	
+
+  
+ 				
+						
+							
+<table id='myTable' class="table-striped" style="clear: both; border-collapse: separate;border-spacing: 15px 0px; width: 100%;">
+{% set counter = 0 %}
+{% set counter_row = 0 %}
+{% for row_count in scrap_list %}
+
+<tr>
+
+    {% for row_index in row_count %}
+        
+        {% if counter ==  0 or counter_row == 0%}
+						{% if counter == 0 and  counter_row != 0%}
+								<td style="overflow: hidden;white-space:nowrap">
+								 
+
+									<form action="close_scrap_eng" method="POST" href="{{ url_for('close_scrap_eng') }}" class="form-signin" >
+		
+										<div>
+										<input type="hidden" class="btn btn-primary" value="{{row_count[2]}}" name="serial_number">
+										<input type="hidden" class="btn btn-primary" value="{{row_count[4]}}"  name="model">
+										<input type="hidden" class="btn btn-primary" value="{{row_count[3]}}"  name="operation_id">
+										<input type="hidden" class="btn btn-primary" value="{{row_count[1]}}"  name="scrap_code">
+								  
+										<input type="hidden" class="btn btn-primary" value="{{row_count[6]}}"  name="name">
+										<input type="hidden" class="btn btn-primary" value="{{row_count[10]}}"  name="comment">
+										<input type="hidden" class="btn btn-primary" value="{{row_count[8]}}" name="eng_name">
+										<input type="hidden" class="btn btn-primary" value="{{row_count[9]}}"  name="eng_comment">
+										<input type="hidden" class="btn btn-primary" value="{{row_count[7]}}"  name="decision">
+										<input type="hidden" class="btn btn-primary" value="{{row_count[0]}}"  name="scrap_id">
+																	  
+										<button type="submit" name="submit" value="submit"  class="btn btn-lg btn-primary pull-left" style="font-size: 13px; padding: 1px 1px; ">MRB</button>
+										</div>
+									</form> 
+												
+									
+								</td>
+								<td><b>{{ row_index }}</b></td>
+												
+										
+						{% else %}
+								{% if counter == 2 and  counter_row != 0%}
+									<td style="overflow: hidden;white-space:nowrap">
+										<form action="showSignUp" method="POST" action="{{ url_for('showSignUp') }}  >
+											<input type="text" name="text" value={{row_count[2]}}> 
+											<button type="submit" name="text" value={{row_count[2]}} onclick="block()" class="btn btn-lg btn-primary" style="font-size: 13px; padding: 1px 1px; ">{{row_count[2]}}</button>
+  
+										</form> 
+									</td>
+								{% elif counter == 11 and  counter_row != 0 %}
+									{% if row_count[11] != None %}
+										<td style="overflow: hidden;white-space:nowrap;padding-left: 25px">	
+										<form action="fetch_file" method="POST" action="{{ url_for('fetch_file') }}  ">
+										<button type="submit" name="filename" value="{{row_count[11]}}"  class="btn btn-lg btn-info pull-left" style="font-size: 13px; padding: 1px 1px; ">Download</button>
+										</form > 
+										</td>
+									{% else %}
+										<td>{{ row_index }}</td>
+									{% endif %}
+								{% elif counter == 12 and  counter_row != 0 %}
+									{% if row_count[12] != None %}
+										<td style="overflow: hidden;white-space:nowrap;padding-left: 25px">	
+										<form action="fetch_file" method="POST" action="{{ url_for('fetch_file') }}  ">
+										<button type="submit" name="filename" value="{{row_count[12]}}"  class="btn btn-lg btn-info pull-left" style="font-size: 13px; padding: 1px 1px; ">Download</button>
+										</form > 
+										</td>
+									{% else %}
+										<td>{{ row_index }}</td>
+									{% endif %}
+								{% else %}
+									<td><b>{{ row_index }}</b></td>
+								{% endif %}
+						{% endif %}
+										
+										
+										
+        {% else %}
+		  
+			{% if counter == 2 and  counter_row != 0%}
+				<td style="overflow: hidden;white-space:nowrap">
+					<form action="showSignUp" method="POST" action="{{ url_for('showSignUp') }}  >
+						<input type="text" name="text" value={{row_count[2]}}> 
+						<button type="submit" name="text" value={{row_count[2]}} onclick="block()" class="btn btn-lg btn-success" style="font-size: 10px; padding: 1px 1px; ">{{row_count[2]}}</button>
+  
+					</form> 
+				</td>
+			{% elif counter == 11 and  counter_row != 0 %}
+				{% if row_count[11] != None %}
+					<td style="overflow: hidden;white-space:nowrap;padding-left: 25px">	
+					<form action="fetch_file" method="POST" action="{{ url_for('fetch_file') }}  ">
+					<button type="submit" name="filename" value="{{row_count[11]}}"  class="btn btn-lg btn-info pull-left" style="font-size: 13px; padding: 1px 1px; ">Download</button>
+					</form > 
+					</td>
+				{% else %}
+				<td>{{ row_index }}</td>
+				{% endif %}
+			{% elif counter == 12 and  counter_row != 0 %}
+				{% if row_count[12] != None %}
+					<td style="overflow: hidden;white-space:nowrap;padding-left: 25px">	
+					<form action="fetch_file" method="POST" action="{{ url_for('fetch_file') }}  ">
+					<button type="submit" name="filename" value="{{row_count[12]}}"  class="btn btn-lg btn-info pull-left" style="font-size: 13px; padding: 1px 1px; ">Download</button>
+					</form > 
+					</td>
+				{% else %}
+				<td>{{ row_index }}</td>
+				{% endif %}
+
+			{% else %}
+				<td>{{ row_index }}</td>
+			{% endif %}
+		
+		{% endif %}
+  
+          
+          
+    {% set counter = counter+1 %}
+    {% endfor %}
+    {% set counter_row = counter_row+1 %}
+	
+	
+
+</tr>
+
+{% endfor %}
+
+
+
+
+{% set counter_row = 0 %}
+
+    
+
+</table>
+ </div>
+                            <!-- /.list-group -->
+                          <!--   <a href="#" class="btn btn-default btn-block">View All Alerts</a> -->
+                        </div>
+						
+                        <!-- /.panel-body -->
+                    </div>
+	 
+	 
+	 <!-- open OCAP table -->	
+</div>
+
+	 
+	 
+	 
+	 
+                            <!-- /.list-group -->
+                          <!--   <a href="#" class="btn btn-default btn-block">View All Alerts</a> -->
+                        </div>
+						
+                        <!-- /.panel-body -->
+                    </div>
+	 
+	 
+	 <!-- open OCAP table -->	
+	 
+	 
+	 
+	 
+        </div>
+      </div>
+	  </div>
+
+      <footer class="footer">
+        <p>&copy; Lumentum</p>
+      </footer>
+
+    </div>
+  </body>
+</html>
+

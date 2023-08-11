@@ -1,0 +1,66 @@
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>Inspect - Fiber Laser</title>
+
+   <meta http-equiv="X-UA-Compatible" content="IE=11" />
+   <!--
+    <link href="http://getbootstrap.com/dist/css/bootstrap.min.css" rel="stylesheet">
+
+    <link href="http://getbootstrap.com/examples/jumbotron-narrow/jumbotron-narrow.css" rel="stylesheet">
+    <link href="../static/css/signup.css" rel="stylesheet">
+    <script src="../static/js/jquery-1.11.2.js"></script>
+    <script src="../static/js/signUp.js"></script>
+	
+	<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.8.2/jquery.min.js"></script>
+	-->
+	
+   {% block head %}
+        <link rel="stylesheet" href="{{ url_for('static', filename='bootstrap-slider.css') }}">
+		  <link rel="stylesheet" href="{{ url_for('static', filename='bootstrap.min.css') }}">
+		    <link rel="stylesheet" href="{{ url_for('static', filename='jumbotron-narrow.css') }}">
+			
+			<script src="{{url_for('static', filename='highcharts.js')}}"></script>
+			<script src="{{url_for('static', filename='jquery.min.js')}}"></script>
+			<script src="{{url_for('static', filename='offline-exporting.min.js')}}"></script>
+      {% endblock %}
+  </head>
+
+  <body>
+
+    <div class="container">
+      <div class="header">
+        <nav>
+          <ul class="nav nav-pills pull-right">
+          
+              <li role="presentation" class="active"><a href="/">Home</a></li>
+             
+    <!--
+            <li role="presentation"><a href="#">Add inspection</a></li>
+            <li role="presentation" class="active"><a href="#">Add inspection 2</a></li>
+    -->
+          </ul>
+        </nav>
+        <h3 class="text-muted">Inspect - Fiber Laser</h3>
+      </div>
+
+      <div class="jumbotron">
+        <h3><b>Processing stage # {{stage}}- {{stage_name}}.... Please wait </b></h3>
+
+        
+
+
+      </div>
+
+        <footer class="footer">
+        <p>&copy; Lumentum</p>
+      </footer>
+
+
+
+
+    </div>
+  </body>
+</html>
+

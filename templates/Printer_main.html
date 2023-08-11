@@ -1,0 +1,151 @@
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title> Inspect - KW Fiber Laser Data</title>
+<meta http-equiv="X-UA-Compatible" content="IE=11" />
+   <!--
+    <link href="http://getbootstrap.com/dist/css/bootstrap.min.css" rel="stylesheet">
+
+    <link href="http://getbootstrap.com/examples/jumbotron-narrow/jumbotron-narrow.css" rel="stylesheet">
+        <link href="http://getbootstrap.com/examples/jumbotron-narrow/jumbotron-narrow.css" rel="stylesheet">
+
+-->
+
+
+
+{% block head %}
+        <link rel="stylesheet" href="{{ url_for('static', filename='bootstrap-slider.css') }}">
+		  <link rel="stylesheet" href="{{ url_for('static', filename='bootstrap.min.css') }}">
+		    <link rel="stylesheet" href="{{ url_for('static', filename='jumbotron-narrow.css') }}">
+      {% endblock %}
+
+
+
+
+
+
+   
+  </head>
+
+  <body >
+
+
+
+
+
+
+
+<!--
+
+<div class="well">
+        <input id="ex1" data-slider-id='ex1Slider' type="text"
+            data-slider-min="-5" data-slider-max="20"
+            data-slider-step="1" data-slider-value="14" />
+    </div>
+=-->
+
+
+
+
+
+
+
+
+
+
+
+
+
+    <div >
+      <div class="header">
+        <nav>
+          <ul class="nav nav-pills pull-right">
+            <li role="presentation" class="active"><a href="/">Home</a></li>
+  <!--          
+            <li role="presentation"><a href="#">Add function</a></li>
+ 	    <li role="presentation"><a href="/showSignUp">Add function</a></li>
+ -->	    
+          </ul>
+        </nav>
+        <h3 class="text-muted">Inspect - KW Fiber Laser Data</h3>
+      </div>
+
+      <div class="jumbotron">
+      
+        <h3>Enter Printer and Serial Number</h3> 
+        <p class="lead"></p>
+      <!--  <h3>DUT THAT WERE NOT FOUND ON SERVER:</h3> <h9>{{list_of_sn_that_were_not_found}}</h9>  --> 
+        <p class="lead"></p>
+<!--
+
+class="container" margin-left: 15px;
+
+        <p><a class="btn btn-lg btn-success" href="showSignUp" role="button">Check</a></p>
+
+        <h3>Enter
+        S/N</h3>
+    <h2>(it will be converted to uppercase)</h2>
+   --> 
+
+      </div>
+
+      <div class="row marketing">
+        <div class="col-lg-8">
+          
+       
+
+	 
+	 
+	 
+  <div  >
+  
+<form action="Printer_result" method="POST" href="{{ url_for('Printer_result') }} class="form-signin" >
+
+
+  <div class="form-group">
+  
+  
+  
+  <label >Printer IP address</label>  <br>    
+
+  <input  type="text" name="text_ip" value="10.1.181.19"><br>
+ 
+  <small id="emailHelp" class="form-text text-muted"> Enter Printer address ( Tivoli line is 10.1.181.19 )</small>
+  <br>
+  <label >Serial Number</label>  <br>         
+  <input type="text" name="text_sn" value=""><br>
+  <small id="emailHelp" class="form-text text-muted"> Serial Number </small>
+  
+  
+  </div>
+ 
+
+		
+</div>	
+	
+  <div >
+ 
+  <input type="submit" class="btn btn-primary" value'"submit" >
+  </div>
+</form> 	
+ 
+  
+                
+				
+ 
+
+
+        </div>
+		
+		
+      </div>
+
+      <footer class="footer">
+        <p>&copy; Lumentum</p>
+      </footer>
+
+    </div>
+  </body>
+</html>
+

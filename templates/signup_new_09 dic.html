@@ -1,0 +1,260 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Inspect - KW Fiber Laser Data</title>
+
+  <link rel="stylesheet" href="/static/bootstrap-slider.css">
+  <link rel="stylesheet" href="/static/bootstrap.min.css">
+  <link rel="stylesheet" href="/static/jumbotron-narrow.css">
+  <link rel="stylesheet" href="/static/gauge.css">
+  <script src="/static/jquery.min.js"></script>
+
+  <style>
+    ul {
+      list-style-type: none;
+      padding: 0;
+    }
+
+    li {
+      margin-bottom: 10px;
+      background-color: #f2f2f2;
+      padding: 10px;
+      border-radius: 5px;
+    }
+
+    .section-item {
+      margin-bottom: 10px;
+      background-color: #f2f2f2;
+      padding: 10px;
+      border-radius: 5px;
+    }
+
+    td {
+      font-size: 16px;
+      padding: 8px;
+
+    }
+
+    th {
+      font-size: 20px;
+      padding: 8px;
+
+    }
+
+    .clickable-text {
+      cursor: pointer;
+      display: inline-block;
+      position: relative;
+    }
+
+    .clickable-text::before {
+      content: "";
+      position: absolute;
+      top: 50%;
+      right: -10px;
+      transform: translateY(-50%);
+      width: 16px;
+      height: 16px;
+      background-image: url('finger-icon.png');
+      /* Replace with the path to your finger icon */
+      background-size: cover;
+      background-repeat: no-repeat;
+    }
+
+    .head_detail {
+      background-color: rgb(216, 214, 214);
+      color: rgb(0, 0, 0);
+      table-layout: fixed;
+    }
+  </style>
+</head>
+
+<body style="zoom: 80%">
+  <div>
+    <div class="header">
+      <nav>
+        <ul class="nav nav-pills pull-right">
+          <li role="presentation" class="active"><a href="/">Home</a></li>
+        </ul>
+      </nav>
+      <h3 class="text-muted">Inspect - KW Fiber Laser Data</h3>
+      <div class="col-lg-6"
+        style="min-width: 700px; max-width: 500px; max-height: 300px; min-height: 300px; margin: 0 auto; margin-left: 0px; margin-right: -700px; margin-top: 70px; float: left; font-size: 12px">
+      </div>
+
+      <!-- <div class="flex-wrapper">	  
+      <div class="single-chart">
+        <svg viewBox="0 0 36 36" class="circular-chart orange">
+          <path class="circle-bg" d="M18 2.0845
+              a 15.9155 15.9155 0 0 1 0 31.831
+              a 15.9155 15.9155 0 0 1 0 -31.831"></path>
+          <path class="circle" stroke-dasharray="77.8, 100" d="M18 2.0845
+              a 15.9155 15.9155 0 0 1 0 31.831
+              a 15.9155 15.9155 0 0 1 0 -31.831"></path>
+          <text x="18" y="20.35" class="percentage">77.8%</text>
+        </svg>
+      </div>
+    </div>	  -->
+
+    </div>
+  </div>
+
+  <div class="jumbotron" style="background-color: #F9F9F9">
+    <div>
+      <div>
+        <h1>DUT: {{serial_num}}</h1>
+        <h2>MODEL: {{PartNumber_item}}</h2>
+
+        <!-- <button type="submit" name="text" value="Pareto" class="btn btn-lg btn-warning " style="font-size: 13px; padding: 1px 1px; ">Pareto for : FBG_OC_MWL</button> -->
+      </div>
+    </div>
+  </div>
+
+  <!-- <div> <span style="background-color:#67E16A">Specification table at the time of DUT test match the current specification REV : REV014</span>	</div> -->
+
+  <!--
+    
+    class="container" margin-left: 15px;
+    
+            <p><a class="btn btn-lg btn-success" href="showSignUp" role="button">Check</a></p>
+    
+            <h3>Enter DUT S/N</h3>
+        <h2>(it will be converted to uppercase)</h2>
+       -->
+
+  <div class="row marketing">
+    <div class="col-lg-7">
+      <h2 class="display-4">DUT RESULT - {{result_of_DUT}}</h2>
+    </div>
+  </div>
+  <!-- <form action="getPlotCSV" method="POST">
+      <button type="submit" name="text" value="N3DW2305LF105" class="btn btn-lg btn-primary pull-left" style="font-size: 13px; padding: 1px 1px; ">Click to save .CSV file</button>
+    </form>  -->
+
+  <!--	  
+              
+           <ul class="nav nav-pills pull-left">   
+                
+                    <li role="presentation" class="active"><a href="/getPlotCSV">Click to save .CSV file</a></li>
+    
+         </ul>
+    -->
+  <!-- <h1 style="color:#FFFFFF">.</h1> -->
+
+  <!-- <h2>FBG MULTI WAVE LENGTH</h2> -->
+
+  <!-- ------------------------------------------------------------------------------------------------------------------- -->
+  <!-- {% for num_item in range(count_dic_allL2) %}
+  {% for operationid, valueL2 in dic_allL2.items() %}
+  {% for inner_keyL2, inner_valueL2 in valueL2.items() %}
+  {% set num_item = loop.index %}
+  
+    <div>
+      {% if loop.index == num_item %}
+      {% set current_minute = CT_Time[loop.index0] %}
+      <button type="submit" name="text" value="" class="btn btn-lg btn-info pull-left"
+        style="font-size: 13px; padding: 1px 1px; min-width: 90px; max-width: 90px;">{{ current_minute }}</button>
+      {% endif %}
+
+      <form action="show_all_operation_attempts" method="POST">
+        <button type="submit" name="text" value="" class="btn btn-lg btn-primary pull-left"
+          style="font-size: 13px; padding: 1px 1px; min-width: 100px;">{{inner_valueL2.attempts}} ATTEMPTS</button>
+      </form>
+    
+      {% if inner_valueL2.result == "Passed" %}
+      <button id="button{{num_item}}" type="button" class="btn btn-success"
+      style="text-align:left; padding-left:6px; min-width: 520px;">OPERATION_ID: {{true_operation_id}} -
+      {{true_operation_name}}</button> - {{inner_valueL2.result}}
+  {% elif inner_valueL2.result == "Aborted" %}
+  <button id="button{{num_item}}" type="button" class="btn btn-success"
+      style="text-align:left; padding-left:6px; min-width: 520px;">OPERATION_ID: {{true_operation_id}} -
+      {{true_operation_name}}</button> - {{inner_valueL2.result}}
+  {% elif inner_valueL2.result == "Failed" %}
+  <button id="button{{operationid}}" type="button" class="btn btn-success" style="background-color:red; text-align:left; padding-left:6px; min-width: 520px;">
+    OPERATION_ID: {{inner_valueL2.operatorid}} - {{inner_valueL2.operation}}
+  </button> - {{inner_valueL2.result}}
+  {% endif %}
+
+</div>
+
+
+    </div>
+    {% endfor %}
+  {% endfor %}
+{% endfor %} -->
+
+
+{% for num_item in range(count_dic_allL2) %}
+  <script>
+    $(document).ready(function () {
+      $("#button{{num_item}}").click(function () {
+        $("#tab{{num_item}}").toggle();
+      });
+    });
+  </script>
+
+  <div>
+    <!-- CT Time -->
+    {% for minute in CT_Time %}
+      {% if loop.index0 == num_item %}
+        <button type="submit" name="text" value="" class="btn btn-lg btn-info pull-left"
+          style="font-size: 13px; padding: 1px 1px; min-width: 90px; max-width: 90px;">{{ minute }}</button>
+      {% endif %}
+    {% endfor %}
+
+    <form action="show_all_operation_attempts" method="POST">
+      {% for num in num_attempts %}
+        {% if loop.index0 == num_item %}
+          <button type="submit" name="text" value="" class="btn btn-lg btn-primary pull-left"
+            style="font-size: 13px; padding: 1px 1px; min-width: 90px;">{{num}} ATTEMPTS</button>
+        {% endif %}
+      {% endfor %}
+    </form>
+
+    {% for operationid, valueL2 in dic_allL2.items() %}
+      {% for inner_keyL2, inner_valueL2 in valueL2.items() %}
+        {% if loop.index0 == num_item %}
+          {% set true_operation_id = inner_valueL2.operationid %}
+          {% set true_operation_name = inner_valueL2.operation %}
+          {% set true_check_item = inner_valueL2.result %}
+          {% if true_check_item == "Passed" %}
+            <button id="button{{num_item}}" type="button" class="btn btn-success"
+              style="text-align:left; padding-left:6px; min-width: 520px;">OPERATION_ID: {{true_operation_id}} -
+              {{true_operation_name}}</button> - {{true_check_item}}
+          {% elif true_check_item == "Aborted" %}
+            <button id="button{{num_item}}" type="button" class="btn btn-success"
+              style="background-color:rgb(233, 178, 0); text-align:left; padding-left:6px; min-width: 520px;">OPERATION_ID:
+              {{true_operation_id}} - {{true_operation_name}}</button> - {{true_check_item}}
+          {% elif true_check_item == "Failed" %}
+            <button id="button{{num_item}}" type="button" class="btn btn-success"
+              style="background-color:red; text-align:left; padding-left:6px; min-width: 520px;">OPERATION_ID:
+              {{true_operation_id}} - {{true_operation_name}}</button> - {{true_check_item}}
+          {% endif %}
+
+          <table class="table-striped" cellspacing="0" id="tab{{num_item}}"
+            style="display: none; clear: both; border-collapse: separate; border-spacing: 0px 0px; width: 100%;">
+            <tbody>
+              <tr>
+                <td>
+                  <h3>OPERATION_ID: {{ inner_valueL2.operationid }} - {{ inner_valueL2.operation }}</h3>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        {% endif %}
+      {% endfor %}
+    {% endfor %}
+  </div>
+{% endfor %}
+
+
+  <footer class="footer">
+    <p>© Lumentum</p>
+  </footer>
+
+</body>
+
+</html>

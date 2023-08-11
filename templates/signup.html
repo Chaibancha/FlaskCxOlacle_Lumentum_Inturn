@@ -1,0 +1,229 @@
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>Inspect - Fiber Laser</title>
+<meta http-equiv="X-UA-Compatible" content="IE=11" />
+           <!--
+
+    <link href="http://getbootstrap.com/dist/css/bootstrap.min.css" rel="stylesheet">
+
+    <link href="http://getbootstrap.com/examples/jumbotron-narrow/jumbotron-narrow.css" rel="stylesheet">
+        <link href="http://getbootstrap.com/examples/jumbotron-narrow/jumbotron-narrow.css" rel="stylesheet">
+
+            <link href="static/css/amir_slider.css" rel="stylesheet">
+
+<link href="static/css/bootstrap.min.css" rel="stylesheet">
+    <link href="static/css/bootstrap-slider.css" rel="stylesheet">
+-->
+{% block head %}
+        <link rel="stylesheet" href="{{ url_for('static', filename='bootstrap-slider.css') }}">
+		  <link rel="stylesheet" href="{{ url_for('static', filename='bootstrap.min.css') }}">
+		    <link rel="stylesheet" href="{{ url_for('static', filename='jumbotron-narrow.css') }}">
+      {% endblock %}
+
+
+
+<!--
+
+    <link href="./dist/css/bootstrap-slider.css" rel="stylesheet" />
+    <style>
+        #ex1Slider .slider-selection {
+            background: #BABABA;
+        }
+    </style>
+    <script src="jquery-1.12.0.js"></script>
+    <script src="./dist/bootstrap-slider.js"></script>
+
+    <script type='text/javascript'>
+        $(document).ready(function () {
+            $('#ex1').slider({
+                formatter: function (value) {
+                    return 'Current value: ' + value;
+                }
+            });
+        });
+    </script>
+
+
+
+-->
+
+
+
+
+
+
+
+
+
+
+
+   
+  </head>
+
+  <body >
+
+
+
+
+
+<!--
+
+
+
+<div class="well">
+        <input id="ex1" data-slider-id='ex1Slider' type="text"
+            data-slider-min="-5" data-slider-max="20"
+            data-slider-step="1" data-slider-value="14" />
+    </div>
+
+
+-->
+
+
+
+
+
+
+
+
+
+
+    <div >
+      <div class="header">
+        <nav>
+          <ul class="nav nav-pills pull-right">
+            <li role="presentation" class="active"><a href="/">Home</a></li>
+  <!--          
+            <li role="presentation"><a href="#">Add function</a></li>
+ 	    <li role="presentation"><a href="/showSignUp">Add function</a></li>
+ -->	    
+          </ul>
+        </nav>
+        <h3 class="text-muted">Inspect - Fiber Laser</h3>
+      </div>
+
+      <div class="jumbotron">
+        <h1>DUT : {{serial_num}}</h1>
+
+        <!--
+        <p class="lead"></p>
+
+        <input type="text" class="span2" value="" data-slider-min="-20" data-slider-max="20" data-slider-step="1" data-slider-value="-14" data-slider-orientation="vertical" data-slider-selection="after"data-slider-tooltip="hide">
+
+-->
+
+<!--
+
+class="container" margin-left: 15px;
+
+        <p><a class="btn btn-lg btn-success" href="showSignUp" role="button">Check</a></p>
+
+        <h3>Enter DUT S/N</h3>
+    <h2>(it will be converted to uppercase)</h2>
+   --> 
+
+      </div>
+
+      <div class="row marketing">
+        <div class="col-lg-6">
+        
+          <h1>FULL DUT REPORT</h1>
+          
+       <ul class="nav nav-pills pull-left">   
+       <li role="presentation" class="active"><a href="/getPlotCSV_shipping">Click to save shipping reports</a></li>
+     </ul>
+
+
+
+
+<table style="clear: both; border-collapse: separate;border-spacing: 25px 0px; width: 190%; table-layout: fixed">
+{% set counter = 0 %}
+{% for key, dict_index in x2.iteritems() %}
+{% set individual_sorted_op_id = op_ids[counter] %}
+{% set x3 = x2[individual_sorted_op_id] %}
+
+<tr>
+<td><h4>   </h4></td>
+</tr>
+<tr>
+<td><h3> OPERATION_ID: {{op_ids[counter]}} </h3></td>
+</tr>
+<tr>
+<td><h3> {{opids_names[counter]}} </h3></td>
+</tr>
+{% set counter = counter+1 %}
+</tr>
+<tr>
+<td><h4>   </h4></td>
+</tr>
+    {% for row_index in x3 %}
+        <tr>
+   
+          <td  style="padding:0 100px 0 0px" >{{ row_index[4] }}</td>
+          {% if ('.png' in  row_index[0]) or ('.bmp' in  row_index[0]) %}
+          <!--
+           <td style="overflow: hidden;white-space:nowrap;"><a href= "/static/pc3_2016-04-13_11-59-15.bmp"  ><img src='/static/pc3_2016-04-13_11-59-15.bmp' width="200" height="85">  click </a> </td>
+-->
+ <td style="overflow: hidden;white-space:nowrap;padding:0 0px 0 50px;">
+<form action="." method="POST" href="{{ url_for('Chart2') }} class="form-signin" >
+                <button class="btn  role="button" type="submit" name="text3" value="{{ row_index[0] }}" > {{ row_index[0] }} </button>
+                </form>
+                </td>
+               
+   {% else %}      
+    <td style="overflow: hidden;white-space:nowrap;padding:0 0px 0 50px;">{{ row_index[0] }}</td>
+{% endif %}
+          
+          
+          
+     {% if  row_index[5]  !=  None %}
+         {% set min = row_index[5] %}
+         {% set max = row_index[6] %}
+         {% set val = row_index[0] %}
+         {% set min_to_show = row_index[5] %}
+         {% set max_to_show = row_index[6] %}
+         {% if  max|float -min |float <10 %}
+             {% set min = ((min|float)*1000) %}
+             {% set max = ((max|float)*1000) %}
+             {% set val = ((val|float)*1000) %}
+         {% endif %}
+         {% set  border = "background-color: #E74C3C" %}
+         {% if  (max|float  >= val|float) and (min|float  <= val|float) %}
+          {% set  border = 'background-color: #58D68D' %}
+          {% endif %}
+          <td style ="border-spacing: 0px 0px;text-align:center">{{min_to_show}} </td>
+         <td style ="border-spacing: 0px 0px; {{border}} "><input  type="range" min="{{min}}" max="{{max}}" value="{{val}}" /> </td>
+           <td style ="border-spacing: 0px 0px;text-align:center">{{max_to_show}}</td>
+           {% endif %}
+
+  <!--   
+            <td>{{ row_index[3] }}</td>
+          <td>{{ row_index[1] }}</td>
+          <td>{{ row_index[2] }}</td>
+           -->
+        </tr>
+    {% endfor %}
+{% endfor %}
+
+
+
+</table>
+
+
+
+     
+
+
+        </div>
+      </div>
+
+      <footer class="footer">
+        <p>&copy; Lumentum</p>
+      </footer>
+
+    </div>
+  </body>
+</html>
+

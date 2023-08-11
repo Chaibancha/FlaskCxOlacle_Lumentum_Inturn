@@ -1,0 +1,200 @@
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title> Inspect - KW Fiber Laser Data</title>
+	<meta http-equiv="X-UA-Compatible" content="IE=11" />
+   <!--
+    <link href="http://getbootstrap.com/dist/css/bootstrap.min.css" rel="stylesheet">
+
+    <link href="http://getbootstrap.com/examples/jumbotron-narrow/jumbotron-narrow.css" rel="stylesheet">
+        <link href="http://getbootstrap.com/examples/jumbotron-narrow/jumbotron-narrow.css" rel="stylesheet">
+
+-->
+
+
+
+	{% block head %}
+        <link rel="stylesheet" href="{{ url_for('static', filename='bootstrap-slider.css') }}">
+		<link rel="stylesheet" href="{{ url_for('static', filename='bootstrap.min.css') }}">
+		<link rel="stylesheet" href="{{ url_for('static', filename='jumbotron-narrow.css') }}">
+    {% endblock %}
+
+  </head>
+
+  <body >
+
+
+<!--
+
+<div class="well">
+        <input id="ex1" data-slider-id='ex1Slider' type="text"
+            data-slider-min="-5" data-slider-max="20"
+            data-slider-step="1" data-slider-value="14" />
+    </div>
+=-->
+
+
+
+<script>
+function searchTable() {
+    var input, filter, found, table, tr, td, i, j;
+    input = document.getElementById("myInput");
+    filter = input.value.toUpperCase();
+    table = document.getElementById("myTable");
+    tr = table.getElementsByTagName("tr");
+    for (i = 1; i < tr.length; i++) {
+        td = tr[i].getElementsByTagName("td");
+        for (j = 0; j < td.length; j++) {
+            if (td[j].innerHTML.toUpperCase().indexOf(filter) > -1) {
+                found = true;
+            }
+        }
+        if (found) {
+            tr[i].style.display = "";
+            found = false;
+        } else {
+            tr[i].style.display = "none";
+        }
+    }
+}
+</script>
+
+
+
+    <div >
+      <div class="header">
+        <nav>
+          <ul class="nav nav-pills pull-right">
+            <li role="presentation" class="active"><a href="/">Home</a></li>
+  <!--
+            <li role="presentation"><a href="#">Add function</a></li>
+ 	    <li role="presentation"><a href="/showSignUp">Add function</a></li>
+ -->
+          </ul>
+        </nav>
+        <h3 class="text-muted">Inspect - KW Fiber Laser Data</h3>
+      </div>
+
+      <div class="jumbotron">
+
+        <h3>MAC ADDRESS ASSIGNED</h3>
+        <p class="lead"></p>
+      <!--  <h3>DUT THAT WERE NOT FOUND ON SERVER:</h3> <h9>{{list_of_sn_that_were_not_found}}</h9>  -->
+        <p class="lead"></p>
+<!--
+
+class="container" margin-left: 15px;
+
+        <p><a class="btn btn-lg btn-success" href="showSignUp" role="button">Check</a></p>
+
+        <h3>Enter
+        S/N</h3>
+    <h2>(it will be converted to uppercase)</h2>
+   -->
+
+      </div>
+
+      <div class="row marketing">
+        <div class="col-lg-6">
+
+
+<!-- Waiver table-->
+
+                <div class="col-lg-6" style="min-width: 1520px; max-width: 1700px; max-height: 300px; margin: 0 auto;float:left ;font-size: 10px">
+                    <div class="panel panel-default">
+                        <div class="panel-heading">
+                            <i  class="fa fa-bell fa-fw"></i> <b style="color:Blue;" >HISTORICAL DATA </b>  &nbsp;&nbsp;&nbsp;&nbsp; Type something to filter the table: <input id='myInput' onkeyup='searchTable()' type='text'>
+                        </div>
+                        <!-- /.panel-heading -->
+                        <div class="panel-body">
+                            <div   class="pre-scrollable"  style=" max-height: 150px">
+
+
+<table id='myTable' class="table-striped" style="clear: both; border-collapse: separate;border-spacing: 5px 0px; width: 100%;">
+{% set counter = 0 %}
+{% set counter_row = 0 %}
+{% for row_count in mac_data %}
+
+<tr>
+
+    {% for row_index in row_count %}
+
+        {% if counter ==  0 or counter_row == 0%}
+
+		<td><b>{{ row_index }}</b></td>
+
+          {% else %}
+
+		 {% if counter ==  12%}
+		 <!--
+		  <td style="overflow: hidden;white-space:nowrap">
+
+
+
+				<form action="Chart2" method="POST" action="{{ url_for('Chart2') }}  ">
+
+  <button type="submit" name="text3" value="{{row_index}}"  class="btn btn-lg btn-primary pull-left" style="font-size: 13px; padding: 1px 1px; ">C-chart</button>
+
+</form>
+				
+
+                </td>
+-->
+				{% else %}
+		<td>{{ row_index }}</td>
+
+
+		{% endif %}
+  {% endif %}
+
+
+
+        {% set counter = counter+1 %}
+    {% endfor %}
+		{% set counter_row = counter_row+1 %}
+
+
+
+	 {% if counter_row >  1 %}
+	 
+
+
+	{% endif %}
+
+
+</tr>
+
+{% endfor %}
+
+{% set counter_row = 0 %}
+
+
+
+</table>
+
+ </div>
+                            <!-- /.list-group -->
+                          <!--   <a href="#" class="btn btn-default btn-block">View All Alerts</a> -->
+                        </div>
+
+                        <!-- /.panel-body -->
+                    </div>
+
+
+	 <!-- open OCAP table -->
+</div>
+
+
+        </div>
+      </div>
+	  </div>
+
+      <footer class="footer">
+        <p>&copy; Lumentum</p>
+      </footer>
+
+    </div>
+  </body>
+</html>
+

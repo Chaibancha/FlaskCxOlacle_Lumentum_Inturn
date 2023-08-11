@@ -1,0 +1,824 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Inspect - KW Fiber Laser Data</title>
+    
+    <link rel="stylesheet" href="/static/bootstrap-slider.css">
+    <link rel="stylesheet" href="/static/bootstrap.min.css">
+    <link rel="stylesheet" href="/static/jumbotron-narrow.css">
+    <link rel="stylesheet" href="/static/gauge.css">
+    <script src="/static/jquery.min.js"></script>
+
+    <style>
+        
+        ul {
+            list-style-type: none;
+            padding: 0;
+        }
+
+        li {
+            margin-bottom: 10px;
+            background-color: #f2f2f2;
+            padding: 10px;
+            border-radius: 5px;
+        }
+        .section-item {
+            margin-bottom: 10px;
+            background-color: #f2f2f2;
+            padding: 10px;
+            border-radius: 5px;
+        }
+    </style>
+</head>
+
+<body style=" zoom :80%">
+        <div>
+          <div class="header">
+            <nav>
+              <ul class="nav nav-pills pull-right">
+                <li role="presentation" class="active"><a href="/">Home</a></li> 
+              </ul>
+            </nav>
+            <h3 class="text-muted">Inspect - KW Fiber Laser Data</h3>
+            <div class="col-lg-6" style=" min-width: 700px; max-width: 500px; max-height: 300px;min-height: 300px; margin: 0 auto;margin-left: 0px;margin-right: -700px;margin-top: 70px;float:left ;font-size: 12px">
+                   
+        <!-- <div class="flex-wrapper">	  
+      <div class="single-chart">
+        <svg viewBox="0 0 36 36" class="circular-chart orange">
+          <path class="circle-bg" d="M18 2.0845
+              a 15.9155 15.9155 0 0 1 0 31.831
+              a 15.9155 15.9155 0 0 1 0 -31.831"></path>
+          <path class="circle" stroke-dasharray="77.8, 100" d="M18 2.0845
+              a 15.9155 15.9155 0 0 1 0 31.831
+              a 15.9155 15.9155 0 0 1 0 -31.831"></path>
+          <text x="18" y="20.35" class="percentage">77.8%</text>
+        </svg>
+      </div>
+    </div>	  -->
+    
+          </div>
+    </div>
+             </div>
+    
+          <div class="jumbotron" style="background-color: #F9F9F9">
+         <div>
+          <div>
+          <h1>DUT : {{serial_num}}</h1>
+            <h2>MODEL : {{model_to_print}}
+            
+      <!-- <button type="submit" name="text" value="Pareto" class="btn btn-lg btn-warning " style="font-size: 13px; padding: 1px 1px; ">Pareto for : FBG_OC_MWL</button> -->
+            </h2> 
+            </div>
+                    
+                    <!-- <div> <span style="background-color:#67E16A">Specification table at the time of DUT test match the current specification REV : REV014</span>	</div> -->
+                   
+    <!--
+    
+    class="container" margin-left: 15px;
+    
+            <p><a class="btn btn-lg btn-success" href="showSignUp" role="button">Check</a></p>
+    
+            <h3>Enter DUT S/N</h3>
+        <h2>(it will be converted to uppercase)</h2>
+       --> 
+          </div>
+          </div>
+          
+          <div class="row marketing">
+            <div class="col-lg-7">
+                <h2 class="display-4">DUT RESULT - {{result_of_DUT}}</h2>
+            
+    <!-- <form action="getPlotCSV" method="POST">
+      <button type="submit" name="text" value="N3DW2305LF105" class="btn btn-lg btn-primary pull-left" style="font-size: 13px; padding: 1px 1px; ">Click to save .CSV file</button>
+    </form>  -->
+              
+        <!--	  
+              
+           <ul class="nav nav-pills pull-left">   
+                
+                    <li role="presentation" class="active"><a href="/getPlotCSV">Click to save .CSV file</a></li>
+    
+         </ul>
+    --> 
+    <!-- <h1 style="color:#FFFFFF">.</h1> -->
+    
+    <!-- <h2>FBG MULTI WAVE LENGTH</h2> -->
+
+<!-- ------------------------------------------------------------------------------------------------------------------- -->
+  
+    {% for num_item in range(items) %}
+    <script>
+    $(document).ready(function(){
+        $("#button{{num_item}}").click(function(){
+            $("#tab{{num_item}}").toggle();
+        }
+        );
+    });
+    </script>
+    
+    <div>
+      <!-- CT Time -->
+      {% for minute in CT_Time %}
+        {% if loop.index0 == num_item %}
+            <button type="submit" name="text" value="" class="btn btn-lg btn-info pull-left" style="font-size: 13px; padding: 1px 1px; min-width: 90px; max-width: 90px;">{{ minute }}</button>
+        {% endif %}
+      {% endfor %}
+
+      <!-- <form action="pareto" method="POST" href="/pareto">
+          <input type="hidden" name="model" value="FBG_OC_MWL">
+          <input type="hidden" name="op_id" value="781">
+          <input type="hidden" name="date_start" value="">
+          <input type="hidden" name="date_end" value="">
+        </form>
+      
+     <form action="close_scrap" method="POST" href="/close_scrap">
+      <input type="hidden" name="model" value="FBG_OC_MWL">
+      <input type="hidden" name="operation_id" value="781">
+      <input type="hidden" name="serial_number" value="N3DW2305LF105">
+    </form> -->
+    
+      <form action="show_all_operation_attempts" method="POST">
+      {% for num in num_attempts %}
+        {% if loop.index0 == num_item %}
+        <button type="submit" name="text" value="" class="btn btn-lg btn-primary pull-left" style="font-size: 13px; padding: 1px 1px;  min-width: 90px;  ">{{num}} ATTEMPTS</button>
+      {% endif %}{% endfor %}
+      </form> 
+    
+    {% for Oparation_num_id in Oparation_id %}
+        {% if loop.index0 == num_item %} {% set true_operation_id = Oparation_num_id %}
+        {% for Oparation_num_name in Oparation_name %}
+          {% if loop.index0 == num_item %} {% set true_operation_name = Oparation_num_name %}
+          {% for check in check_item %}
+              {% if loop.index0 == num_item %} {% set true_check_item = check %}
+    <button id="button{{num_item}}" type="button" class="btn btn-success" style="text-align:left; padding-left:6px; min-width: 520px;  ">OPERATION_ID : {{true_operation_id}} - {{true_operation_name}}</button> - {{true_check_item}}
+    {% endif %}{% endfor %}
+    {% endif %}{% endfor %}
+    {% endif %}{% endfor %}
+  </div>
+
+    <table class="table-striped" cellspacing="0" id="tab{{num_item}}" style=" display:none; clear: both; border-collapse: separate;border-spacing: 0px 0px; width: 200%; table-layout: fixed">
+      <tbody>
+
+      <tr>
+          <td>
+            {% for Oparation_num_id in Oparation_id %}
+              {% if loop.index0 == num_item %}
+                {% set true_operation_id = Oparation_num_id %}
+                  <h3> OPERATION_ID : {{true_operation_id}} </h3>
+              {% endif %}
+        {% endfor %}  
+          </td>
+      </tr>
+
+    <tr>
+      {% for Oparation_num_name in Oparation_name %}
+          {% if loop.index0 == num_item %} {% set true_operation_name = Oparation_num_name %}
+    <td><h3> {{true_operation_name}} </h3></td>
+    {% endif %}{% endfor %}
+    </tr>
+    
+
+
+<!-- ----------------------------------------------------------------------------------- -->
+
+
+
+
+    
+    <tr style="text-align: center;vertical-align: middle;">
+              <td> Prameter name </td> <td> Value </td> <td> Min Limit </td> <td> Trend </td> <td> Max Limit </td>
+      </tr> 
+      
+            <tr>
+              <td>
+    <form action="showOnePar" method="POST" href="/showOnePar" class="form-signin">
+    <div style="display:none">
+      <input type="hidden" name="format" value="N3DW"><br>       
+      <input type="hidden" name="parameter_id" value="47104"><br>
+      <input type="hidden" name="parameter_name" value=""><br>
+      <input type="hidden" name="operation_id" value=""><br>
+      </div>
+      <input type="submit" value="Chart" name="text" class="btn btn-lg btn-success pull-left" style="font-size: 13px; padding: 1px 1px; ">
+    </form> 
+                
+             &nbsp;-&nbsp; SERIAL_NUMBER</td>
+                    
+        <td style="overflow: hidden;white-space:nowrap; padding-left: 200px">N3DW2305LF105</td>
+     
+              <td></td>
+              <td></td>
+              <td></td>
+              
+      <!--   
+                <td>47104</td>
+              <td>781</td>
+              <td>1841580</td>
+               -->
+            </tr>
+            
+            <tr>
+       
+              <td>
+    <form action="showOnePar" method="POST" href="/showOnePar" class="form-signin">
+    <div style="display:none">
+      <input type="hidden" name="format" value="N3DW"><br>       
+      <input type="hidden" name="parameter_id" value="47109"><br>
+      <input type="hidden" name="parameter_name" value=""><br>
+      <input type="hidden" name="operation_id" value=""><br>
+      </div>
+      <input type="submit" value="Chart" name="text" class="btn btn-lg btn-success pull-left" style="font-size: 13px; padding: 1px 1px; ">
+    </form> 
+             &nbsp;-&nbsp; BENCH</td>
+                    
+        <td style="overflow: hidden;white-space:nowrap; padding-left: 200px">FBG_INSPECTION_1</td>
+    
+            </tr>
+            
+            <tr>
+       
+              <td>
+    <form action="showOnePar" method="POST" href="/showOnePar" class="form-signin">
+    <div style="display:none">
+      <input type="hidden" name="format" value="N3DW"><br>       
+      <input type="hidden" name="parameter_id" value="47105"><br>
+      <input type="hidden" name="parameter_name" value=""><br>
+      <input type="hidden" name="operation_id" value=""><br>
+      </div>
+      <input type="submit" value="Chart" name="text" class="btn btn-lg btn-success pull-left" style="font-size: 13px; padding: 1px 1px; ">
+    </form> 
+                
+             &nbsp;-&nbsp; DATE_TIME_START</td>
+                    
+        <td style="overflow: hidden;white-space:nowrap; padding-left: 200px">05/30/2023 08:23 AM</td>
+      
+              <td></td>
+              <td></td>
+              <td></td>
+              
+      <!--   
+                <td>47105</td>
+              <td>781</td>
+              <td>1841580</td>
+               -->
+            </tr>
+            
+            <tr>
+       
+              <td>
+    <form action="showOnePar" method="POST" href="/showOnePar" class="form-signin">
+    <div style="display:none">
+      <input type="hidden" name="format" value="N3DW"><br>       
+      <input type="hidden" name="parameter_id" value="47194"><br>
+      <input type="hidden" name="parameter_name" value=""><br>
+      <input type="hidden" name="operation_id" value=""><br>
+      </div>
+      <input type="submit" value="Chart" name="text" class="btn btn-lg btn-success pull-left" style="font-size: 13px; padding: 1px 1px; ">
+    </form> 
+                
+             &nbsp;-&nbsp; H2_LOADED_BATCH_ID</td>
+                    
+        <td style="overflow: hidden;white-space:nowrap; padding-left: 200px">OCC23042113</td>
+      
+              <td></td>
+              <td></td>
+              <td></td>
+            
+      <!--   
+                <td>47194</td>
+              <td>781</td>
+              <td>1841580</td>
+               -->
+            </tr>
+            
+            <tr>
+       
+              <td>
+    <form action="showOnePar" method="POST" href="/showOnePar" class="form-signin">
+    <div style="display:none">
+      <input type="hidden" name="format" value="N3DW"><br>       
+      <input type="hidden" name="parameter_id" value="50464"><br>
+      <input type="hidden" name="parameter_name" value=""><br>
+      <input type="hidden" name="operation_id" value=""><br>
+      </div>
+      <input type="submit" value="Chart" name="text" class="btn btn-lg btn-success pull-left" style="font-size: 13px; padding: 1px 1px; ">
+    </form> 
+                
+             &nbsp;-&nbsp; FIBER_SN</td>
+                    
+        <td style="overflow: hidden;white-space:nowrap; padding-left: 200px">PFS21.2-112-3B0</td>
+          
+              <td></td>
+              <td></td>
+              <td></td>
+          
+      <!--   
+                <td>50464</td>
+              <td>781</td>
+              <td>1841580</td>
+               -->
+            </tr>
+            
+            <tr>
+       
+              <td>
+    <form action="showOnePar" method="POST" href="/showOnePar" class="form-signin">
+    <div style="display:none">
+      <input type="hidden" name="format" value="N3DW"><br>       
+      <input type="hidden" name="parameter_id" value="47195"><br>
+      <input type="hidden" name="parameter_name" value=""><br>
+      <input type="hidden" name="operation_id" value=""><br>
+      </div>
+      <input type="submit" value="Chart" name="text" class="btn btn-lg btn-success pull-left" style="font-size: 13px; padding: 1px 1px; ">
+    </form> 
+                
+             &nbsp;-&nbsp; FIBER_LENGTH</td>
+                    
+        <td style="overflow: hidden;white-space:nowrap; padding-left: 200px">156</td>
+    
+            
+                
+              <td></td>
+              <td></td>
+              <td></td>
+           
+      <!--   
+                <td>47195</td>
+              <td>781</td>
+              <td>1841580</td>
+               -->
+            </tr>
+            
+            <tr>
+       
+              <td>
+    <form action="showOnePar" method="POST" href="/showOnePar" class="form-signin">
+    <div style="display:none">
+      <input type="hidden" name="format" value="N3DW"><br>       
+      <input type="hidden" name="parameter_id" value="47196"><br>
+      <input type="hidden" name="parameter_name" value=""><br>
+      <input type="hidden" name="operation_id" value=""><br>
+      </div>
+      <input type="submit" value="Chart" name="text" class="btn btn-lg btn-success pull-left" style="font-size: 13px; padding: 1px 1px; ">
+    </form> 
+                
+             &nbsp;-&nbsp; BTA_ID</td>
+                    
+        <td style="overflow: hidden;white-space:nowrap; padding-left: 200px">PD22183216-02</td>
+       
+              <td></td>
+              <td></td>
+              <td></td>
+            
+      <!--   
+                <td>47196</td>
+              <td>781</td>
+              <td>1841580</td>
+               -->
+            </tr>
+            
+            <tr>
+       
+              <td>
+    <form action="showOnePar" method="POST" href="/showOnePar" class="form-signin">
+    <div style="display:none">
+      <input type="hidden" name="format" value="N3DW"><br>       
+      <input type="hidden" name="parameter_id" value="47197"><br>
+      <input type="hidden" name="parameter_name" value=""><br>
+      <input type="hidden" name="operation_id" value=""><br>
+      </div>
+      <input type="submit" value="Chart" name="text" class="btn btn-lg btn-success pull-left" style="font-size: 13px; padding: 1px 1px; ">
+    </form> 
+                
+             &nbsp;-&nbsp; AUTO_STRIPPER_ID</td>
+                    
+        <td style="overflow: hidden;white-space:nowrap; padding-left: 200px">00358</td>
+         
+              <td></td>
+              <td></td>
+              <td></td>
+           
+      <!--   
+                <td>47197</td>
+              <td>781</td>
+              <td>1841580</td>
+               -->
+            </tr>
+            
+            <tr>
+       
+              <td>
+    <form action="showOnePar" method="POST" href="/showOnePar" class="form-signin">
+    <div style="display:none">
+      <input type="hidden" name="format" value="N3DW"><br>       
+      <input type="hidden" name="parameter_id" value="47198"><br>
+      <input type="hidden" name="parameter_name" value=""><br>
+      <input type="hidden" name="operation_id" value=""><br>
+      </div>
+      <input type="submit" value="Chart" name="text" class="btn btn-lg btn-success pull-left" style="font-size: 13px; padding: 1px 1px; ">
+    </form> 
+                
+             &nbsp;-&nbsp; BLADE_COUNT_NO</td>
+                    
+        <td style="overflow: hidden;white-space:nowrap; padding-left: 200px">73-74</td>
+          
+              <td></td>
+              <td></td>
+              <td></td>
+              
+      <!--   
+                <td>47198</td>
+              <td>781</td>
+              <td>1841580</td>
+               -->
+            </tr>
+            
+            <tr>
+       
+              <td>
+    <form action="showOnePar" method="POST" href="/showOnePar" class="form-signin">
+    <div style="display:none">
+      <input type="hidden" name="format" value="N3DW"><br>       
+      <input type="hidden" name="parameter_id" value="47199"><br>
+      <input type="hidden" name="parameter_name" value=""><br>
+      <input type="hidden" name="operation_id" value=""><br>
+      </div>
+      <input type="submit" value="Chart" name="text" class="btn btn-lg btn-success pull-left" style="font-size: 13px; padding: 1px 1px; ">
+    </form> 
+                
+             &nbsp;-&nbsp; IMAGE_OUTPUT_FIBER_0_DEG</td>
+              
+              <!--
+               <td style="overflow: hidden;white-space:nowrap;"><a href= "/static/pc3_2016-04-13_11-59-15.bmp"  ><img src='/static/pc3_2016-04-13_11-59-15.bmp' width="200" height="85">  click </a> </td>
+    -->
+     <td style="overflow: hidden;white-space:nowrap;padding-left: 200px">	
+     
+     <!-- <form action="fetch_file" method="POST">
+    
+      <button type="submit" name="filename" value="\\patfs03\iTraveler\MUIR\iTraveler_MUIR\DATA\N3DW2305LF105\IMAGE_OUTPUT_FIBER_0_DEG2023-05-30T08-23-48.png" class="btn btn-lg btn-info pull-left" style="font-size: 13px; padding: 1px 1px; ">Download</button>
+      
+    </form> 
+    <form action="Chart2" target="_blank" method="POST">
+    
+      <button type="submit" name="text3" value="\\patfs03\iTraveler\MUIR\iTraveler_MUIR\DATA\N3DW2305LF105\IMAGE_OUTPUT_FIBER_0_DEG2023-05-30T08-23-48.png" class="btn btn-lg btn-primary pull-left" style="font-size: 13px; padding: 1px 1px; ">View image</button>
+      
+    </form>  -->
+    
+                    </td>
+       
+              <td></td>
+              <td></td>
+              <td></td>
+              
+      <!--   
+                <td>47199</td>
+              <td>781</td>
+              <td>1841580</td>
+               -->
+            </tr>
+            
+            <tr>
+       
+              <td>
+    <form action="showOnePar" method="POST" href="/showOnePar" class="form-signin">
+    <div style="display:none">
+      <input type="hidden" name="format" value="N3DW"><br>       
+      <input type="hidden" name="parameter_id" value="47200"><br>
+      <input type="hidden" name="parameter_name" value=""><br>
+      <input type="hidden" name="operation_id" value=""><br>
+      </div>
+      <input type="submit" value="Chart" name="text" class="btn btn-lg btn-success pull-left" style="font-size: 13px; padding: 1px 1px; ">
+    </form> 
+                
+             &nbsp;-&nbsp; IMAGE_INPUT_FIBER_0_DEG</td>
+              
+              <!--
+               <td style="overflow: hidden;white-space:nowrap;"><a href= "/static/pc3_2016-04-13_11-59-15.bmp"  ><img src='/static/pc3_2016-04-13_11-59-15.bmp' width="200" height="85">  click </a> </td>
+    -->
+     <td style="overflow: hidden;white-space:nowrap;padding-left: 200px">	
+     
+     <!-- <form action="fetch_file" method="POST">
+    
+      <button type="submit" name="filename" value="\\patfs03\iTraveler\MUIR\iTraveler_MUIR\DATA\N3DW2305LF105\IMAGE_INPUT_FIBER_0_DEG2023-05-30T08-24-01.png" class="btn btn-lg btn-info pull-left" style="font-size: 13px; padding: 1px 1px; ">Download</button>
+      
+    </form> 
+    <form action="Chart2" target="_blank" method="POST">
+    
+      <button type="submit" name="text3" value="\\patfs03\iTraveler\MUIR\iTraveler_MUIR\DATA\N3DW2305LF105\IMAGE_INPUT_FIBER_0_DEG2023-05-30T08-24-01.png" class="btn btn-lg btn-primary pull-left" style="font-size: 13px; padding: 1px 1px; ">View image</button>
+      
+    </form>  -->
+    
+                    </td>
+       
+              <td></td>
+              <td></td>
+              <td></td>
+              
+      <!--   
+                <td>47200</td>
+              <td>781</td>
+              <td>1841580</td>
+               -->
+            </tr>
+            
+            <tr>
+       
+              <td>
+    <form action="showOnePar" method="POST" href="/showOnePar" class="form-signin">
+    <div style="display:none">
+      <input type="hidden" name="format" value="N3DW"><br>       
+      <input type="hidden" name="parameter_id" value="47201"><br>
+      <input type="hidden" name="parameter_name" value=""><br>
+      <input type="hidden" name="operation_id" value=""><br>
+      </div>
+      <input type="submit" value="Chart" name="text" class="btn btn-lg btn-success pull-left" style="font-size: 13px; padding: 1px 1px; ">
+    </form> 
+                
+             &nbsp;-&nbsp; IMAGE_OUTPUT_FIBER_180_DEG</td>
+              
+              <!--
+               <td style="overflow: hidden;white-space:nowrap;"><a href= "/static/pc3_2016-04-13_11-59-15.bmp"  ><img src='/static/pc3_2016-04-13_11-59-15.bmp' width="200" height="85">  click </a> </td>
+    -->
+     <td style="overflow: hidden;white-space:nowrap;padding-left: 200px">	
+     
+     <!-- <form action="fetch_file" method="POST">
+    
+      <button type="submit" name="filename" value="\\patfs03\iTraveler\MUIR\iTraveler_MUIR\DATA\N3DW2305LF105\IMAGE_OUTPUT_FIBER_180_DEG2023-05-30T08-25-19.png" class="btn btn-lg btn-info pull-left" style="font-size: 13px; padding: 1px 1px; ">Download</button>
+      
+    </form> 
+    <form action="Chart2" target="_blank" method="POST">
+    
+      <button type="submit" name="text3" value="\\patfs03\iTraveler\MUIR\iTraveler_MUIR\DATA\N3DW2305LF105\IMAGE_OUTPUT_FIBER_180_DEG2023-05-30T08-25-19.png" class="btn btn-lg btn-primary pull-left" style="font-size: 13px; padding: 1px 1px; ">View image</button>
+      
+    </form>  -->
+  
+                    </td>
+        
+              <td></td>
+              <td></td>
+              <td></td>
+              
+      <!--   
+                <td>47201</td>
+              <td>781</td>
+              <td>1841580</td>
+               -->
+            </tr>
+            
+            <tr>
+       
+              <td>
+    <form action="showOnePar" method="POST" href="/showOnePar" class="form-signin">
+    <div style="display:none">
+      <input type="hidden" name="format" value="N3DW"><br>       
+      <input type="hidden" name="parameter_id" value="47202"><br>
+      <input type="hidden" name="parameter_name" value=""><br>
+      <input type="hidden" name="operation_id" value=""><br>
+      </div>
+      <input type="submit" value="Chart" name="text" class="btn btn-lg btn-success pull-left" style="font-size: 13px; padding: 1px 1px; ">
+    </form> 
+                
+             &nbsp;-&nbsp; IMAGE_INPUT_FIBER_180_DEG</td>
+              
+              <!--
+               <td style="overflow: hidden;white-space:nowrap;"><a href= "/static/pc3_2016-04-13_11-59-15.bmp"  ><img src='/static/pc3_2016-04-13_11-59-15.bmp' width="200" height="85">  click </a> </td>
+    -->
+     <td style="overflow: hidden;white-space:nowrap;padding-left: 200px">	
+     
+     <!-- <form action="fetch_file" method="POST">
+    
+      <button type="submit" name="filename" value="\\patfs03\iTraveler\MUIR\iTraveler_MUIR\DATA\N3DW2305LF105\IMAGE_INPUT_FIBER_180_DEG2023-05-30T08-25-41.png" class="btn btn-lg btn-info pull-left" style="font-size: 13px; padding: 1px 1px; ">Download</button>
+      
+    </form> 
+    <form action="Chart2" target="_blank" method="POST">
+    
+      <button type="submit" name="text3" value="\\patfs03\iTraveler\MUIR\iTraveler_MUIR\DATA\N3DW2305LF105\IMAGE_INPUT_FIBER_180_DEG2023-05-30T08-25-41.png" class="btn btn-lg btn-primary pull-left" style="font-size: 13px; padding: 1px 1px; ">View image</button>
+      
+    </form>  -->
+    
+                    </td>
+         
+              <td></td>
+              <td></td>
+              <td></td>
+          
+      <!--   
+                <td>47202</td>
+              <td>781</td>
+              <td>1841580</td>
+               -->
+            </tr>
+          
+            <tr>
+       
+              <td>
+    <form action="showOnePar" method="POST" href="/showOnePar" class="form-signin">
+    <div style="display:none">
+      <input type="hidden" name="format" value="N3DW"><br>       
+      <input type="hidden" name="parameter_id" value="47203"><br>
+      <input type="hidden" name="parameter_name" value=""><br>
+      <input type="hidden" name="operation_id" value=""><br>
+      </div>
+      <input type="submit" value="Chart" name="text" class="btn btn-lg btn-success pull-left" style="font-size: 13px; padding: 1px 1px; ">
+    </form> 
+                
+             &nbsp;-&nbsp; INSPECTION_DEFECT_FOUND</td>
+                    
+        <td style="overflow: hidden;white-space:nowrap; padding-left: 200px">NO</td>
+    
+              <td style="border-spacing: 0px 0px;text-align:right">NO </td>
+             <td style=" border-spacing: 0px 0px; background-color: #58D68D "><input type="range" min="0.0" max="0.0" value="0.0"> </td>
+               <td style="border-spacing: 0px 0px;text-align:left">NO</td>
+             
+      <!--   
+                <td>47203</td>
+              <td>781</td>
+              <td>1841580</td>
+               -->
+            </tr>
+          
+            <tr>
+       
+              <td>
+    <form action="showOnePar" method="POST" href="/showOnePar" class="form-signin">
+    <div style="display:none">
+      <input type="hidden" name="format" value="N3DW"><br>       
+      <input type="hidden" name="parameter_id" value="47111"><br>
+      <input type="hidden" name="parameter_name" value=""><br>
+      <input type="hidden" name="operation_id" value=""><br>
+      </div>
+      <input type="submit" value="Chart" name="text" class="btn btn-lg btn-success pull-left" style="font-size: 13px; padding: 1px 1px; ">
+    </form> 
+                
+             &nbsp;-&nbsp; FAILURE_CODE</td>
+                    
+        <td style="overflow: hidden;white-space:nowrap; padding-left: 200px">-</td>
+        
+              <td></td>
+              <td></td>
+              <td></td>
+        
+      <!--   
+                <td>47111</td>
+              <td>781</td>
+              <td>1841580</td>
+               -->
+            </tr>
+            
+        
+            <tr>
+       
+              <td>
+    <form action="showOnePar" method="POST" href="/showOnePar" class="form-signin">
+    <div style="display:none">
+      <input type="hidden" name="format" value="N3DW"><br>       
+      <input type="hidden" name="parameter_id" value="47112"><br>
+      <input type="hidden" name="parameter_name" value=""><br>
+      <input type="hidden" name="operation_id" value=""><br>
+      </div>
+      <input type="submit" value="Chart" name="text" class="btn btn-lg btn-success pull-left" style="font-size: 13px; padding: 1px 1px; ">
+    </form> 
+                
+             &nbsp;-&nbsp; COMMENT</td>
+                    
+        <td style="overflow: hidden;white-space:nowrap; padding-left: 200px">-</td>
+          
+              <td></td>
+              <td></td>
+              <td></td>
+
+      <!--   
+                <td>47112</td>
+              <td>781</td>
+              <td>1841580</td>
+               -->
+            </tr>  
+            <tr>
+       
+              <td>
+    <form action="showOnePar" method="POST" href="/showOnePar" class="form-signin">
+    <div style="display:none">
+      <input type="hidden" name="format" value="N3DW"><br>       
+      <input type="hidden" name="parameter_id" value="47110"><br>
+      <input type="hidden" name="parameter_name" value=""><br>
+      <input type="hidden" name="operation_id" value=""><br>
+      </div>
+      <input type="submit" value="Chart" name="text" class="btn btn-lg btn-success pull-left" style="font-size: 13px; padding: 1px 1px; ">
+    </form> 
+                
+             &nbsp;-&nbsp; RESULT</td>
+                    
+        <td style="overflow: hidden;white-space:nowrap; padding-left: 200px">PASS</td>
+           
+              <td></td>
+              <td></td>
+              <td></td>
+ 
+      <!--   
+                <td>47110</td>
+              <td>781</td>
+              <td>1841580</td>
+               -->
+            </tr>
+            
+        
+            <tr>
+       
+              <td>
+    <form action="showOnePar" method="POST" href="/showOnePar" class="form-signin">
+    <div style="display:none">
+      <input type="hidden" name="format" value="N3DW"><br>       
+      <input type="hidden" name="parameter_id" value="47107"><br>
+      <input type="hidden" name="parameter_name" value=""><br>
+      <input type="hidden" name="operation_id" value=""><br>
+      </div>
+      <input type="submit" value="Chart" name="text" class="btn btn-lg btn-success pull-left" style="font-size: 13px; padding: 1px 1px; ">
+    </form> 
+                
+             &nbsp;-&nbsp; DATE_TIME_END</td>
+                    
+        <td style="overflow: hidden;white-space:nowrap; padding-left: 200px">05/30/2023 08:26 AM</td>
+                 
+              <td></td>
+              <td></td>
+              <td></td>
+                
+      <!--   
+                <td>47107</td>
+              <td>781</td>
+              <td>1841580</td>
+               -->
+            </tr>
+            
+        
+            <tr>
+       
+              <td>
+    <form action="showOnePar" method="POST" href="/showOnePar" class="form-signin">
+    <div style="display:none">
+      <input type="hidden" name="format" value="N3DW"><br>       
+      <input type="hidden" name="parameter_id" value="47113"><br>
+      <input type="hidden" name="parameter_name" value=""><br>
+      <input type="hidden" name="operation_id" value=""><br>
+      </div>
+      <input type="submit" value="Chart" name="text" class="btn btn-lg btn-success pull-left" style="font-size: 13px; padding: 1px 1px; ">
+    </form> 
+                
+             &nbsp;-&nbsp; RECIPE</td>
+                    
+        <td style="overflow: hidden;white-space:nowrap; padding-left: 200px">FIBER_WINDOW_STRIPPING_V0.4</td>
+    
+        
+              <td></td>
+              <td></td>
+              <td></td>
+
+      <!--   
+                <td>47113</td>
+              <td>781</td>
+              <td>1841580</td>
+               -->
+            </tr>
+            
+        
+            <tr>
+       
+              <td>
+    <form action="showOnePar" method="POST" href="/showOnePar" class="form-signin">
+    <div style="display:none">
+      <input type="hidden" name="format" value="N3DW"><br>       
+      <input type="hidden" name="parameter_id" value="47108"><br>
+      <input type="hidden" name="parameter_name" value=""><br>
+      <input type="hidden" name="operation_id" value=""><br>
+      </div>
+      <input type="submit" value="Chart" name="text" class="btn btn-lg btn-success pull-left" style="font-size: 13px; padding: 1px 1px; ">
+    </form> 
+                
+             &nbsp;-&nbsp; OPERATOR</td>
+                    
+        <td style="overflow: hidden;white-space:nowrap; padding-left: 200px">Mar80607</td>
+                
+              <!-- <td></td>
+              <td></td>
+              <td></td> -->
+
+        
+                <td>47108</td>
+              <td>781</td>
+              <td>1841580</td>
+              
+            </tr>
+            
+        </tbody></table>
+    
+    {% endfor %}
+    </div>	  
+    </div>
+    
+          <footer class="footer">
+            <p>© Lumentum</p>
+          </footer>
+
+    </body>
+</html>

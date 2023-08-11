@@ -1,0 +1,735 @@
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>Inspect - KW Fiber Laser Data</title>
+<meta http-equiv="X-UA-Compatible" content="IE=11" />
+   <!--
+   
+    <link href="http://getbootstrap.com/dist/css/bootstrap.min.css" rel="stylesheet">
+
+    <link href="http://getbootstrap.com/examples/jumbotron-narrow/jumbotron-narrow.css" rel="stylesheet">
+        <link href="http://getbootstrap.com/examples/jumbotron-narrow/jumbotron-narrow.css" rel="stylesheet">
+
+		
+		
+		
+		<link href="static/css/amir_slider.css" rel="stylesheet">
+
+<link href="static/css/bootstrap.min.css" rel="stylesheet">
+    <link href="static/css/bootstrap-slider.css" rel="stylesheet">
+<link href="static/css/jumbotron-narrow.css" rel="stylesheet">
+        -->
+            
+{% block head %}
+        <link rel="stylesheet" href="{{ url_for('static', filename='bootstrap-slider.css') }}">
+		  <link rel="stylesheet" href="{{ url_for('static', filename='bootstrap.min.css') }}">
+		    <link rel="stylesheet" href="{{ url_for('static', filename='jumbotron-narrow.css') }}">
+			<script src="{{url_for('static', filename='jquery.min.js')}}"></script>
+			
+      {% endblock %}
+
+
+
+<!--
+<link rel="stylesheet" href="{{ url_for('static', filename='hide-ms-tooltip') }}">
+    <link href="./dist/css/bootstrap-slider.css" rel="stylesheet" />
+    <style>
+        #ex1Slider .slider-selection {
+            background: #BABABA;
+        }
+    </style>
+    <script src="jquery-1.12.0.js"></script>
+    <script src="./dist/bootstrap-slider.js"></script>
+
+    <script type='text/javascript'>
+        $(document).ready(function () {
+            $('#ex1').slider({
+                formatter: function (value) {
+                    return 'Current value: ' + value;
+                }
+            });
+        });
+    </script>
+
+
+
+-->
+
+
+
+
+
+<!--
+<script>
+$(document).ready(function(){
+    $("button").click(function(){
+        $("div").toggle();
+    });
+});
+</script>
+
+-->
+
+
+
+
+   
+  </head>
+
+  <body >
+
+
+
+
+
+
+<!--
+
+
+
+<div class="well">
+        <input id="ex1" data-slider-id='ex1Slider' type="text"
+            data-slider-min="-5" data-slider-max="20"
+            data-slider-step="1" data-slider-value="14" />
+    </div>
+
+
+-->
+
+
+
+
+
+
+
+
+
+
+    <div >
+      <div class="header">
+        <nav>
+          <ul class="nav nav-pills pull-right">
+            <li role="presentation" class="active"><a href="/">Home</a></li>
+  <!--          
+            <li role="presentation"><a href="#">Add function</a></li>
+ 	    <li role="presentation"><a href="/showSignUp">Add function</a></li>
+ -->	    
+          </ul>
+        </nav>
+        <h3 class="text-muted">Inspect - KW Fiber Laser Data</h3>
+      </div>
+
+      <div class="jumbotron">
+        <h1>DUT : {{serial_num}}</h1>
+		<h2>MODEL : {{model_to_print}}</h2>
+		
+		
+		
+		{% set counter_tree = 0 %}
+		{% for tree_name in product_tree_sequence %}
+          {% if (dict_of_product_tree[tree_name] != 'N/A') and not ( tree_name == 'LASER_SN' and ('_MODULE'  in model_to_print )) and not( tree_name == 'ENGINE_SN' and ('_ENGINE'  in model_to_print )) %}
+		   {% if counter_tree == 0 %}
+		   <h3>Product relationships found:</h3>
+		   {% endif %}
+		   {% set counter_tree = counter_tree +1 %}
+		   <div > {{tree_name}} :  <span><form action="showSignUp" method="POST" action="{{ url_for('showSignUp') }}  >
+ <input type="text" name="text" value={{dict_of_product_tree[tree_name]}}> 
+  <button type="submit" name="text" value={{dict_of_product_tree[tree_name]}}  class="btn btn-lg btn-primary" style="font-size: 13px; padding: 1px 1px; ">{{dict_of_product_tree[tree_name]}}</button>
+  
+</form> </span>
+</div>
+				{% endif %}
+				{% endfor %}
+		
+		
+		
+				
+				
+				{% if (check_if_rev_is_current == True and check_actual_tested_rev_bool == False) %}
+				<div > <span style="background-color:#67E16A">Specification table at the time of DUT test match the current specification REV : {{spec_rev}}</span>	</div>
+				{% endif %}
+				
+				
+				{% if (check_if_rev_is_current == False and check_actual_tested_rev_bool == False) %}
+				<div > <span style="background-color:#efba5d">The results below are checked with the current specification REV</span>	</div>
+				<div > <span style="background-color:#efba5d">The specification REV at the time of DUT test does not match the current specification REV </span>	</div>
+				<div > The currect specification REV is : {{spec_rev}}	</div>
+				<div > The DUT was tested with specification REV : {{all_revs_for_needed_op}}	</div>
+				<div > Click below to query the DUT results with the original specifications at the time of test	</div>
+				<div >   <span><form action="showSignUp" method="POST" action="{{ url_for('showSignUp') }}  >
+ <input type="text" name="text" value="{{serial_num}}@"> 
+  <button type="submit" name="text" value="{{serial_num}}@"  class="btn btn-lg btn-primary" style="font-size: 13px; padding: 1px 1px; ">Click to query {{serial_num}} results with specs at the time of test</button>
+  
+</form> </span>
+</div>
+				{% endif %}
+				
+			
+				{% if  check_actual_tested_rev_bool == True %}
+				<div > <span style="background-color:#efba5d">Showing results with original specification REV at the time of test: {{all_revs_for_needed_op}}</span>	</div>
+				{% endif %}
+<!--
+
+class="container" margin-left: 15px;
+
+        <p><a class="btn btn-lg btn-success" href="showSignUp" role="button">Check</a></p>
+
+        <h3>Enter DUT S/N</h3>
+    <h2>(it will be converted to uppercase)</h2>
+   --> 
+
+      </div>
+
+      <div class="row marketing">
+        <div class="col-lg-6">
+        {% if (all_op_ids_pass_bool == True) %}
+			<h1>DUT RESULT - PASS - {{completion_percentage}} % COMPLETED</h1>
+		{% endif %}
+            {% if (all_op_ids_pass_bool == False) %}
+			<h1>DUT RESULT - FAIL - {{completion_percentage}} % COMPLETED</h1>
+		{% endif %}
+          
+		  
+		  
+		  
+		  
+		  
+		  <!-- OCAP STARTS!-->
+		 {% if (open_ocaps == 'TRUE') %} 
+		 <!-- open OCAP table-->
+	
+                <div class="col-lg-6" style="min-width: 1520px; max-width: 1700px; max-height: 300px; margin: 0 auto;float:left ;font-size: 10px">
+                    <div class="panel panel-default">
+                        <div class="panel-heading">
+                            <i  class="fa fa-bell fa-fw"></i> <b style="color:Red;" >Open Out of Control Events</b>
+                        </div>
+                        <!-- /.panel-heading -->
+                        <div class="panel-body">
+                            <div   class="pre-scrollable"  style=" max-height: 150px">
+							
+							
+							
+<table style="clear: both; border-collapse: separate;border-spacing: 25px 0px; width: 100%;">
+{% set counter = 0 %}
+{% set counter_row = 0 %}
+{% for row_count in open_OCAP %}
+
+<tr>
+    {% for row_index in row_count %}
+        
+        {% if counter ==  0 or counter_row == 0%}
+          <td><b>{{ row_index }}</b></td>
+          {% else %}
+    <td>{{ row_index }}</td>
+	
+  {% endif %}
+  
+          
+          
+        {% set counter = counter+1 %}
+    {% endfor %}
+    {% set counter_row = counter_row+1 %}
+	
+	
+	 {% if counter_row >  1 %}
+	<td>
+	
+		 <form action="close_OCAP" method="POST" action="{{ url_for('close_OCAP') }}"  >
+ 
+  <button type="submit" name="text" value={{row_count[0]}}  class="btn btn-lg btn-primary" style="font-size: 12px; padding: 3px 5px; ">ENG action</button>
+  
+</form>  
+	
+	</td>
+	
+	
+	{% endif %}
+	
+	
+	
+    </tr>
+	
+{% endfor %}
+
+
+
+
+{% set counter_row = 0 %}
+
+    
+
+</table>
+ </div>
+                            <!-- /.list-group -->
+                          <!--   <a href="#" class="btn btn-default btn-block">View All Alerts</a> -->
+                        </div>
+						
+                        <!-- /.panel-body -->
+                    </div>
+	 
+	 
+	 <!-- open OCAP table -->	
+		  </div>
+{% endif %}
+		  
+		  <!-- <form action="getPlotCSV" method="POST" action="{{ url_for('getPlotCSV') }}  "> -->
+
+  <button type="submit" name="text" value="{{serial_num}}"  class="btn btn-lg btn-primary pull-left" style="font-size: 13px; padding: 1px 1px; ">Click to save .CSV file</button>
+  
+</form> 
+		  
+		  
+		  
+		  
+	<!--	  
+		  
+       <ul class="nav nav-pills pull-left">   
+			
+				<li role="presentation" class="active"><a href="/getPlotCSV">Click to save .CSV file</a></li>
+
+	 </ul>
+--> 
+<h1 style="color:#FFFFFF">.</h1>
+
+ {% if (model_to_print != 'NOT_FOUND') %}
+
+		 {% if combined_classified_list == [] %}
+		 {% set  combined_classified_list = needed_op_ids %}
+		{% endif %}
+		
+		
+{% set counter = 0 %}
+
+{% for needed_combined_classified_op_id in combined_classified_list %}
+
+{% set x3 = x2[needed_combined_classified_op_id] %}
+  
+{% if   needed_combined_classified_op_id in needed_op_ids %}
+
+{% if   counter == 0 %}
+<h2>{{section_1}}</h2>
+
+{% endif %}
+{% if   counter == length_section_1 %}
+<h2>{{section_2}}</h2>
+
+{% endif %}
+
+{% if   counter == length_section_1 + length_section_2 %}
+<h2>{{section_3}}</h2>
+
+{% endif %}
+
+{% if   counter == length_section_1 + length_section_2 + length_section_3 %}
+<h2>{{section_4}}</h2>
+
+{% endif %}
+
+{% set stop = 'false' %}
+{% set opid_single_name = [] %}
+{% for item in needed_op_ids %}
+
+	{% if   item == needed_combined_classified_op_id and stop == 'false' %}
+		
+		{% if opid_single_name.append(opids_names[loop.index0])   %} 
+		{%endif%}
+		{% set stop = 'true' %}
+		
+	{% endif %}
+	
+{% endfor %}	
+
+
+{% for item in needed_op_ids %}
+
+	{% if item not in combined_classified_list %}
+		
+		{% if combined_classified_list.append(item)   %} 
+		{%endif%}
+		
+	{%endif%}	
+	
+{% endfor %}
+
+
+
+<script>
+
+
+$(document).ready(function(){
+    $("#button{{counter}}").click(function(){
+        $("#tab{{counter}}").toggle();
+		
+    }
+	
+	);
+	
+});
+</script>
+</head>
+<body style=" zoom :80%" >
+<div >
+ 
+ 
+{% if (cycle_t_per_op[needed_combined_classified_op_id] != "None") and ((dict_of_op_ids_status[needed_combined_classified_op_id] != 'NOT TESTED')and (dict_of_op_ids_status[needed_combined_classified_op_id] != 'OPTIONAL') ) %}
+  <button type="submit" name="text" value={{needed_combined_classified_op_id}}  class="btn btn-lg btn-info pull-left" style="font-size: 13px; padding: 1px 1px; ">{{cycle_t_per_op[needed_combined_classified_op_id]}}   Minutes </button>
+  {% endif %}
+  
+  {% if (cycle_t_per_op[needed_combined_classified_op_id] == "None") or (dict_of_op_ids_status[needed_combined_classified_op_id] == 'NOT TESTED')or (dict_of_op_ids_status[needed_combined_classified_op_id] == 'OPTIONAL')%}
+  <button type="submit" name="text" value={{needed_combined_classified_op_id}}  class="btn btn-lg btn-info pull-left" style="font-size: 13px; padding: 1px 1px; ">Unavailable       </button>
+  {% endif %}
+  
+  
+{% if (dict_of_op_ids_status[needed_combined_classified_op_id] != 'NOT TESTED')and (dict_of_op_ids_status[needed_combined_classified_op_id] != 'OPTIONAL') %}
+
+{% set  combined_classified_list = needed_op_ids %}
+<form action="show_all_operation_attempts" method="POST" action="{{ url_for('show_all_operation_attempts') }}  ">
+
+  <button type="submit" name="text" value="{{serial_num}}|{{needed_combined_classified_op_id}}"  class="btn btn-lg btn-primary pull-left" style="font-size: 13px; padding: 1px 1px; ">{{op_count_dict[needed_combined_classified_op_id]}}  ATTEMPTS</button>
+  
+</form> 
+{% endif %}
+
+
+
+{% if (dict_of_op_ids_status[needed_combined_classified_op_id] == 'NOT TESTED')or (dict_of_op_ids_status[needed_combined_classified_op_id] == 'OPTIONAL') %}
+
+{% set  combined_classified_list = needed_op_ids %}
+
+
+  <button type="submit" name="text" value={{needed_combined_classified_op_id}}  class="btn btn-lg btn-primary pull-left" style="font-size: 13px; padding: 1px 1px; ">Unavailable</button>
+  
+
+{% endif %}
+
+
+
+
+{% if (dict_of_op_ids_status[needed_combined_classified_op_id] == 'PASS') %}
+
+
+<button  id = "button{{counter}}" type="button" class="btn btn-success " >OPERATION_ID: {{needed_combined_classified_op_id}} - {{opid_single_name[0]}}</button> - PASS
+{% endif %}
+{% if (dict_of_op_ids_status[needed_combined_classified_op_id] == 'MISSING AND FAILED PARAMETERS') %}
+<button  id = "button{{counter}}" type="button" class="btn btn-danger" >OPERATION_ID: {{needed_combined_classified_op_id}} - {{opid_single_name[0]}}</button> - MISSING AND FAILED PARAMETERS
+{% endif %}
+{% if (dict_of_op_ids_status[needed_combined_classified_op_id] == 'MISSING PARAMETERS') %}
+<button  id = "button{{counter}}" type="button" class="btn btn-warning" >OPERATION_ID: {{needed_combined_classified_op_id}} - {{opid_single_name[0]}}</button> - MISSING PARAMETERS
+{% endif %}
+{% if (dict_of_op_ids_status[needed_combined_classified_op_id] == 'FAILED PARAMETERS') %}
+<button  id = "button{{counter}}" type="button" class="btn btn-danger" >OPERATION_ID: {{needed_combined_classified_op_id}} - {{opid_single_name[0]}}</button> - FAILED PARAMETERS
+{% endif %}
+{% if (dict_of_op_ids_status[needed_combined_classified_op_id] == 'NOT TESTED') %}
+<button  id = "button{{counter}}" type="button" class="btn btn-secondary" >OPERATION_ID: {{needed_combined_classified_op_id}} - {{opid_single_name[0]}}</button> -NOT TESTED
+{% endif %}
+{% if (dict_of_op_ids_status[needed_combined_classified_op_id] == 'WAIVED') %}
+<button  id = "button{{counter}}" type="button" class="btn btn-primary" >OPERATION_ID: {{needed_combined_classified_op_id}} - {{opid_single_name[0]}}</button> -WAIVED- DEV:{{dict_of_op_ids_waivers_dev[needed_combined_classified_op_id]}},  ENGINEER:{{dict_of_op_ids_waivers_eng[needed_combined_classified_op_id]}},  REASON:{{dict_of_op_ids_waivers_reason[needed_combined_classified_op_id]}} 
+{% endif %}
+{% if (dict_of_op_ids_status[needed_combined_classified_op_id] == 'OPTIONAL') %}
+<button  id = "button{{counter}}" type="button" class="btn btn-secondary" >OPERATION_ID: {{needed_combined_classified_op_id}} - {{opid_single_name[0]}}</button> -OPTIONAL
+{% endif %}
+</div>
+<table  class="table-striped" cellspacing="0" id = "tab{{counter}}" style=" display:none; clear: both; border-collapse: separate;border-spacing: 0px 0px; width: 200%; table-layout: fixed" >
+
+
+
+
+
+
+<tr>
+<td><h4>   </h4></td>
+</tr>
+<tr>
+<td><h3> OPERATION_ID: {{needed_combined_classified_op_id}} </h3></td>
+</tr>
+<tr>
+<td><h3> {{opid_single_name[0]}} </h3></td>
+</tr>
+
+</tr>
+<tr>
+<td><h4>   </h4></td>
+</tr>
+
+<tr  style="text-align: center;vertical-align: middle;">
+   
+          <td > Parameter name </td> <td> Value </td> <td> Min Limit </td> <td> Trend </td> <td> Max Limit </td>
+  </tr> 
+  
+{% for row_index in x3 %}
+        <tr>
+			<td  >
+<form action="showOnePar" method="POST" href="{{ url_for('showOnePar') }}" class="form-signin" >
+<div style="display:none">
+  <input type="hidden" name="format" value={{ serial_num[0:4] }}><br>       
+  <input type="hidden" name="parameter_id" value={{row_index[3]}}><br>
+  <input  type="hidden" name="parameter_name" value=""><br>
+  <input type="hidden" name="operation_id" value=""><br>
+  </div>
+  <input type="submit"  value="Chart" name="text" class="btn btn-lg btn-success pull-left" style="font-size: 13px; padding: 1px 1px; ">
+</form> 
+			
+         &nbsp-&nbsp {{ row_index[4] }}</td>
+          {% if ('.png' in  row_index[0]) or ('.bmp' in  row_index[0]) %}
+          <!--
+           <td style="overflow: hidden;white-space:nowrap;"><a href= "/static/pc3_2016-04-13_11-59-15.bmp"  ><img src='/static/pc3_2016-04-13_11-59-15.bmp' width="200" height="85">  click </a> </td>
+-->
+ <td style="overflow: hidden;white-space:nowrap;padding-left: 200px">
+ 
+
+				
+				<form action="Chart2" method="POST" action="{{ url_for('Chart2') }}  ">
+
+  <button type="submit" name="text3" value="{{ row_index[0] }}"  class="btn btn-lg btn-primary pull-left" style="font-size: 13px; padding: 1px 1px; ">{{ row_index[0] }}</button>
+  
+</form> 
+				
+				
+				
+				
+                </td>
+               
+   {% else %}      
+    <td style="overflow: hidden;white-space:nowrap; padding-left: 200px">{{ row_index[0] }}</td>
+{% endif %}
+        
+			{% if  row_index[5]  ==  None %}
+          <td></td>
+		  <td></td>
+		  <td></td>
+          {% endif %}
+     {% if  row_index[5]  !=  None %}
+         {% set min = row_index[5] %}
+         {% set max = row_index[6] %}
+         {% set val = row_index[0] %}
+         {% set min_to_show = row_index[5] %}
+         {% set max_to_show = row_index[6] %}
+		 
+		 
+		
+		 
+		 
+		 
+		 
+         {% if  max|float  < 100 %}
+             {% set min = ((min|float)*1000) %}
+             {% set max = ((max|float)*1000) %}
+             {% set val = ((val|float)*1000) %}
+         {% endif %}
+         
+		 
+		  {% set  border = "background-color: #E74C3C" %}
+		  
+		 
+		 
+		  
+		 
+		 
+         {% if  ((max|float  >= val|float) and (min|float  <= val|float) ) or ('DIGITAL_IO_DIO_PWR_OK'in row_index[4] ) %}
+          {% set  border = 'background-color: #58D68D' %}
+		  
+          {% endif %}
+		  
+		  {% if    (row_index[6]|string() == row_index[6] )and (row_index[6] !='0') and (row_index[6]|float ==0.0)%}
+				 {% if    (row_index[6] != row_index[0] ) %}
+				{% set  border = 'background-color: #E74C3C' %}
+				{% endif %}
+			
+		   {% endif %}
+		   
+		   
+		  {% if  ('MATCH_BYTE'in row_index[4] ) or  ('CONTAIN'in row_index[5] )%}
+          {% set  border = 'background-color: #58D68D' %}
+          {% endif %}
+		  
+          <td style ="border-spacing: 0px 0px;text-align:right" >{{min_to_show}} </td>
+         <!-- <td style =" border-spacing: 0px 0px; {{border}} "><input  type="range" min="{{min}}" max="{{max}}" value="{{val}}" /> </td> -->
+           <td style ="border-spacing: 0px 0px;text-align:left">{{max_to_show}}</td>
+           {% endif %}
+
+  <!--   
+            <td>{{ row_index[3] }}</td>
+          <td>{{ row_index[1] }}</td>
+          <td>{{ row_index[2] }}</td>
+           -->
+        </tr>
+		
+    {% endfor %}
+	
+	
+	{% if  missing_param[needed_combined_classified_op_id]  !=  [] %}
+	<tr><td><h1>Missing Parameters: </h1></td></tr>
+	
+	{% set x4 = missing_param[needed_combined_classified_op_id] %}
+	
+	  
+         {% for row_index in x4 %}
+	<tr>
+   
+          <td style ="border-spacing: 0px 0px; background-color: #E7E72A "> {{ row_index }}</td>
+	</tr>
+	
+	 {% endfor %}
+	 {% endif %}
+
+	
+	{% if  dict_failed_param[needed_combined_classified_op_id]  !=  [] %}
+	<tr><td><h1>Failed Parameters: </h1></td></tr>
+	
+	{% set x5 = dict_failed_param[needed_combined_classified_op_id] %}
+	
+	  
+         {% for row_index in x5 %}
+	<tr>
+   
+          <td style ="border-spacing: 0px 0px; background-color: #E75D2A "> {{ row_index }}</td>
+	</tr>
+	
+	 {% endfor %}
+	 {% endif %}
+	
+	</table>
+	
+	
+	
+	{% endif %}
+	
+	{% set counter = counter+1 %}
+	
+	
+{% endfor %}
+
+
+
+
+
+
+
+     
+
+
+        </div>
+      </div>
+{% endif %}
+	  <div>
+	  
+	  <script>
+
+
+		$(document).ready(function(){
+			$("#button_all").click(function(){
+				$("#tab_all").toggle();
+				
+			}
+			
+			);
+			
+		});
+	</script>
+	<button  id = "button_all" type="button" class="btn btn-info" >EXPAND ALL- Click to review complete database information for : {{serial_num}}</button> 
+	
+	
+
+
+
+
+	
+	
+	
+	  
+	  <p></p>
+	  <div class="row marketing">
+        <div class="col-lg-6">
+	  <table id = "tab_all"  style="display:none; clear: both; border-collapse: separate;border-spacing: 25px 0px; width: 190%; table-layout: fixed">
+{% set counter = 0 %}
+{% for key, dict_index in x2.iteritems() %}
+{% set individual_sorted_op_id = op_ids[counter] %}
+{% set x3 = x2[individual_sorted_op_id] %}
+
+<tr>
+<td><h4>   </h4></td>
+</tr>
+<tr>
+<td><h3> OPERATION_ID: {{op_ids[counter]}} </h3></td>
+</tr>
+<tr>
+<td><h3> {{opids_names_all[counter]}} </h3></td>
+</tr>
+{% set counter = counter+1 %}
+</tr>
+<tr>
+<td><h4>   </h4></td>
+</tr>
+    {% for row_index in x3 %}
+        <tr>
+   
+          <td>{{ row_index[4] }}</td>
+          {% if ('.png' in  row_index[0]) or ('.bmp' in  row_index[0]) %}
+          <!--
+           <td style="overflow: hidden;white-space:nowrap;"><a href= "/static/pc3_2016-04-13_11-59-15.bmp"  ><img src='/static/pc3_2016-04-13_11-59-15.bmp' width="200" height="85">  click </a> </td>
+-->
+   <td style="overflow: hidden;white-space:nowrap;padding-left: 200px">
+ 
+
+				
+				<form action="Chart2" method="POST" action="{{ url_for('Chart2') }}  ">
+
+  <button type="submit" name="text3" value="{{ row_index[0] }}"  class="btn btn-lg btn-primary pull-left" style="font-size: 13px; padding: 1px 1px; ">{{ row_index[0] }}</button>
+  
+</form> 
+				
+			
+                </td>
+               
+   {% else %}      
+    <td style="overflow: hidden;white-space:nowrap;">{{ row_index[0] }}</td>
+{% endif %}
+          
+          
+          
+     {% if  row_index[5]  !=  None and model_to_print != 'NOT_FOUND' %}
+         {% set min = row_index[5] %}
+         {% set max = row_index[6] %}
+         {% set val = row_index[0] %}
+         {% set min_to_show = row_index[5] %}
+         {% set max_to_show = row_index[6] %}
+         {% if  max|float  < 100 %}
+             {% set min = ((min|float)*1000) %}
+             {% set max = ((max|float)*1000) %}
+             {% set val = ((val|float)*1000) %}
+         {% endif %}
+         {% set  border = "background-color: #E74C3C" %}
+         {% if  ((max|float  >= val|float) and (min|float  <= val|float)) or  ( "MATCH" in row_index[4])  %}
+          {% set  border = 'background-color: #58D68D' %}
+          {% endif %}
+          <td style ="border-spacing: 0px 0px;text-align:center">{{min_to_show}} </td>
+         <!-- <td style ="border-spacing: 0px 0px; {{border}} "><input  type="range" min="{{min}}" max="{{max}}" value="{{val}}" /> </td> -->
+           <td style ="border-spacing: 0px 0px;text-align:center">{{max_to_show}}</td>
+           {% endif %}
+
+  <!--   
+            <td>{{ row_index[3] }}</td>
+          <td>{{ row_index[1] }}</td>
+          <td>{{ row_index[2] }}</td>
+           -->
+        </tr>
+    {% endfor %}
+{% endfor %}
+
+
+
+</table>
+</div>	  
+	  </div>
+      </div>
+	  
+	  
+      <footer class="footer">
+        <p>&copy; Lumentum</p>
+      </footer>
+
+    </div>
+  </body>
+</html>
+

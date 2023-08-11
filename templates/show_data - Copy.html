@@ -1,0 +1,115 @@
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title> Inspect - KW Fiber Laser Data</title>
+	<meta http-equiv="X-UA-Compatible" content="IE=11" />
+   <!--
+    <link href="http://getbootstrap.com/dist/css/bootstrap.min.css" rel="stylesheet">
+
+    <link href="http://getbootstrap.com/examples/jumbotron-narrow/jumbotron-narrow.css" rel="stylesheet">
+        <link href="http://getbootstrap.com/examples/jumbotron-narrow/jumbotron-narrow.css" rel="stylesheet">
+
+-->
+
+<script src="{{ url_for('static', filename='jquery-3.5.1.js') }}"> </script>
+<script src="{{ url_for('static', filename='jquery.dataTables.min.js') }}"> </script>
+<link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='jquery.dataTables.min.css')}}"/>
+
+
+	{% block head %}
+		<link rel="stylesheet" href="{{ url_for('static', filename='bootstrap-slider.css') }}">
+		<link rel="stylesheet" href="{{ url_for('static', filename='bootstrap.min.css') }}">
+		<link rel="stylesheet" href="{{ url_for('static', filename='jumbotron-narrow.css') }}">
+	
+	{% endblock %}
+
+  </head>
+<div class="container-fluid px-4">
+  <body >
+
+
+    <div >
+      <div class="header">
+        <nav>
+          <ul class="nav nav-pills pull-right">
+            <li role="presentation" class="active"><a href="/">Home</a></li>
+          </ul>
+        </nav>
+        <h3 class="text-muted">Inspect - KW Fiber Laser Data</h3>
+      </div>
+	 </div>
+
+      <div class="jumbotron">
+		<h2>MantaRay DATA</h2>
+		</div>
+
+
+<table id='myTable' class="display" style="width:100%">
+{% set counter_row = 0 %}
+{% for row_count in data_table %}
+	{%if counter_row == 0%}
+	<thead>
+        <tr>
+			{%for row_index in row_count%}
+				<th>{{ row_index }}</th>
+			{%endfor%}
+		</tr>
+        </thead>
+		<tbody>
+        {%else%}
+			<tr>
+			{%for row_index in row_count%}
+                <td>{{ row_index }}</td>
+			{%endfor%}
+            </tr>
+	{%endif%}
+    {% set counter_row = counter_row+1 %}
+	
+{%endfor%}
+
+	</tbody>
+</table>
+
+
+<!--
+<script>
+$(document).ready(function () {
+    var eventFired = function (type) {
+        var n = $('#demo_info')[0];
+        n.innerHTML += '<div>' + type + ' event - ' + new Date().getTime() + '</div>';
+        n.scrollTop = n.scrollHeight;
+    };
+ 
+    $('#myTable')
+        .on('order.dt', function () {
+            eventFired('Order');
+        })
+        .on('search.dt', function () {
+            eventFired('Search');
+        })
+        .on('page.dt', function () {
+            eventFired('Page');
+        })
+        .DataTable();
+});
+</script>
+-->
+
+
+<script>
+        $(document).ready(function () {
+            $("#myTable").DataTable();
+        });
+</script>
+
+
+<div>
+<footer class="footer">
+        <p>&copy; Lumentum  
+</footer>
+</div>
+</body>
+</div>
+
+</html>

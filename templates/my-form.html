@@ -1,0 +1,88 @@
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>MUIR Inspector</title>
+
+   
+    <link href="http://getbootstrap.com/dist/css/bootstrap.min.css" rel="stylesheet">
+
+    <link href="http://getbootstrap.com/examples/jumbotron-narrow/jumbotron-narrow.css" rel="stylesheet">
+
+   
+  </head>
+
+  <body>
+
+    <div class="container">
+      <div class="header">
+        <nav>
+          <ul class="nav nav-pills pull-right">
+            <li role="presentation" class="active"><a href="#">Home</a></li>
+            <li role="presentation"><a href="#">Add function</a></li>
+ 	    <li role="presentation"><a href="/showSignUp">Add function</a></li>
+          </ul>
+        </nav>
+        <h3 class="text-muted">MUIR Inspector</h3>
+      </div>
+
+      <div class="jumbotron">
+        <h1>DUT : AT1</h1>
+        <p class="lead"></p>
+<!--
+
+        <p><a class="btn btn-lg btn-success" href="showSignUp" role="button">Check</a></p>
+--> 
+        <h1>Enter DUT S/N</h1>
+    <h2>(it will be converted to uppercase)</h2>
+    <form action="." method="POST">
+        <input type="text" name="text">
+        <input type="submit" name="my-form" value="Send">
+    </form>
+
+      </div>
+
+      <div class="row marketing">
+        <div class="col-lg-6">
+          <h1>PUMP TRAY TEST</h1>
+          <p>DUT S/N : AT1</p>
+
+        <h4>Bank 4</h4>
+     
+
+     <p>{{ table }}</p>
+
+          <h4>Bank 5</h4>
+          <p>{{ table2 }}</p>
+        
+
+        
+          <h4>Bank 6</h4>
+          <p>{{ table3 }}</p>
+
+          <h4>Bank 7</h4>
+          <p> {{ table4}}</p>
+
+          <h4>Bank 8</h4>
+          <p>{{ table5 }}</p>
+
+          <div class="col-lg-6">
+          <h4>Bank 9</h4>
+          <p>{{ table6 }}</p>
+
+          <h4>Bank 10</h4>
+          <p> {{ table7}}</p>
+
+          <h4>Pump Tray Test All Banks</h4>
+          <p>{{ table8 }}</p>
+        </div>
+      </div>
+
+      <footer class="footer">
+        <p>&copy; Lumentum</p>
+      </footer>
+
+    </div>
+  </body>
+</html>
+

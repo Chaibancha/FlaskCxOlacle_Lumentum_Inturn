@@ -1,0 +1,22 @@
+
+	<html>
+  <head>
+    <title>image</title>
+	
+
+  </head>
+  <body>
+    <img src="/static/{{return_it}}" >
+	<script language="javascript"> 
+	window.onload = function() {
+    if(!window.location.hash) {
+        window.location = window.location + '#loaded';
+        window.location.reload();
+    }
+}
+	</script>
+
+	
+  </body>
+</html>
+

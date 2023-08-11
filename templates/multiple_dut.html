@@ -1,0 +1,174 @@
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title> Inspect - KW Fiber Laser Data</title>
+<meta http-equiv="X-UA-Compatible" content="IE=11" />
+   <!--
+    <link href="http://getbootstrap.com/dist/css/bootstrap.min.css" rel="stylesheet">
+
+    <link href="http://getbootstrap.com/examples/jumbotron-narrow/jumbotron-narrow.css" rel="stylesheet">
+        <link href="http://getbootstrap.com/examples/jumbotron-narrow/jumbotron-narrow.css" rel="stylesheet">
+
+-->
+
+
+
+{% block head %}
+        <link rel="stylesheet" href="{{ url_for('static', filename='bootstrap-slider.css') }}">
+		  <link rel="stylesheet" href="{{ url_for('static', filename='bootstrap.min.css') }}">
+		    <link rel="stylesheet" href="{{ url_for('static', filename='jumbotron-narrow.css') }}">
+      {% endblock %}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+   
+  </head>
+
+  <body >
+
+
+
+
+
+
+
+<!--
+
+<div class="well">
+        <input id="ex1" data-slider-id='ex1Slider' type="text"
+            data-slider-min="-5" data-slider-max="20"
+            data-slider-step="1" data-slider-value="14" />
+    </div>
+=-->
+
+
+
+
+
+
+
+
+
+
+
+
+
+    <div >
+      <div class="header">
+        <nav>
+          <ul class="nav nav-pills pull-right">
+            <li role="presentation" class="active"><a href="/">Home</a></li>
+  <!--          
+            <li role="presentation"><a href="#">Add function</a></li>
+ 	    <li role="presentation"><a href="/showSignUp">Add function</a></li>
+ -->	    
+          </ul>
+        </nav>
+        <h3 class="text-muted">Inspect - KW Fiber Laser Data</h3>
+      </div>
+
+      <div class="jumbotron">
+      
+        <h3>DUT LIST FOUND:</h3> <h9>{{sn_to_process}}</h9>
+        <p class="lead"></p>
+      <!--  <h3>DUT THAT WERE NOT FOUND ON SERVER:</h3> <h9>{{list_of_sn_that_were_not_found}}</h9>  --> 
+        <p class="lead"></p>
+<!--
+
+class="container" margin-left: 15px;
+
+        <p><a class="btn btn-lg btn-success" href="showSignUp" role="button">Check</a></p>
+
+        <h3>Enter
+        S/N</h3>
+    <h2>(it will be converted to uppercase)</h2>
+   --> 
+
+      </div>
+
+      <div class="row marketing">
+        <div class="col-lg-6">
+          <h1>MULTIPLE DUT REPORT</h1>
+          
+       <ul class="nav nav-pills pull-left">   
+       <li role="presentation" class="active"><a href="/getPlotCSV_all_units">Click to save .CSV file</a></li>
+     </ul>
+
+
+
+<table style="clear: both; border-collapse: separate;border-spacing: 25px 0px; width: 100%;">
+{% set counter = 0 %}
+{% set counter_row = 0 %}
+{% for row_count in list_of_lists_to_print %}
+
+<tr>
+    {% for row_index in row_count %}
+        
+        {% if counter ==  0 or counter_row == 0%}
+          <td><b>{{ row_index }}</b></td>
+          {% else %}
+    <td>{{ row_index }}</td>
+  {% endif %}
+          
+          
+        {% set counter = counter+1 %}
+    {% endfor %}
+    {% set counter_row = counter_row+1 %}
+    </tr>
+{% endfor %}
+
+
+
+{% set counter_row = 0 %}
+
+    <tr>
+    {% for row_index in list_of_lists_to_print[0] %}
+        <td>
+
+
+              
+                {% if control_chart_row_list[counter_row] == 'True'  %}
+                <form action="." method="POST" href="{{ url_for('spc') }} class="form-signin" >
+                <button class="btn  role="button" type="submit" name="text3" value="{{counter_row}}" >Control chart for {{list_of_lists_to_print[0][counter_row]}}  </button>
+                </form>
+                {% endif %}
+                
+        
+    </td>
+    {% set counter_row = counter_row+1 %}
+    {% endfor %}
+    
+    </tr>
+
+
+</table>
+ 
+
+
+        </div>
+      </div>
+
+      <footer class="footer">
+        <p>&copy; Lumentum</p>
+      </footer>
+
+    </div>
+  </body>
+</html>
+

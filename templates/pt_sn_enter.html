@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title> Inspect - KW Fiber Laser Data</title>
+    <meta http-equiv="X-UA-Compatible" content="IE=11" />
+   <!--
+    <link href="http://getbootstrap.com/dist/css/bootstrap.min.css" rel="stylesheet">
+
+    <link href="http://getbootstrap.com/examples/jumbotron-narrow/jumbotron-narrow.css" rel="stylesheet">
+        <link href="http://getbootstrap.com/examples/jumbotron-narrow/jumbotron-narrow.css" rel="stylesheet">
+-->
+        {% block head %}
+        <link rel="stylesheet" href="{{ url_for('static', filename='bootstrap-slider.css') }}">
+        <link rel="stylesheet" href="{{ url_for('static', filename='bootstrap.min.css') }}">
+        <link rel="stylesheet" href="{{ url_for('static', filename='jumbotron-narrow.css') }}">
+        {% endblock %}
+
+  </head>
+
+  <body >
+<!--
+<div class="well">
+        <input id="ex1" data-slider-id='ex1Slider' type="text"
+            data-slider-min="-5" data-slider-max="20"
+            data-slider-step="1" data-slider-value="14" />
+    </div>
+=-->
+    <div >
+      <div class="header">
+        <nav>
+          <ul class="nav nav-pills pull-right">
+            <li role="presentation" class="active"><a href="/">Home</a></li>
+  <!--          
+            <li role="presentation"><a href="#">Add function</a></li>
+ 	    <li role="presentation"><a href="/showSignUp">Add function</a></li>
+ -->	    
+          </ul>
+        </nav>
+        <h3 class="text-muted">Inspect - KW Fiber Laser Data</h3>
+      </div>
+      <div class="jumbotron">
+      
+        <h3>ENTER PUMP TRAY S/N TO MATCH MOPA</h3>
+        <p class="lead"></p>
+      </div>
+
+      <div class="row marketing">
+        <div class="col-lg-8">
+            <div  >
+  
+<form action="find_match_pt_mp" method="POST" href="{{ url_for('find_match_pt_mp') }} class="form-signin" >
+  <div class="form-group">
+    <label >Pump Tray S/N</label>  <br>
+      <input type="text" name="pt_sn" value=""><br>
+      <small id="emailHelp" class="form-text text-muted">  Enter PT 30ER Serial Number (N3PA*)</small><br><br>
+	<div>
+	  <input type="checkbox" id="engine" name="engine" value="12kW">
+	<label for="engine"> Calculation for 12kW</label><br>
+	</div>
+  <br><br><br>
+  </div>
+  <div >
+  <input type="submit" class="btn btn-primary" value="Match" >
+  </div>
+</form>
+
+                <br><br>
+<div>
+    <p1>Any issues please contact <a href="mailto:aphiwat.wanta@lumentum.com?Subject=Howdy" target="_top">aphiwat.wanta@lumentum.com</a></p1>
+    </div>
+<br>
+
+     <footer class="footer">
+        <p>&copy; Lumentum</p>
+      </footer>
+
+    </div>
+  </body>
+</html>
+

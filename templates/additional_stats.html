@@ -1,0 +1,976 @@
+
+<!DOCTYPE html>
+
+<html lang="en"  >
+  <head>
+    <title>Inspect - KW Fiber Laser Data</title>
+<meta http-equiv="X-UA-Compatible" content="IE=11, IE=edge,chrome=1" />
+   <!--
+    <link href="http://getbootstrap.com/dist/css/bootstrap.min.css" rel="stylesheet">
+
+    <link href="http://getbootstrap.com/examples/jumbotron-narrow/jumbotron-narrow.css" rel="stylesheet">
+    <link href="../static/css/signup.css" rel="stylesheet">
+    <script src="../static/js/jquery-1.11.2.js"></script>
+    <script src="../static/js/signUp.js"></script>
+	
+	<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.8.2/jquery.min.js"></script>
+	-->
+	
+   {% block head %}
+        <link rel="stylesheet" href="{{ url_for('static', filename='bootstrap-slider.css') }}">
+		  <link rel="stylesheet" href="{{ url_for('static', filename='bootstrap.min.css') }}">
+		    <link rel="stylesheet" href="{{ url_for('static', filename='jumbotron-narrow.css') }}">
+			
+			<script src="{{url_for('static', filename='highcharts.js')}}?ver<%=DateTime.Now.Ticks.ToString()%>"></script>
+			<script src="{{url_for('static', filename='highcharts-3d.js')}}?ver<%=DateTime.Now.Ticks.ToString()%>"></script>
+			<script src="{{url_for('static', filename='offline-exporting.js')}}"></script>
+			<script src="{{url_for('static', filename='exporting.js')}}"></script>
+			<script src="{{url_for('static', filename='export-csv.js')}}"></script>
+			 <!--
+			
+			<script src="{{url_for('static', filename='offline-exporting.min.js')}}"></script>
+		-->
+			 <!--<script src="{{url_for('static', filename='jquery.min.js')}}"></script>-->
+			 <script src="{{url_for('static', filename='jquery-3.1.1.min.js')}}?ver<%=DateTime.Now.Ticks.ToString()%>"></script>
+			
+      {% endblock %}
+	   
+	  
+	  <style type="text/css">
+${demo.css}
+		</style>
+		
+		<script type="text/javascript">
+		var dates = [];
+		var executions = [];
+		
+		{% for date in list_of_last_week_dates_90_days %}
+				
+						dates.push("{{date}}");
+						executions.push(Number("{{dates_execution_dict[date]}}"));
+						{% endfor %}
+$(function () {
+    Highcharts.chart('container', {
+        chart: {
+           //type: 'bar'
+			type: 'column',
+    inverted: false, // default
+	options3d: {
+            enabled: false,
+            alpha: 5,
+            beta: 0,
+            depth: 50,
+            viewDistance: 25
+        }
+        },
+        title: {
+            text: 'Test executions last 90 days'
+        },
+        subtitle: {
+            text: ''
+        },
+        xAxis: {
+            categories: dates,
+            title: {
+                text: null
+            }
+        },
+        yAxis: {
+            min: 0,
+            title: {
+                text: 'Executions (Attempts)',
+                align: 'high'
+            },
+            labels: {
+                overflow: 'justify'
+            }
+        },
+        tooltip: {
+            valueSuffix: ' times'
+        },
+        plotOptions: {
+            bar: {
+                dataLabels: {
+                    enabled: true
+                }
+            }
+        },
+        legend: {
+            layout: 'vertical',
+            align: 'right',
+            verticalAlign: 'top',
+            x: -40,
+            y: 80,
+            floating: true,
+            borderWidth: 1,
+            backgroundColor: ((Highcharts.theme && Highcharts.theme.legendBackgroundColor) || '#FFFFFF'),
+            shadow: true
+        },
+        credits: {
+            enabled: false
+        },
+        series: [{
+            name: 'Executions',
+            data: executions
+        }]
+    });
+});
+
+
+		</script>
+		
+		
+	
+	<script type="text/javascript">
+		var benches = [];
+		var executions_for_bench = [];
+		{% set counter = 0 %}
+		{% for bench in list_of_sorted_bench_executions %}
+				{% if  counter < 25 %}
+						benches.push("{{bench}}");
+						executions_for_bench.push(Number("{{bench_execution_dict[bench]}}"));
+				{% endif %}		
+						{% set counter = counter +1 %}
+						{% endfor %}
+$(function () {
+
+Highcharts.setOptions({
+    colors: [  '#FF9655', '#FFF263', '#6AF9C4']
+});
+    Highcharts.chart('container4', {
+        chart: {
+            //type: 'bar'
+			type: 'column',
+    inverted: false, // default
+	
+	options3d: {
+            enabled: true,
+            alpha: 5,
+            beta: 1,
+            depth: 50,
+            viewDistance: 25
+        }
+        },
+        title: {
+            text: 'Executions per test bench'
+        },
+        subtitle: {
+            text: ''
+        },
+        xAxis: {
+            categories: benches,
+            title: {
+                text: null
+            }
+        },
+        yAxis: {
+            min: 0,
+            title: {
+                text: 'Executions (Attempts)',
+                align: 'high'
+            },
+            labels: {
+                overflow: 'justify'
+            }
+        },
+        tooltip: {
+            valueSuffix: ' Executions (Attempts)'
+        },
+        plotOptions: {
+            bar: {
+                dataLabels: {
+                    enabled: true
+                }
+            }
+        },
+        legend: {
+            layout: 'vertical',
+            align: 'right',
+            verticalAlign: 'top',
+            x: -40,
+            y: 80,
+            floating: true,
+            borderWidth: 1,
+            backgroundColor: ((Highcharts.theme && Highcharts.theme.legendBackgroundColor) || '#FFFFFF'),
+            shadow: true
+        },
+        credits: {
+            enabled: false
+        },
+        series: [{
+            name: 'Executions (Attempts)',
+            data: executions_for_bench
+        }]
+    });
+});
+		</script>
+		
+		
+		
+		<script type="text/javascript">
+		var sns_sf = [];
+		var start_finish_data = [];
+		{% set counter = 0 %}
+		{% for sn_sf in list_of_sorted_start_finish %}
+				{% if  counter < 55 %}
+						sns_sf.push("{{sn_sf}}");
+						start_finish_data.push(Number("{{sn_start_to_finish_dict[sn_sf]}}"));
+				{% endif %}		
+						{% set counter = counter +1 %}
+						{% endfor %}
+$(function () {
+
+Highcharts.setOptions({
+    colors: [  '#FF9655', '#FFF263', '#6AF9C4']
+});
+    Highcharts.chart('container6', {
+        chart: {
+            //type: 'bar'
+			type: 'column',
+    inverted: false, // default
+	options3d: {
+            enabled: true,
+            alpha: 0,
+            beta: 0,
+            depth: 50,
+            viewDistance: 99
+        }
+        },
+        title: {
+            text: 'Days to complete finished goods'
+        },
+        subtitle: {
+            text: '(units that were completed in the last 21 days)'
+        },
+        xAxis: {
+            categories: sns_sf,
+            title: {
+                text: null
+            }
+        },
+        yAxis: {
+            min: 0,
+            title: {
+                text: 'Days',
+                align: 'high'
+            },
+            labels: {
+                overflow: 'justify'
+            }
+        },
+        tooltip: {
+            valueSuffix: ' (Days)'
+        },
+        plotOptions: {
+            bar: {
+                dataLabels: {
+                    enabled: true
+                }
+            }
+        },
+        legend: {
+            layout: 'vertical',
+            align: 'right',
+            verticalAlign: 'top',
+            x: -40,
+            y: 80,
+            floating: true,
+            borderWidth: 1,
+            backgroundColor: ((Highcharts.theme && Highcharts.theme.legendBackgroundColor) || '#FFFFFF'),
+            shadow: true
+        },
+        credits: {
+            enabled: false
+        },
+        series: [{
+            name: 'Completed in (Days)',
+            data: start_finish_data
+        }]
+    });
+});
+		</script>
+		
+		
+		
+		
+	<script type="text/javascript">
+		var sn_sf_avg = [];
+		var start_finish_data_avg = [];
+		{% set counter = 0 %}
+		{% for sns_sf_avg in sorted_list_models_start_finish_avg %}
+				{% if  counter < 55 %}
+						sn_sf_avg.push("{{sns_sf_avg}}");
+						start_finish_data_avg.push(Number("{{start_to_finish_model_avg_dict[sns_sf_avg]}}"));
+				{% endif %}		
+						{% set counter = counter +1 %}
+						{% endfor %}
+$(function () {
+
+Highcharts.setOptions({
+    colors: [   '#FFF263', '#6AF9C4']
+});
+    Highcharts.chart('container5', {
+        chart: {
+            type: 'bar',
+			options3d: {
+            enabled: true,
+            alpha: 0,
+            beta: 0,
+            depth: 50,
+            viewDistance: 25
+        }
+			
+        },
+        title: {
+            text: 'Average Days to complete finished goods '
+        },
+        subtitle: {
+            text: '(per model)'
+        },
+        xAxis: {
+            categories: sn_sf_avg,
+            title: {
+                text: null
+				
+            }
+        },
+        yAxis: {
+            min: 0,
+            title: {
+                text: 'Days ',
+                align: 'high'
+            },
+            labels: {
+                overflow: 'justify'
+            }
+        },
+        tooltip: {
+            valueSuffix: ' (Days)'
+        },
+        plotOptions: {
+            bar: {
+                dataLabels: {
+                    enabled: true
+                }
+            }
+        },
+        legend: {
+            layout: 'vertical',
+            align: 'right',
+            verticalAlign: 'top',
+            x: -40,
+            y: 80,
+            floating: true,
+            borderWidth: 1,
+            backgroundColor: ((Highcharts.theme && Highcharts.theme.legendBackgroundColor) || '#FFFFFF'),
+            shadow: true
+        },
+        credits: {
+            enabled: false
+        },
+        series: [{
+            name: 'Completed in (Days)',
+            data: start_finish_data_avg
+        }]
+    });
+});
+		</script>	
+		
+		
+		
+		
+		<script type="text/javascript">
+		var operations = [];
+		var cycles = [];
+		{% set counter = 0 %}
+		{% for operation in list_of_sorted_top_cycle_ops %}
+				{% if  counter < 25 %}
+						operations.push("{{operation}}");
+						cycles.push(Number("{{op_vs_cycle_max_dict[operation]}}"));
+				{% endif %}		
+						{% set counter = counter +1 %}
+						{% endfor %}
+$(function () {
+
+Highcharts.setOptions({
+    colors: ['#50B432', '#ED561B', '#DDDF00', '#24CBE5', '#64E572', '#FF9655', '#FFF263', '#6AF9C4']
+});
+    Highcharts.chart('container3', {
+        chart: {
+           type: 'bar',
+		   options3d: {
+            enabled: true,
+            alpha: 2,
+            beta: 2,
+            depth: 50,
+            viewDistance: 0
+        }
+			
+        },
+        title: {
+            text: 'Cycle time per operation'
+        },
+        subtitle: {
+            text: '(Average cycle time)'
+        },
+        xAxis: {
+            categories: operations,
+            title: {
+                text: null
+            }
+        },
+        yAxis: {
+            min: 0,
+            title: {
+                text: 'Cycle Time (Minutes)',
+                align: 'high'
+            },
+            labels: {
+                overflow: 'justify'
+            }
+        },
+        tooltip: {
+            valueSuffix: ' Cycle Time (Minutes)'
+        },
+        plotOptions: {
+            bar: {
+                dataLabels: {
+                    enabled: true
+                }
+            }
+        },
+        legend: {
+            layout: 'vertical',
+            align: 'right',
+            verticalAlign: 'top',
+            x: -40,
+            y: 220,
+            floating: true,
+            borderWidth: 1,
+            backgroundColor: ((Highcharts.theme && Highcharts.theme.legendBackgroundColor) || '#FFFFFF'),
+            shadow: true
+        },
+        credits: {
+            enabled: false
+        },
+        series: [{
+            name: 'Cycle Time (Minutes)',
+            data: cycles
+        }]
+    });
+});
+		</script>
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		<script type="text/javascript">
+		
+		var dates2 = [];
+		
+		
+		var dict = [];
+		var newarr = [];
+		var arrayOfNumbers = [];
+		var temp_string;
+		var res;
+		{% set count = 0 %}
+		
+		{% for date in list_of_last_week_dates %}
+						dates2.push("{{date}}");
+						
+						
+						
+						{% endfor %}
+		
+{% for key, dict_index3 in dict_of_lists_of_model_data.iteritems() %}
+
+   
+
+		temp_string = "{{dict_index3}}";
+		
+		temp_string = temp_string.replace('[','');
+		temp_string = temp_string.replace(']','');
+		res = temp_string.split(",");
+			
+			dict.push({
+				name:   "{{key}}",
+				data: res.map(Number)
+				});
+				
+				
+	{% endfor %}		
+		
+		
+$(function () {
+    Highcharts.chart('container2', {
+        chart: {
+            //type: 'bar'
+			type: 'column',
+    inverted: false, // default
+	options3d: {
+            enabled: true,
+            alpha: 2,
+            beta: 1,
+            depth: 50,
+            viewDistance: 25
+        }
+        },
+        title: {
+            text: 'Test executions per model, last 21 days'
+        },
+        subtitle: {
+            text: 'Click on the model list to the right, to hide models on the chart'
+        },
+        xAxis: {
+            categories: dates2,
+            title: {
+                text: null
+            }
+        },
+        yAxis: {
+            min: 0,
+            title: {
+                text: 'Executions (Attempts)',
+                align: 'high'
+            },
+            labels: {
+                overflow: 'justify'
+            }
+        },
+        tooltip: {
+            valueSuffix: ' times'
+        },
+        plotOptions: {
+            bar: {
+                dataLabels: {
+                    enabled: true
+                }
+            }
+        },
+        legend: {
+            layout: 'vertical',
+            align: 'right',
+            verticalAlign: 'top',
+            x: -40,
+            y: 80,
+            floating: true,
+            borderWidth: 1,
+            backgroundColor: ((Highcharts.theme && Highcharts.theme.legendBackgroundColor) || '#FFFFFF'),
+            shadow: true,
+			maxHeight:100
+        },
+        credits: {
+            enabled: false
+        },
+        series: dict
+    });
+});
+		</script>
+		
+		
+<script type="text/javascript">
+		
+		var dates2_x = [];
+		
+		
+		var dict_x = [];
+		var newarr_x = [];
+		var arrayOfNumbers_x = [];
+		var temp_string_x;
+		var res_x;
+		{% set count = 0 %}
+		
+		{% for date in list_of_last_week_dates %}
+						dates2_x.push("{{date}}");
+						
+						
+				{% endfor %}		
+						
+		
+{% for key_x, dict_index3_x in dict_of_lists_mdel_vs_completion_for_date.iteritems() %}
+
+   
+
+		temp_string_x = "{{dict_index3_x}}";
+		
+		temp_string_x = temp_string_x.replace('[','');
+		temp_string_x = temp_string_x.replace(']','');
+		res_x = temp_string_x.split(",");
+			
+			dict_x.push({
+				name:   "{{key_x}}",
+				data: res_x.map(Number)
+				});
+				
+				
+	{% endfor %}		
+		
+		
+$(function () {
+    Highcharts.chart('container10', {
+        chart: {
+            //type: 'bar'
+			type: 'column',
+    inverted: false, // default
+	options3d: {
+            enabled: true,
+            alpha: 2,
+            beta: 1,
+            depth: 50,
+            viewDistance: 35
+        }
+        },
+        title: {
+            text: 'Completed units per date (Engines and sub-assemblies)'
+        },
+        subtitle: {
+            text: 'Click on the model list to the right, to hide models on the chart'
+        },
+        xAxis: {
+            categories: dates2_x,
+            title: {
+                text: null
+            }
+        },
+        yAxis: {
+            min: 0,
+            title: {
+                text: 'Completions (Units)',
+                align: 'high'
+            },
+            labels: {
+                overflow: 'justify'
+            }
+        },
+        tooltip: {
+            valueSuffix: ' completed'
+        },
+        plotOptions: {
+            bar: {
+                dataLabels: {
+                    enabled: true
+                }
+            }
+        },
+        legend: {
+            layout: 'vertical',
+            align: 'right',
+            verticalAlign: 'top',
+            x: -40,
+            y: 80,
+            floating: true,
+            borderWidth: 1,
+            backgroundColor: ((Highcharts.theme && Highcharts.theme.legendBackgroundColor) || '#FFFFFF'),
+            shadow: true,
+			maxHeight:100
+        },
+        credits: {
+            enabled: false
+        },
+        series: dict_x
+    });
+});
+		</script>		
+		
+	
+
+
+
+<script type="text/javascript">
+		
+		var dates2_x2 = [];
+		
+		
+		var dict_x2 = [];
+		var newarr_x2 = [];
+		var arrayOfNumbers_x2 = [];
+		var temp_string_x2;
+		var res_x2;
+		{% set count = 0 %}
+		
+		{% for date in list_of_last_week_dates %}
+						dates2_x2.push("{{date}}");
+						
+						
+				{% endfor %}		
+						
+		
+{% for key_x2, dict_index3_x2 in dict_of_engines_completion_for_date.iteritems() %}
+
+   
+
+		temp_string_x2 = "{{dict_index3_x2}}";
+		
+		temp_string_x2 = temp_string_x2.replace('[','');
+		temp_string_x2 = temp_string_x2.replace(']','');
+		res_x2 = temp_string_x2.split(",");
+			
+			dict_x2.push({
+				name:   "{{key_x2}}".replace('MODULE','ENGINE'),
+				data: res_x2.map(Number)
+				});
+				
+				
+	{% endfor %}		
+		
+		
+$(function () {
+    Highcharts.chart('container11', {
+        chart: {
+            //type: 'bar'
+			type: 'column',
+    inverted: false, // default
+	options3d: {
+            enabled: true,
+            alpha: 2,
+            beta: 2,
+            depth: 50,
+            viewDistance: 25
+        }
+        },
+        title: {
+            text: 'Completed Engines per model'
+        },
+        subtitle: {
+            text: 'Click on the model list to the right, to hide models on the chart'
+        },
+        xAxis: {
+            categories: dates2_x2,
+            title: {
+                text: null
+            }
+        },
+        yAxis: {
+            min: 0,
+            title: {
+                text: 'Completions (Engines)',
+                align: 'high'
+            },
+            labels: {
+                overflow: 'justify'
+            }
+        },
+        tooltip: {
+            valueSuffix: ' completed'
+        },
+        plotOptions: {
+            bar: {
+                dataLabels: {
+                    enabled: true
+                }
+            }
+        },
+        legend: {
+            layout: 'vertical',
+            align: 'right',
+            verticalAlign: 'top',
+            x: -40,
+            y: 80,
+            floating: true,
+            borderWidth: 1,
+            backgroundColor: ((Highcharts.theme && Highcharts.theme.legendBackgroundColor) || '#FFFFFF'),
+            shadow: true,
+			maxHeight:100
+        },
+        credits: {
+            enabled: false
+        },
+        series: dict_x2
+    });
+});
+		</script>		
+
+	
+	
+	
+	<script type="text/javascript">
+		var dates_x3 = [];
+		var executions_x3 = [];
+		
+		{% for date_x3 in list_of_last_week_dates %}
+				
+						dates_x3.push("{{date_x3}}");
+						executions_x3.push(Number("{{dict_of_total_completed_engines_per_date[date_x3]}}"));
+						{% endfor %}
+$(function () {
+    Highcharts.chart('container12', {
+        chart: {
+           //type: 'bar'
+			type: 'column',
+    inverted: false, // default
+	options3d: {
+            enabled: true,
+            alpha: 5,
+            beta: 0,
+            depth: 50,
+            viewDistance: 25
+        }
+        },
+        title: {
+            text: 'Total Engines completions'
+        },
+        subtitle: {
+            text: ''
+        },
+        xAxis: {
+            categories: dates_x3,
+            title: {
+                text: null
+            }
+        },
+        yAxis: {
+            min: 0,
+            title: {
+                text: 'Completions (Engines)',
+                align: 'high'
+            },
+            labels: {
+                overflow: 'justify'
+            }
+        },
+        tooltip: {
+            valueSuffix: ' Engines'
+        },
+        plotOptions: {
+            bar: {
+                dataLabels: {
+                    enabled: true
+                }
+            }
+        },
+        legend: {
+            layout: 'vertical',
+            align: 'right',
+            verticalAlign: 'top',
+            x: -40,
+            y: 80,
+            floating: true,
+            borderWidth: 1,
+            backgroundColor: ((Highcharts.theme && Highcharts.theme.legendBackgroundColor) || '#FFFFFF'),
+            shadow: true
+        },
+        credits: {
+            enabled: false
+        },
+        series: [{
+            name: 'Completed engines',
+            data: executions_x3
+        }]
+    });
+});
+
+
+		</script>
+	
+	
+	</head>
+	<body style=" zoom :80%" >
+
+
+
+	
+ 
+	  
+	  
+	  
+ 
+ 
+
+    <div class="container-fluid">
+      <div class="header">
+        <nav>
+		
+				
+		
+          <ul class="nav nav-pills pull-right">
+          
+              <li role="presentation" class="active"><a href="http://192.168.31.181:5002/">Shipping Reports</a></li>
+			 <li role="presentation" class="active"><a href="http://192.168.31.181:5003/">Burn-In Monitor</a></li>
+             
+    <!--
+            <li role="presentation"><a href="#">Add inspection</a></li>
+            <li role="presentation" class="active"><a href="#">Add inspection 2</a></li>
+    -->
+          </ul>
+        </nav>
+        <h3 class="text-muted">Inspect - KW Fiber Laser Data </h3>
+		<div>
+		<form action="showSignUp" method="POST" action="{{ url_for('showSignUp') }} class="form-signin" >
+      
+					<input type="text" name="text">
+					<input class="btn btn-lg btn-success" role="button" type="submit" >
+				</form>
+				</div>
+      </div>
+	   </div>
+
+	   
+	   
+	   
+	   
+	  <script type="text/javascript"> $(document).ready(function() {
+    $('#example').DataTable();
+} );
+</script>
+
+
+
+	 <div    style="overflow: hidden "  > 	 
+	 <div id="container" style="min-width: 1400px; max-width: 550px; height: 400px; margin: 0 auto;float:left "></div>
+	 <div id="container12" style="min-width: 1450px; max-width: 550px; height: 400px; margin: 0 auto;float:left "></div>
+	 <div id="container11" style="min-width: 1450px; max-width: 550px; height: 400px; margin: 0 auto;float:left "></div>
+	 <div id="container10" style="min-width: 1450px; max-width: 550px; height: 400px; margin: 0 auto;float:left "></div>	
+	 <div id="container6" style="min-width: 1450px; max-width: 950px; height: 600px; margin: 0 auto;float:left "></div>	
+	 <div id="container5" style="min-width: 1450px; max-width: 550px; height: 400px; margin: 0 auto;float:left "></div>	
+
+	   
+	   <div id="container4" style="min-width: 1450px; max-width: 950px; height: 600px; margin: 0 auto;float:left "></div>	
+	  <!-- 2nd plot -->
+	 
+	 
+			<div id="container2" style="min-width: 1450px; max-width: 550px; height: 400px; margin: 0 auto;float:left "></div>	
+			
+			 <!-- 3rd plot -->
+			
+			<div id="container3" style="min-width: 1450px; max-width: 550px; height: 600px; margin: 0 auto;float:left "></div>
+ <!-- 4th plot -->
+			
+					
+	 
+	 </div>
+ </div>
+
+
+	  
+
+	
+
+               
+
+        <footer class="footer">
+        <p>&copy; Lumentum</p>
+      </footer>
+
+
+
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+
+    
+  </body>
+</html>
+

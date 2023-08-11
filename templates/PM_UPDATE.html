@@ -1,0 +1,183 @@
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title> Inspect - KW Fiber Laser Data</title>
+<meta http-equiv="X-UA-Compatible" content="IE=11" />
+   <!--
+    <link href="http://getbootstrap.com/dist/css/bootstrap.min.css" rel="stylesheet">
+
+    <link href="http://getbootstrap.com/examples/jumbotron-narrow/jumbotron-narrow.css" rel="stylesheet">
+        <link href="http://getbootstrap.com/examples/jumbotron-narrow/jumbotron-narrow.css" rel="stylesheet">
+
+-->
+
+
+
+{% block head %}
+        <link rel="stylesheet" href="{{ url_for('static', filename='bootstrap-slider.css') }}">
+		  <link rel="stylesheet" href="{{ url_for('static', filename='bootstrap.min.css') }}">
+		    <link rel="stylesheet" href="{{ url_for('static', filename='jumbotron-narrow.css') }}">
+      {% endblock %}
+
+
+
+
+
+
+   
+  </head>
+
+  <body >
+
+
+
+
+
+
+
+<!--
+
+<div class="well">
+        <input id="ex1" data-slider-id='ex1Slider' type="text"
+            data-slider-min="-5" data-slider-max="20"
+            data-slider-step="1" data-slider-value="14" />
+    </div>
+=-->
+
+
+
+
+
+
+
+
+
+
+
+
+
+    <div >
+      <div class="header">
+        <nav>
+          <ul class="nav nav-pills pull-right">
+            <li role="presentation" class="active"><a href="/">Home</a></li>
+  <!--          
+            <li role="presentation"><a href="#">Add function</a></li>
+ 	    <li role="presentation"><a href="/showSignUp">Add function</a></li>
+ -->	    
+          </ul>
+        </nav>
+        <h3 class="text-muted">Inspect - KW Fiber Laser Data</h3>
+      </div>
+
+      <div class="jumbotron">
+      
+        <h3>Fill in all the below details to update PM calibration factor on system</h3> 
+        <p class="lead"></p>
+      <!--  <h3>DUT THAT WERE NOT FOUND ON SERVER:</h3> <h9>{{list_of_sn_that_were_not_found}}</h9>  --> 
+        <p class="lead"></p>
+<!--
+
+class="container" margin-left: 15px;
+
+        <p><a class="btn btn-lg btn-success" href="showSignUp" role="button">Check</a></p>
+
+        <h3>Enter
+        S/N</h3>
+    <h2>(it will be converted to uppercase)</h2>
+   --> 
+
+      </div>
+
+      <div class="row marketing">
+        <div class="col-lg-8">
+          
+       
+
+	 
+	 
+	 
+  <div  >
+  
+<form action="Post_PM_UPDATE" method="POST" href="{{ url_for('Post_PM_UPDATE') }} class="form-signin" >
+
+<!--
+  <div class="form-group">
+  
+  <label >User</label>  <br>
+   
+  <input type="text" name="user" value="" placeholder = "Enter user name"><br>
+  
+  <br>
+  
+  
+   <label >Password</label>  <br>         
+  <input type="Password" name="password" value="" placeholder = "Enter your Password"><br>
+  
+  <br>
+  
+  
+  
+  
+  </div>
+ 
+-->
+		
+</div>	
+	
+	<label >PM Serial Number</label>  <br>    
+
+  <input  type="text" name="serial_number" value="" placeholder = "Enter PM Serial Number" required > <br>
+ 
+  <br>
+  
+  <label >PM Calibration Factor</label>  <br>    
+
+  <input  type="text" name="Calfactor" value="" placeholder = "Enter Calibration Factor" required ><br>
+ 
+ 
+  <br>
+  
+
+   <label >Operator name</label>  <br>    
+
+  <input  type="text" name="operator" value="" placeholder = "Update by" required ><br>
+ 
+  
+  <br>
+  
+  <label >Engineer name</label>  <br>    
+
+  <input  type="text" name="engineer" value="" placeholder = "Review by" required ><br>
+ 
+  
+  
+  
+  <br>
+  <br>
+  <div >
+  <!--<input type="hidden" class="btn btn-primary" value={{ocap_id}} name="ocap_id_txt">-->
+  <input type="submit" class="btn btn-primary" value = "UPDATE" >
+  </div>
+</form> 	
+ 
+  
+                
+				
+ 
+
+
+        </div>
+		
+		
+      </div>
+
+      <footer class="footer">
+        <p>&copy; Lumentum</p>
+      </footer>
+
+    </div>
+  </body>
+</html>
+

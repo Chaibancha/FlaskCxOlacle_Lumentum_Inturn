@@ -1,0 +1,74 @@
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>Inspect - Fiber Laser</title>
+<meta http-equiv="X-UA-Compatible" content="IE=11" />
+   <!--
+    <link href="http://getbootstrap.com/dist/css/bootstrap.min.css" rel="stylesheet">
+
+    <link href="http://getbootstrap.com/examples/jumbotron-narrow/jumbotron-narrow.css" rel="stylesheet">
+    <link href="../static/css/signup.css" rel="stylesheet">
+    <script src="../static/js/jquery-1.11.2.js"></script>
+    <script src="../static/js/signUp.js"></script>
+	-->
+	
+   {% block head %}
+        <link rel="stylesheet" href="{{ url_for('static', filename='bootstrap-slider.css') }}">
+		  <link rel="stylesheet" href="{{ url_for('static', filename='bootstrap.min.css') }}">
+		    <link rel="stylesheet" href="{{ url_for('static', filename='jumbotron-narrow.css') }}">
+      {% endblock %}
+  </head>
+
+  <body>
+
+    <div class="container">
+      <div class="header">
+        <nav>
+          <ul class="nav nav-pills pull-right">
+          
+              <li role="presentation" class="active"><a href="http://192.168.31.181:5006/">Home</a></li>
+			  <li role="presentation" class="active"><a href="/manual_print_form">Manual Print</a></li>
+             
+    <!--
+            <li role="presentation"><a href="#">Add inspection</a></li>
+            <li role="presentation" class="active"><a href="#">Add inspection 2</a></li>
+    -->
+          </ul>
+        </nav>
+        <h3 class="text-muted">Inspect - Fiber Laser </h3>
+      </div>
+
+      <div class="jumbotron">
+	  
+	  
+        <h3><b>Enter Serial Number (for auto printing silver label)</b></h3><br>
+
+
+      <form action="Printer_auto" method="POST" href="{{ url_for('Printer_auto') }} class="form-signin" >
+
+
+        <div class="form-group">
+
+        <label >Serial Number </label>  <br>
+			<input type="text" name="text_sn" value=""> <br>
+          <br>
+        <!--<small id="emailHelp" class="form-text text-muted"> Serial Number </small><br>-->
+          <br>
+          <input class="btn btn-lg btn-success" role="button" type="submit" value = "Print">
+      </div>
+        </div>
+    <div>
+      <p>Any issues please contact <a href="mailto:aphiwat.wanta@lumentum.com?Subject=Howdy" target="_top">aphiwat.wanta@lumentum.com</a></p>
+    </div>
+  </body>
+        <footer class="footer">
+        <div>
+          <p1>&copy; Lumentum</p1>
+          <!-- Content -->
+
+        </div>
+      </footer>
+
+</html>
+

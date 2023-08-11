@@ -1,0 +1,402 @@
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title> Inspect - KW Fiber Laser Data</title>
+	
+	
+<meta http-equiv="X-UA-Compatible" content="IE=11" />
+   <!--
+    <link href="http://getbootstrap.com/dist/css/bootstrap.min.css" rel="stylesheet">
+
+    <link href="http://getbootstrap.com/examples/jumbotron-narrow/jumbotron-narrow.css" rel="stylesheet">
+        <link href="http://getbootstrap.com/examples/jumbotron-narrow/jumbotron-narrow.css" rel="stylesheet">
+
+-->
+
+<script src="{{ url_for('static', filename='jquery-3.5.1.js') }}"> </script>
+<script src="{{ url_for('static', filename='jquery.dataTables.min.js') }}"> </script>
+<link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='jquery.dataTables.min.css')}}"/>
+
+{% block head %}
+        <link rel="stylesheet" href="{{ url_for('static', filename='bootstrap-slider.css') }}">
+		  <link rel="stylesheet" href="{{ url_for('static', filename='bootstrap.min.css') }}">
+		    <link rel="stylesheet" href="{{ url_for('static', filename='jumbotron-narrow.css') }}">
+			
+			<script src="{{url_for('static', filename='highstock.js')}}"></script>
+			<script src="{{url_for('static', filename='highcharts.js')}}"></script>
+			<script src="{{url_for('static', filename='offline-exporting.js')}}"></script>
+			<script src="{{url_for('static', filename='exporting.js')}}"></script>
+			<script src="{{url_for('static', filename='export-csv.js')}}"></script>
+			 <!--
+			
+			<script src="{{url_for('static', filename='offline-exporting.min.js')}}"></script>
+		-->
+			<script src="{{url_for('static', filename='jquery.min.js')}}"></script>
+			
+			
+
+
+		
+      {% endblock %}
+      
+
+
+<!--<div id="container2"></div>
+<div id="container" style="min-width: 310px; height: 400px; margin: 0 auto"></div>-->
+
+		
+
+
+
+
+
+
+
+
+
+
+
+   
+  </head>
+
+  <body >
+
+
+<!--
+
+<div class="well">
+        <input id="ex1" data-slider-id='ex1Slider' type="text"
+            data-slider-min="-5" data-slider-max="20"
+            data-slider-step="1" data-slider-value="14" />
+    </div>
+=-->
+
+
+
+
+
+
+
+
+
+
+
+
+
+    <div >
+      <div class="header">
+        <nav>
+          <ul class="nav nav-pills pull-right">
+            <li role="presentation" class="active"><a href="/">Home</a></li>
+  <!--          
+            <li role="presentation"><a href="#">Add function</a></li>
+ 	    <li role="presentation"><a href="/showSignUp">Add function</a></li>
+ -->	    
+          </ul>
+        </nav>
+        <h3 class="text-muted">Inspect - KW Fiber Laser Data</h3>
+      </div>
+
+      <div class="jumbotron">
+      
+        <h4>CUSTOM REPORT : Parameter ID: {{parameter_id_response}},  S/N format : {{format_response}}</h4> 
+        <p class="lead"></p>
+      <!--  <h3>DUT THAT WERE NOT FOUND ON SERVER:</h3> <h9>{{list_of_sn_that_were_not_found}}</h9>  --> 
+        <p class="lead"></p>
+<!--
+
+class="container" margin-left: 15px;
+
+        <p><a class="btn btn-lg btn-success" href="showSignUp" role="button">Check</a></p>
+
+        <h3>Enter
+        S/N</h3>
+    <h2>(it will be converted to uppercase)</h2>
+   --> 
+    </div>
+      </div>
+<![if IE]>
+Internet Explorer users will not see this chart.
+<![endif]>
+	  {% if length_of_list  != 0 %}
+	  
+	  <div id="container3" style="height: 400px; min-width: 310px"></div>
+	  {% else %}
+	  
+	  &nbsp &nbsp  The data that you tried to query does not contain numbers, therefore a plot will not be shown
+		{% endif %}
+
+
+		<script type="text/javascript">
+		
+		
+		
+		var temp_data2 = [];
+var data2 = [];
+
+    
+{% for row_count in list_of_lists_to_print %}
+ temp_data2 = [];
+temp_data2.push(Date.parse("{{row_count[6]}}"));
+temp_data2.push(Number("{{row_count[1]}}"));
+data2.push(temp_data2);
+{% endfor %}
+
+data2.splice(0, 1)
+		
+		
+// Create the chart
+Highcharts.stockChart('container3', {
+   
+    
+
+    rangeSelector : {
+                selected : 1
+            },
+
+    title: {
+        text: "{{param_name}}"
+    },
+	
+        subtitle: {
+            text: 'This Chart can be saved to image or data file with the button on the right side'
+	},
+
+    exporting: {
+        enabled: true
+    },
+
+    series: [{
+		
+        name: 'Measurement: ',
+        data: data2,
+		lineWidth: 1,
+		marker: {
+                enabled: true,
+                radius: 2
+            },
+            tooltip: {
+                valueDecimals: 2
+            },
+            states: {
+                hover: {
+                    lineWidthPlus: 0
+                }
+				}
+				}
+	]
+});
+
+
+// Sample of extending options:
+Highcharts.extend(options, Highcharts.merge(options, {
+    plotOptions: {
+        scatter: {
+            tooltip: {
+              pointFormatter: function(){
+                var x = this.x,
+                    ret = '';
+                Highcharts.each(this.series.chart.series, function(s, i){
+                  Highcharts.each(s.points, function(p, j){
+                    if(p.x === x) ret += s.name + ': ' + p.x + ' / ' + p.y + '<br/>';
+                  });
+                });
+                return ret;
+              }
+            }
+        }
+    }
+}));
+
+
+		</script>
+	  
+	  
+	  
+      <div class="row marketing">
+        <div class="col-lg-6">
+          
+
+
+{% if cp_result  != "" %}
+Number of data points: {{ length_of_list }}
+<br>cp: {{ cp_result }} 
+<br>cpk: {{ cpk_result }}
+<br>Max limit from DB: {{ upper_limit }}
+<br>Min limit from DB: {{ lower_limit }}
+
+{% else %}
+<br>The data that you tried to query does not have limits in the database, therefore CP & CPK results will not be shown
+{% endif %}
+{% if length_of_list  != 0 %}
+	
+  <br><img src="data:image/png;base64,{{ results }}" width="500">
+   {% endif %}
+            </div>
+      </div>
+<!-- raw data table-->
+	<!--
+                <div class="col-lg-6" style="min-width: 900px; max-width: 900px; max-height: 300px; margin: 0 auto;float:left ;font-size: 12px">
+                    <div class="panel panel-default">
+                        <div class="panel-heading">
+                            <i class="fa fa-bell fa-fw"></i> <b>Raw data</b>
+                        </div>
+                        </div>
+                    </div>
+-->
+
+                        <!-- /.panel-heading -->
+                        <!--<div class="panel-body"> -->
+                            <!--<div   class="pre-scrollable"  style=" max-height: 150px">-->
+							
+<!--
+							
+<table style="clear: both; border-collapse: separate;border-spacing: 25px 0px; width: 100%;">
+{% set counter = 0 %}
+{% set counter_row = 0 %}
+{% for row_count in list_of_lists_to_print %}
+
+<tr>
+    {% for row_index in row_count %}
+        
+        {% if counter ==  0 or counter_row == 0%}
+          <td><b>{{ row_index }}</b></td>
+          {% else %}
+    <td>{{ row_index }}</td>
+  {% endif %}
+          
+          
+        {% set counter = counter+1 %}
+    {% endfor %}
+    {% set counter_row = counter_row+1 %}
+    </tr>
+{% endfor %}
+
+
+
+{% set counter_row = 0 %}
+
+    
+
+</table>
+ -->
+
+
+
+	 
+	 
+	 <!-- raw data table -->	
+
+<div>
+<div class="container-fluid px-4">
+<table id='myTable' class="display" style="width:100%">
+{% set counter_row = 0 %}
+{% for row_count in list_of_lists_to_print %}
+	{%if counter_row == 0%}
+	<thead>
+        <tr>
+			{%for row_index in row_count%}
+				<th>{{ row_index }}</th>
+			{%endfor%}
+		</tr>
+        </thead>
+		<tbody>
+        {%else%}
+			<tr>
+			{%for row_index in row_count%}
+                <td>{{ row_index }}</td>
+			{%endfor%}
+            </tr>
+	{%endif%}
+    {% set counter_row = counter_row+1 %}
+
+{%endfor%}
+
+	</tbody>
+</table>
+    </div>
+<script>
+        $(document).ready(function () {
+            $("#myTable").DataTable();
+        });
+</script>
+    <div>
+      <footer class="footer">
+        <p>&copy; Lumentum</p>
+      </footer>
+
+    </div>
+  </body>
+</html>
+
+</div></div>
+
+
+
+
+<script type="text/javascript">
+        function tableToCSV() {
+
+            // Variable to store the final csv data
+            var csv_data = [];
+
+            // Get each row data
+            var rows = document.getElementsByTagName('tr');
+            for (var i = 0; i < rows.length; i++) {
+
+                // Get each column data
+                var cols = rows[i].querySelectorAll('td,th');
+
+                // Stores each csv row data
+                var csvrow = [];
+                for (var j = 0; j < cols.length; j++) {
+
+                    // Get the text data of each cell
+                    // of a row and push it to csvrow
+                    csvrow.push(cols[j].innerHTML);
+                }
+
+                // Combine each column value with comma
+                csv_data.push(csvrow.join(","));
+            }
+
+            // Combine each row data with new line character
+            csv_data = csv_data.join('\n');
+
+            // Call this function to download csv file
+            downloadCSVFile(csv_data);
+
+        }
+
+        function downloadCSVFile(csv_data) {
+
+            // Create CSV file object and feed
+            // our csv_data into it
+            CSVFile = new Blob([csv_data], {
+                type: "text/csv"
+            });
+
+            // Create to temporary link to initiate
+            // download process
+            var temp_link = document.createElement('a');
+
+            // Download csv file
+            temp_link.download = "Download.csv";
+            var url = window.URL.createObjectURL(CSVFile);
+            temp_link.href = url;
+
+            // This link should not be displayed
+            temp_link.style.display = "none";
+            document.body.appendChild(temp_link);
+
+            // Automatically click the link to
+            // trigger download
+            temp_link.click();
+            document.body.removeChild(temp_link);
+        }
+    </script>
+
+
+
+

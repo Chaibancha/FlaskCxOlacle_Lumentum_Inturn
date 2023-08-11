@@ -1,0 +1,186 @@
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title> Inspect - KW Fiber Laser Data</title>
+<meta http-equiv="X-UA-Compatible" content="IE=11" />
+   <!--
+    <link href="http://getbootstrap.com/dist/css/bootstrap.min.css" rel="stylesheet">
+
+    <link href="http://getbootstrap.com/examples/jumbotron-narrow/jumbotron-narrow.css" rel="stylesheet">
+        <link href="http://getbootstrap.com/examples/jumbotron-narrow/jumbotron-narrow.css" rel="stylesheet">
+
+-->
+
+
+
+{% block head %}
+        <link rel="stylesheet" href="{{ url_for('static', filename='bootstrap-slider.css') }}">
+		  <link rel="stylesheet" href="{{ url_for('static', filename='bootstrap.min.css') }}">
+		    <link rel="stylesheet" href="{{ url_for('static', filename='jumbotron-narrow.css') }}">
+      {% endblock %}
+
+
+
+
+
+
+   
+  </head>
+
+  <body >
+
+
+
+
+
+
+
+<!--
+
+<div class="well">
+        <input id="ex1" data-slider-id='ex1Slider' type="text"
+            data-slider-min="-5" data-slider-max="20"
+            data-slider-step="1" data-slider-value="14" />
+    </div>
+=-->
+
+
+
+
+
+
+
+
+
+
+
+
+
+    <div >
+      <div class="header">
+        <nav>
+          <ul class="nav nav-pills pull-right">
+            <li role="presentation" class="active"><a href="/">Home</a></li>
+  <!--          
+            <li role="presentation"><a href="#">Add function</a></li>
+ 	    <li role="presentation"><a href="/showSignUp">Add function</a></li>
+ -->	    
+          </ul>
+        </nav>
+        <h3 class="text-muted">Inspect - KW Fiber Laser Data</h3>
+      </div>
+
+      <div class="jumbotron">
+      
+        <h3>Fill in all the below details to record MRB information</h3> 
+        <p class="lead"></p>
+      <!--  <h3>DUT THAT WERE NOT FOUND ON SERVER:</h3> <h9>{{list_of_sn_that_were_not_found}}</h9>  --> 
+        <p class="lead"></p>
+<!--
+
+class="container" margin-left: 15px;
+
+        <p><a class="btn btn-lg btn-success" href="showSignUp" role="button">Check</a></p>
+
+        <h3>Enter
+        S/N</h3>
+    <h2>(it will be converted to uppercase)</h2>
+   --> 
+
+      </div>
+
+      <div class="row marketing">
+        <div class="col-lg-8">
+          
+       
+
+	 
+	 
+	 
+  <div  >
+  
+<form action="Post_scrap_closure" method="POST" href="{{ url_for('Post_scrap_closure') }} class="form-signin" enctype = "multipart/form-data" >
+
+
+  <div class="form-group">
+  
+  <label >Serial Number to MRB</label>  <br>
+   
+  <input type="text" name="serial_number" value="{{serial_number}}"><br>
+  <small id="emailHelp" class="form-text text-muted">  Enter Serial Number</small>
+  <br>
+  
+  <label >Model</label>  <br>         
+  <input type="text" name="model" value="{{model}}"><br>
+  <small id="emailHelp" class="form-text text-muted"> Model to MRB, like "FF", "CLS" ,"MOPA" ,etc. </small>
+  <br>
+  
+   <label >Operation ID that MRB originated in</label>  <br>         
+  <input type="text" name="operation_id" value="{{operation_id}}"><br>
+  <small id="emailHelp" class="form-text text-muted"> Must be a number </small>
+  <br>
+  
+  <label for="cars">Select MRB Code: </label>
+  <select type="text" name="scrap_code">
+  {% for mod in list_of_scrap_codes %}
+    <option value="{{mod.split('~')[0]}}">{{mod}}</option>
+    {% endfor %}
+	</select>
+
+	
+	
+  
+  
+  
+  </div>
+ 
+
+		
+</div>	
+	
+	
+
+   <label >Operator name</label>  <br>    
+
+  <input  type="text" name="name" value=""><br>
+ 
+  <small id="emailHelp" class="form-text text-muted"> Enter your name</small>
+  <br><br>
+  
+  <label >Comment ( Optional )</label>  <br>         
+  <textarea rows="20" cols="50" type="text" name="comment" value="" style="width: 300px;height: 200px"></textarea><br>
+  <small id="emailHelp" class="form-text text-muted"> Enter a comment if applicable </small>
+  <br><br>
+ 
+  <label >Attach file ( Optional ) </label>  <br>  
+	<input type="file" name="file" autocomplete="off" >
+	<small id="emailHelp" class="form-text text-muted"> File extensions (*.jpg,*.bmp, *.png, *.doc*, *.xls*) </small>
+  <br><br>
+
+  <br>
+  <div >
+  <input type="hidden" class="btn btn-primary" value={{ocap_id}} name="ocap_id_txt">
+  <input type="submit" class="btn btn-primary" value'"submit" >
+  </div>
+</form> 	
+ 
+  
+                
+				
+ 
+
+
+        </div>
+		
+		
+      </div>
+
+      <footer class="footer">
+        <p>&copy; Lumentum</p>
+      </footer>
+
+    </div>
+  </body>
+</html>
+

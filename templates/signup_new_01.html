@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Inspect - KW Fiber Laser Data</title>
+    
+    <link rel="stylesheet" href="/static/bootstrap-slider.css">
+    <link rel="stylesheet" href="/static/bootstrap.min.css">
+    <link rel="stylesheet" href="/static/jumbotron-narrow.css">
+    <link rel="stylesheet" href="/static/gauge.css">
+    <script src="/static/jquery.min.js"></script>
+
+    <style>
+        
+
+        ul {
+            list-style-type: none;
+            padding: 0;
+        }
+
+        li {
+            margin-bottom: 10px;
+            background-color: #f2f2f2;
+            padding: 10px;
+            border-radius: 5px;
+        }
+        .section-item {
+            margin-bottom: 10px;
+            background-color: #f2f2f2;
+            padding: 10px;
+            border-radius: 5px;
+        }
+    </style>
+</head>
+<body>
+    
+    <div class="jumbotron" style = "background-color: #F9F9F9"></div>
+    <h1>DUT : {{serial_num}}</h1>
+
+    <!-- {% if mrb_status == "None" %}
+        <h1 > <text style="background-color:Violet;"> MRB STATUS: PENDING </text> </h1>
+		{% endif %}
+		{% if mrb_status == "SCRAP" %}
+        <h1 ><text style="background-color:Tomato;"> MRB STATUS: SCRAP</text></h1>
+		{% endif %}
+		{% if mrb_status == "REWORK" %}
+        <h1 ><text style="background-color:DodgerBlue;"> MRB STATUS: REWORK</text></h1>
+		{% endif %} -->
+
+    <h1>MODEL : {{model_to_print}}</h1>
+    <h1>DUT RESULT : {{result_of_DUT}}</h1>
+    <h1>Pump Tray Assembly</h1>
+    <ul>
+        {% for item in lst_time %}
+            <li class="section-item">
+                <span class="item">{{item}}</span>
+            </li>
+        {% endfor %}
+    </ul>
+
+    <footer class="footer">
+        <p>&copy; Lumentum</p>
+		</footer>
+</body>
+</html>

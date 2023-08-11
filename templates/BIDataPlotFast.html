@@ -1,0 +1,284 @@
+
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <title> Inspect - KW Fiber Laser Data</title>
+        <meta http-equiv="X-UA-Compatible" content="IE=11" />
+    <!--
+        <link href="http://getbootstrap.com/dist/css/bootstrap.min.css" rel="stylesheet">
+
+        <link href="http://getbootstrap.com/examples/jumbotron-narrow/jumbotron-narrow.css" rel="stylesheet">
+        <link href="http://getbootstrap.com/examples/jumbotron-narrow/jumbotron-narrow.css" rel="stylesheet">
+
+    -->
+
+        <script language="javascript">
+
+            function fnSetTimer(image, src, counter, limit)
+            {
+                image.onload = null;
+            
+                if(counter < limit)
+                {
+                    counter++;
+                    setTimeout(function(){ fnSetTimer(image, src, counter, limit); },200);
+                    image.src= src+ '?\\'+new Date().getMilliseconds();
+                    //alert(counter); // show frame number
+                }
+            } 
+        </script>
+        
+
+        {% block head %}
+            <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+
+            <link rel="stylesheet" href="{{ url_for('static', filename='bootstrap-slider.css') }}">
+            <!-- <link rel="stylesheet" href="{{ url_for('static', filename='bootstrap.min.css') }}"> -->
+            <!-- using Bootstrap-4.1.1 -->
+            <link rel="stylesheet" href="{{ url_for('static', filename='bootstrap-4.1.1/css/bootstrap.min.css') }}">
+
+            <link rel="stylesheet" href="{{ url_for('static', filename='jumbotron-narrow.css') }}">
+            <link rel="stylesheet" href="{{ url_for('static', filename='css/bidata.css') }}">
+
+            <!-- using the latest jquery -->
+            <script src="{{ url_for('static', filename='js/jquery-3.3.1.min.js') }}"></script>
+            <script src="{{ url_for('static', filename='bootstrap-4.1.1/js/bootstrap.min.js') }}"></script>
+            
+            <script type="text/javascript">
+                $(document).ready(function(){
+                    $(".btn").click(function(){
+                        $("#myModal").modal('show');
+                        // $('#myModal').modal({backdrop: 'static', keyboard: false})  
+                    });
+
+                    // $("#exampleModal").modal('hide');
+
+                    $('#exampleModal').on('shown.bs.modal', function () {
+                        $('#exampleModal').trigger('focus')
+                    })
+
+                    $("#emailForm").on("submit", function(e) {
+                        e.preventDefault();
+                        var postData = $(this).serializeArray();
+                        var formURL = $(this).attr("action");
+                        console.log("formURL=", formURL);
+                        console.log("postData=", postData);
+    
+                        $.ajax({
+                            url: formURL,
+                            type: "POST",
+                            data: postData,
+                            success: function(data, textStatus, jqXHR) {
+                                console.log("success data=", data);
+                                $('#exampleModal .modal-header').html("Result");
+                                $('#exampleModal .modal-body').html("Files have been sent to " + data.recipient);
+                                $("#sendButton").remove();
+                                $('#exampleModal .modal-footer').html("Thank you!");
+                            },
+                            error: function(jqXHR, status, error) {
+                                console.log(status + ": " + error);
+                            }
+                        });
+
+
+                        console.log("end of post")
+                    });
+                    
+                    // $("#sendButton").on('click', function() {
+                    //     $("#emailForm").submit();
+                    // });
+                });
+            </script>
+
+
+
+        {% endblock %}
+    
+    </head>
+
+    <body >
+
+    <nav aria-label="breadcrumb">
+        <ol class="breadcrumb">
+                <li class="breadcrumb-item"><a href="/">Home</a></li>
+                <li class="breadcrumb-item"><a href="/showBIData">Burn-In Data</a></li>
+                <li class="breadcrumb-item active" aria-current="page">Burn-In Data Plot</li>
+        </ol>
+    </nav>
+
+    <div class="container-fluid">
+      <div class="header">
+        <!-- <nav>
+          <ul class="nav nav-pills pull-right">
+            <li role="presentation" class="active"><a href="/showBIData">Back to Burn-In Data</a></li>
+          </ul>
+        </nav> -->
+        <h3 class="text-muted">Burn-In Data Plot</h3>
+      </div>  <!-- eof header -->
+
+
+    <div class="container">
+
+    </div>
+
+
+    <div class="container-fluid">
+        <h2>SN: {{sn}} 
+        
+        {% if 'MOD' in sn %}
+            <span class="badge badge-warning">MOD</span>
+        {% else %}
+            <span class="badge badge-primary">CW</span>
+        {% endif %}
+        </h2>
+
+        
+
+        <table class="table table-responsive">
+            <tbody>
+                <tr>
+                    <th scope="row">Filepath</th>
+                    <td>{{ filename }}</td>
+                </tr>
+                <!-- <tr class="table-secondary">
+                    <th scope="row">Total Hours</th>
+                    <td>{{ total_hours }}</td>
+                </tr>
+                <tr>
+                    <th scope="row">Total Rows</th>
+                    <td>{{ total_rows }}</td>
+                </tr> -->
+                <tr class="table-secondary">
+                    <th scope="row">Resampled Excel</th>
+                    <td><a href="{{image_path}}/{{resampled_file}}" target="_blank">{{resampled_file}}</a></td>
+                </tr>
+            </tbody>
+        </table>
+
+
+        {% for image in filename_c %}
+        <p>
+            {% if loop.index == 1 %}
+                <h3>1st Module</h3>
+            {% elif loop.index == 2 %}
+                <h3>2nd Module</h3>
+            {% elif loop.index == 3 and filename_c|length > 3 %}
+                <h3>3rd Module</h3>
+            {% else %}
+                <h3>Combiner</h3>
+            {% endif %}
+
+            <figure class="figure">
+                <a href="{{image_path}}/{{image}}" target="_blank">
+                    <img src="{{image_path}}/{{image}}"; id="refreshimage1" onload="fnSetTimer(this, this.src, 0, 5);" class="figure-img img-fluid border border-primary" />
+                </a>
+                
+                <!-- <figcaption class="figure-caption">{{sn}}</figcaption> -->
+            </figure>
+
+        </p>
+        {% endfor %}
+
+        <hr />
+
+        <p>
+            <h3>Warning and Fault Messages</h3>
+
+            {% if error_json is not none and error_json.shape[0] > 0 %}
+
+            <table class="table table-responsive">
+                <tbody>
+                    <tr class="table-secondary">
+                        <th scope="row">Warnings and Faults file</th>
+                        <td><a href="{{image_path}}/{{error_file}}" target="_blank">{{error_file}}</a></td>
+                    </tr>
+                </tbody>
+            </table>
+    
+
+            <table class="table table-striped table-responsive">
+                <thead>
+                    <tr>
+                        <th scope="col">Date</th>
+                        <th scope="col">Time</th>
+                        <th scope="col">LD1 Warning</th>
+                        <th scope="col">LD1 Fault</th>
+                        <th scope="col">LD2 Warning</th>
+                        <th scope="col">LD2 Fault</th>
+                        <th scope="col">LD3 Warning</th>
+                        <th scope="col">LD3 Fault</th>
+                    </tr>
+                </thead>
+                <tbody>
+
+                    {% for key,value in error_json.iterrows() %}
+                        <tr>
+                            <th scope="row">{{ value['Date']}}</th>
+                            <td>{{ value['Time']}}</td>
+                            <td>{{ value['LD1_Warning']}}</td>
+                            <td>{{ value['LD1_Fault']}}</td>
+                            <td>{{ value['LD2_Warning']}}</td>
+                            <td>{{ value['LD2_Fault']}}</td>
+                            <td>{{ value['LD3_Warning']}}</td>
+                            <td>{{ value['LD3_Fault']}}</td>
+                        </tr>
+                    {% endfor %}   
+                </tbody>
+            </table>
+            {% else %}
+                
+                <div class="alert alert-success" role="alert">
+                        No Warning or Fault message. &#x1F642;
+                </div>
+            {% endif %}
+        </p>
+
+    </div>
+
+    <!-- Button trigger modal -->
+    <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">
+        Send Email
+    </button>
+      
+    <!-- Modal -->
+    <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    
+                    <span aria-hidden="true" class="centered">Sending plot files</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <div class="loader centered"></div>
+                    <form id="emailForm" action="/sendEmail" method="POST" class="form-signin form-inline">
+                        <div class="form-group row">
+                            <input type="hidden" id="sn" name="sn" value={{sn}}>
+                            <div class="col-sm-8">
+                                <input type="text" name="email" class="form-control" placeholder="Enter your email">
+                            </div>
+                            <div class="col-sm-4">
+                                <button id="sendButton" type="submit" class="btn btn-success" >Send</button> 
+                            </div>
+                            
+                        </div>
+                        
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <span class="centered">Please double check your email address. &#x1F431;</span>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+
+
+      <footer class="footer">
+        <p>&copy; Lumentum</p>
+      </footer>
+
+    </div>
+  </body>
+</html>
+

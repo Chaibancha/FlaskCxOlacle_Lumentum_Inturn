@@ -1,0 +1,64 @@
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>Inspect - Fiber Laser</title>
+<meta http-equiv="X-UA-Compatible" content="IE=11" />
+   
+    <!--
+
+    <link href="http://getbootstrap.com/dist/css/bootstrap.min.css" rel="stylesheet">
+
+    <link href="http://getbootstrap.com/examples/jumbotron-narrow/jumbotron-narrow.css" rel="stylesheet">
+        <link href="http://getbootstrap.com/examples/jumbotron-narrow/jumbotron-narrow.css" rel="stylesheet">
+
+            <link href="static/css/amir_slider.css" rel="stylesheet">
+
+<link href="static/css/bootstrap.min.css" rel="stylesheet">
+    <link href="static/css/bootstrap-slider.css" rel="stylesheet">
+-->
+{% block head %}
+        <link rel="stylesheet" href="{{ url_for('static', filename='bootstrap-slider.css') }}">
+		  <link rel="stylesheet" href="{{ url_for('static', filename='bootstrap.min.css') }}">
+		    <link rel="stylesheet" href="{{ url_for('static', filename='jumbotron-narrow.css') }}">
+      {% endblock %}
+   
+  </head>
+
+  <body>
+
+    <div class="container">
+      <div class="header">
+        <nav>
+          <ul class="nav nav-pills pull-right">
+          
+              <li role="presentation" class="active"><a href="/">Home</a></li>
+             
+    <!--
+            <li role="presentation"><a href="#">Add inspection</a></li>
+            <li role="presentation" class="active"><a href="#">Add inspection 2</a></li>
+    -->
+          </ul>
+        </nav>
+        <h3 class="text-muted">Inspect - Fiber Laser</h3>
+      </div>
+
+      <div class="jumbotron">
+        <h3><b>{{message}} </b></h3>
+
+        
+
+
+      </div>
+			{{secondary_message}}
+        <footer class="footer">
+        <p>&copy; Lumentum</p>
+      </footer>
+
+
+
+
+    </div>
+  </body>
+</html>
+

@@ -1,0 +1,377 @@
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>Inspect - Fiber Laser</title>
+<meta http-equiv="X-UA-Compatible" content="IE=11" />
+   <!--
+    <link href="http://getbootstrap.com/dist/css/bootstrap.min.css" rel="stylesheet">
+
+    <link href="http://getbootstrap.com/examples/jumbotron-narrow/jumbotron-narrow.css" rel="stylesheet">
+    <link href="../static/css/signup.css" rel="stylesheet">
+    <script src="../static/js/jquery-1.11.2.js"></script>
+    <script src="../static/js/signUp.js"></script>
+	-->
+	<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.8.2/jquery.min.js"></script>
+   {% block head %}
+        <link rel="stylesheet" href="{{ url_for('static', filename='bootstrap-slider.css') }}">
+		  <link rel="stylesheet" href="{{ url_for('static', filename='bootstrap.min.css') }}">
+		    <link rel="stylesheet" href="{{ url_for('static', filename='jumbotron-narrow.css') }}">
+			
+			<script src="{{url_for('static', filename='highcharts.js')}}"></script>
+			<script src="{{url_for('static', filename='jquery.min.js')}}"></script>
+			<script src="{{url_for('static', filename='offline-exporting.min.js')}}"></script>
+      {% endblock %}
+	   
+	  
+	  <style type="text/css">
+${demo.css}
+		</style>
+		
+		<script type="text/javascript">
+		var dates = [];
+		var executions = [];
+		
+		{% for key, dict_index in dates_execution_dict.iteritems() %}
+      
+				
+						dates.push("{{key}}");
+						executions.push(Number("{{dict_index}}"));
+						{% endfor %}
+$(function () {
+    Highcharts.chart('container', {
+        chart: {
+            type: 'bar'
+        },
+        title: {
+            text: 'Test executions in the last 7 days'
+        },
+        subtitle: {
+            text: ''
+        },
+        xAxis: {
+            categories: dates,
+            title: {
+                text: null
+            }
+        },
+        yAxis: {
+            min: 0,
+            title: {
+                text: 'Executions (times)',
+                align: 'high'
+            },
+            labels: {
+                overflow: 'justify'
+            }
+        },
+        tooltip: {
+            valueSuffix: ' times'
+        },
+        plotOptions: {
+            bar: {
+                dataLabels: {
+                    enabled: true
+                }
+            }
+        },
+        legend: {
+            layout: 'vertical',
+            align: 'right',
+            verticalAlign: 'top',
+            x: -40,
+            y: 80,
+            floating: true,
+            borderWidth: 1,
+            backgroundColor: ((Highcharts.theme && Highcharts.theme.legendBackgroundColor) || '#FFFFFF'),
+            shadow: true
+        },
+        credits: {
+            enabled: false
+        },
+        series: [{
+            name: 'Executions',
+            data: executions
+        }]
+    });
+});
+		</script>
+		
+		
+		
+		
+		<script type="text/javascript">
+		
+		var dates2 = [];
+		
+		
+		var dict = [];
+		var newarr = [];
+		var arrayOfNumbers = [];
+		var temp_string;
+		var res;
+		{% set count = 0 %}
+		
+		{% for key_dates, dict_index in dict_of_models_in_dict_of_dates.iteritems() %}
+      
+						dates2.push("{{key_dates}}");
+						
+						
+						
+						{% endfor %}
+		
+{% for key, dict_index3 in dict_of_lists_of_model_data.iteritems() %}
+
+   
+
+		temp_string = "{{dict_index3}}";
+		
+		temp_string = temp_string.replace('[','');
+		temp_string = temp_string.replace(']','');
+		res = temp_string.split(",");
+			
+			dict.push({
+				name:   "{{key}}",
+				data: res.map(Number)
+				});
+				
+				
+	{% endfor %}		
+		
+		
+$(function () {
+    Highcharts.chart('container2', {
+        chart: {
+            type: 'bar'
+        },
+        title: {
+            text: 'Test executions per model in the last 7 days'
+        },
+        subtitle: {
+            text: 'Click on the model list to the right, to hide models on the chart'
+        },
+        xAxis: {
+            categories: dates2,
+            title: {
+                text: null
+            }
+        },
+        yAxis: {
+            min: 0,
+            title: {
+                text: 'Executions (times)',
+                align: 'high'
+            },
+            labels: {
+                overflow: 'justify'
+            }
+        },
+        tooltip: {
+            valueSuffix: ' times'
+        },
+        plotOptions: {
+            bar: {
+                dataLabels: {
+                    enabled: true
+                }
+            }
+        },
+        legend: {
+            layout: 'vertical',
+            align: 'right',
+            verticalAlign: 'top',
+            x: -40,
+            y: 80,
+            floating: true,
+            borderWidth: 1,
+            backgroundColor: ((Highcharts.theme && Highcharts.theme.legendBackgroundColor) || '#FFFFFF'),
+            shadow: true
+        },
+        credits: {
+            enabled: false
+        },
+        series: dict
+    });
+});
+		</script>
+		
+		
+		
+		
+		
+	</head>
+	<body>
+
+
+
+	
+ 
+	  
+	  
+	  
+ 
+ 
+
+    <div class="container">
+      <div class="header">
+        <nav>
+          <ul class="nav nav-pills pull-right">
+          
+              <li role="presentation" class="active"><a href="http://192.168.31.191:5002/">Shipping Reports</a></li>
+             
+    <!--
+            <li role="presentation"><a href="#">Add inspection</a></li>
+            <li role="presentation" class="active"><a href="#">Add inspection 2</a></li>
+    -->
+          </ul>
+        </nav>
+        <h3 class="text-muted">Inspect - Fiber Laser </h3>
+      </div>
+
+      <div class="jumbotron">
+	  
+	  
+        <h3><b>Enter Serial Number or click on the list below </b></h3>
+<!--
+        <p align="left"> 1) Single DUT S/N - FMPT1602A05 </p>
+        <p align="left"> 2) Multiple DUT - separated by commas - SN1,SN2,SN3...  </p>
+        <!--<p align="left"> 3) All DUT available on server - Enter * </p>
+		
+		<p align="left"> 3) All DUT S/N containing specific Character - Enter Character and ~ 	</p>
+		<p align="left"> Some suggestions:		</p>
+		<p align="left" >  <font size="3">All 3KW engines:</font> FME3~	</p>
+		<p align="left"> <font size="3">All 2KW engines:</font> FME2~		</p>
+		<p align="left"> <font size="3">All Pump Trays:</font> FMP~		</p>
+		<p align="left"> <font size="3">All Pump Combiners: </font> MPC~	</p>
+		<p align="left"> <font size="3">All UNITS and assemblies manufactured in May 2016:</font> 1605~		</p>
+        <p align="left"> <font size="3">TO filter certain parameter names that contain specific characters, enter - and then a list of characters seperated by a comma:</font> FME3~-TEMP,RESULT,OPERATOR		</p>
+-->
+        <!--
+        <form class="form-signin" action="/index" >
+        <label for="inputName" class="sr-only">Name</label>
+        <input type="name" name="inputName" id="inputName" class="form-control" placeholder="Name" required autofocus>
+
+
+
+
+        <label for="inputEmail" class="sr-only">Email address</label>
+        <input type="email" name="inputEmail" id="inputEmail" class="form-control" placeholder="Email address" required autofocus>
+        <label for="inputPassword" class="sr-only">Password</label>
+        <input type="password" name="inputPassword" id="inputPassword" class="form-control" placeholder="Password" required>
+       
+       <a href="{{ url_for('showSignUp') }}"><button id="btnSignUp" class="btn btn-lg btn-primary btn-block" type="button"  href="{{ url_for('showSignUp') }}" type="submit"  >Query</button></a>
+<p><a href="{{ url_for('showSignUp') }}">see results</a></p>
+
+
+ <button input type="submit" name="submit" method="POST" href="{{ url_for('showSignUp') }}">
+          see results
+       
+    </button>
+      </form>
+
+--> 
+
+      <form action="showSignUp" method="POST" action="{{ url_for('showSignUp') }} class="form-signin" >
+      
+        <input type="text" name="text">
+        <input class="btn btn-lg btn-success" role="button" type="submit" >
+
+
+        
+    </form>
+
+ 
+
+      </div>
+	  
+	  
+	   </div>
+	  
+	 <div    style="overflow: hidden"> 	 
+<div id="container2" style="min-width: 800px; max-width: 800px; height: 400px; margin: 0 auto;float:left "></div>
+	  
+	  <div id="container" style="min-width: 800px; max-width: 800px; height: 400px; margin: 0 auto;float:right "></div>
+	 </div>
+	  <!-- /.col-lg-8 -->
+	
+                <div class="col-lg-6";  >
+                    <div class="panel panel-default">
+                        <div class="panel-heading">
+                            <i class="fa fa-bell fa-fw"></i> Latest tested units
+                        </div>
+                        <!-- /.panel-heading -->
+                        <div class="panel-body">
+                            <div class="list-group">
+	  
+	  
+	  
+	  
+	  {% set counter = 39 %}
+	  {% for key, dict_index in last_tested_dict.iteritems() %}
+      
+      {% set row_index = last_tested_dict[counter] %}
+	  
+	 
+	  
+	  {% set counter = counter-1 %}
+	  
+	  
+
+
+
+        
+    	 
+	 <form action="showSignUp" method="POST" action="{{ url_for('showSignUp') }}  >
+ <input type="text" name="text" value={{row_index[0]}}> 
+  <button type="submit" name="text" value={{row_index[0]}}  class="btn btn-lg btn-success">Query data for S/N : {{row_index[0]}}</button>
+  
+</form>  
+	  
+
+
+
+
+									<a href="#" class="list-group-item">
+                                    <i class="fa fa-comment fa-fw"></i> {{ row_index[0] }}  -  
+                                    
+									<span ><em>     	               {{ row_index[1] }}              </em>
+                                    </span>
+									
+									<span class="pull-right	 text-muted small"><em> {{ row_index[2] }} minutes ago</em>
+                                    </span>
+                                </a>
+{% endfor %}
+
+								
+
+								</div>
+                            <!-- /.list-group -->
+                          <!--   <a href="#" class="btn btn-default btn-block">View All Alerts</a> -->
+                        </div>
+						
+                        <!-- /.panel-body -->
+                    </div>
+					
+					
+					
+					
+	  
+	  
+
+
+
+	
+
+               
+
+        <footer class="footer">
+        <p>&copy; Lumentum</p>
+      </footer>
+
+
+
+
+    </div>
+  </body>
+</html>
+

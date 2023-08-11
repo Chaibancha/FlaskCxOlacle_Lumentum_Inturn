@@ -1,0 +1,624 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Inspect - KW Fiber Laser Data</title>
+
+  <link rel="stylesheet" href="/static/bootstrap-slider.css">
+  <link rel="stylesheet" href="/static/bootstrap.min.css">
+  <link rel="stylesheet" href="/static/jumbotron-narrow.css">
+  <link rel="stylesheet" href="/static/gauge.css">
+  <script src="/static/jquery.min.js"></script>
+
+  <style>
+    ul {
+      list-style-type: none;
+      padding: 0;
+    }
+
+    li {
+      margin-bottom: 10px;
+      background-color: #f2f2f2;
+      padding: 10px;
+      border-radius: 5px;
+    }
+
+    .section-item {
+      margin-bottom: 10px;
+      background-color: #f2f2f2;
+      padding: 10px;
+      border-radius: 5px;
+    }
+
+    td {
+      font-size: 16px;
+      padding: 8px;
+    }
+
+    th {
+      font-size: 20px;
+      padding: 8px;
+
+    }
+
+    .clickable-text {
+      cursor: pointer;
+      display: inline-block;
+      position: relative;
+    }
+
+    .clickable-text::before {
+      content: "";
+      position: absolute;
+      top: 50%;
+      right: -10px;
+      transform: translateY(-50%);
+      width: 16px;
+      height: 16px;
+      background-image: url('finger-icon.png');
+      /* Replace with the path to your finger icon */
+      background-size: cover;
+      background-repeat: no-repeat;
+    }
+
+    .head_detail {
+      background-color: rgb(216, 214, 214);
+      color: rgb(0, 0, 0);
+      table-layout: fixed;
+    }
+  </style>
+</head>
+
+<body style="zoom: 80%">
+  <div class="header">
+    <nav>
+      <ul class="nav nav-pills pull-right">
+        <li role="presentation" class="active"><a href="/">Home</a></li>
+      </ul>
+    </nav>
+    <h3 class="text-muted">Inspect - KW Fiber Laser Data</h3>
+  </div>
+
+  <div class="col-lg-6"
+    style=" min-width: 700px; max-width: 500px; max-height: 300px;min-height: 300px; margin: 0 auto;margin-left: 0px;margin-right: -700px;float:left ;font-size: 12px">
+    <div class="flex-wrapper">
+      <div class="single-chart">
+        <svg width="100%" height="100%" viewBox="0 0 36 36"
+          class="circular-chart {% if percentage_passed_rounded >= 100 %}blue{% else %}orange{% endif %}">
+          <path class="circle-bg" d="M18 2.0845 a 15.9155 15.9155 0 0 1 0 31.831 a 15.9155 15.9155 0 0 1 0 -31.831">
+          </path>
+          <path class="circle" stroke-dasharray="{{percentage_passed_rounded}}, 100"
+            d="M18 2.0845 a 15.9155 15.9155 0 0 1 0 31.831 a 15.9155 15.9155 0 0 1 0 -31.831"></path>
+          <text x="18" y="20.35" class="percentage">{{percentage_passed_rounded}}%</text>
+        </svg>
+      </div>
+    </div>
+  </div>
+
+
+
+
+  <div class="jumbotron"
+    style="background-color: #F9F9F9; display: flex; justify-content: center; align-items: center;">
+
+    <div style="display: flex; flex-direction: column; justify-content: center;">
+      <h1>DUT: {{serial_num}}</h1>
+      {% for part_number, part_name in namePart_numbers.items() %}
+      {% if PartNumber_item == part_number %}
+      <h2>MODEL: {{PartNumber_item}} ({{part_name.Alias}})</h2>
+      {% endif %}
+      {% endfor %}
+      <!-- <button type="submit" name="text" value="Pareto" class="btn btn-lg btn-warning " style="font-size: 13px; padding: 1px 1px; ">Pareto for : FBG_OC_MWL</button> -->
+    </div>
+  </div>
+
+
+
+  <!-- <div> <span style="background-color:#67E16A">Specification table at the time of DUT test match the current specification REV : REV014</span>	</div> -->
+
+  <!--
+    
+    class="container" margin-left: 15px;
+    
+            <p><a class="btn btn-lg btn-success" href="showSignUp" role="button">Check</a></p>
+    
+            <h3>Enter DUT S/N</h3>
+        <h2>(it will be converted to uppercase)</h2>
+       -->
+  <div style="margin-left: 20px;">
+    <h2 class="display-4">DUT RESULT - {{result_of_DUT}}</h2>
+    <form action="{{ url_for('get_csv', serial_num=serial_num, serialText='pageShowSignUp', Operation_value = ' ') }}"
+      method="GET">
+      <button type="submit" class="btn btn-lg btn-primary pull-left" style="font-size: 13px; padding: 1px 1px;">
+        Click to save .CSV file
+      </button>
+    </form>
+    <br><br>
+
+
+    <!-- <form action="getPlotCSV" method="POST">
+      <button type="submit" name="text" value="N3DW2305LF105" class="btn btn-lg btn-primary pull-left" style="font-size: 13px; padding: 1px 1px; ">Click to save .CSV file</button>
+    </form>  -->
+
+    <!--	  
+              
+           <ul class="nav nav-pills pull-left">   
+                
+                    <li role="presentation" class="active"><a href="/getPlotCSV">Click to save .CSV file</a></li>
+    
+         </ul>
+    -->
+    <!-- <h1 style="color:#FFFFFF">.</h1> -->
+
+    <!-- <h2>FBG MULTI WAVE LENGTH</h2> -->
+
+    <!-- ------------------------------------------------------------------------------------------------------------------- -->
+
+    {% for num_item in range(Loopitems) %}
+    <script>
+      $(document).ready(function () {
+        $("#button{{num_item}}").click(function () {
+          $("#tab{{num_item}}").toggle();
+        }
+        );
+      });
+    </script>
+
+    <div>
+      <!-- CT Time -->
+      {% for minute in CT_Time %}
+      {% if loop.index0 == num_item %}
+      <button type="submit" name="text" value="" class="btn btn-lg btn-info pull-left"
+        style="font-size: 13px; padding: 1px 1px; min-width: 90px; max-width: 90px;">{{ minute }}</button>
+      {% endif %}
+      {% endfor %}
+
+      <form action="show_all_operation_attempts" method="POST">
+        {% for Oparation_num_id in Oparation_id %}
+        {% if loop.index0 == num_item %}
+        {% for num in num_attempts %}
+        {% if loop.index0 == num_item %}
+        <button type="submit" name="text" value="{{serial_num}}|{{Oparation_num_id}}"
+          class="btn btn-lg btn-primary pull-left" style="font-size: 13px; padding: 1px 1px; min-width: 90px;">{{num}}
+          ATTEMPTS</button>
+        {% endif %}
+        {% endfor %}
+        {% endif %}
+        {% endfor %}
+      </form>
+
+      {% for index in range(Oparation_id|length) %}
+            {% if loop.index0 == num_item %}
+        {% set Oparation_num_id = Oparation_id[index] %}
+        {% set Oparation_num_name = Oparation_name[index] %}
+        {% set Operation_num_headerid = Operation_headerid[index] %}
+    {% for check in check_item %}
+      {% if loop.index0 == num_item %}
+    {% set true_check_item = check %}
+    {%if true_check_item == "Passed"%}
+    <button id="button{{num_item}}" type="button" class="btn btn-success"
+       style="text-align:left; padding-left:6px; min-width: 520px;">OPERATION_ID: {{Oparation_num_id}}<!--({{ Operation_num_headerid }})--> - 
+      {{Oparation_num_name}}</button> - {{true_check_item}}
+    {% endif %}
+    {%if true_check_item == "Aborted"%}
+    <button id="button{{num_item}}" type="button" class="btn btn-success"
+      style="background-color:rgb(233, 178, 0); text-align:left; padding-left:6px; min-width: 520px;">OPERATION_ID:
+      {{Oparation_num_id}}<!--({{ Operation_num_headerid }})--> - {{Oparation_num_name}}</button> - {{true_check_item}}
+      {% endif %}
+    {%if true_check_item == "Failed"%}
+    <button id="button{{num_item}}" type="button" class="btn btn-success"
+      style="background-color:red; text-align:left; padding-left:6px; min-width: 520px;">OPERATION_ID:
+      {{Oparation_num_id}}<!--({{ Operation_num_headerid }})--> - {{Oparation_num_name}}</button> - {{true_check_item}}
+      {% endif %}
+      {% endif %}
+    {% endfor %}
+    {% endif %}
+    {% endfor %}
+
+      <table class="table-striped" cellspacing="0" id="tab{{num_item}}"
+        style="display: none; clear: both; border-collapse: separate; border-spacing: 0px 0px; width: 100%;">
+        <tbody>
+          <tr>
+            <td>
+              <!-- {% for Oparation_num_id in Oparation_id %}
+            {% if loop.index0 == num_item %}
+            {% set true_operation_id = Oparation_num_id %}
+            {% for Oparation_num_name in Oparation_name %}
+            {% if loop.index0 == num_item %}
+            <h3>OPERATION_ID: {{ true_operation_id }} - {{ Oparation_num_name }}</h3>
+            {% endif %}
+            {% endfor %}
+            {% endif %}
+            {% endfor %} -->
+
+            {% for index in range(Oparation_id|length) %}
+            {% if loop.index0 == num_item %}
+            {% set Operation_num_headerid = Operation_headerid[index] %}
+          {% for key, value in dic_allL2.items() %}
+          {% if value.testheaderid == Operation_num_headerid %}
+            <h3>OPERATION_ID: {{ value.OPERATIONID }} - {{ value.OPERATION }}</h3>
+            <h4><b>TESTHEADERID:</b> {{value.testheaderid}}</h4>
+            <h4>
+              <b>START TIME:</b> {{ value.STARTTIME }}<br>
+              <b>END TIME:</b> {{ value.ENDTIME }}<br>
+              <b>OPERATOR:</b> {{ value.OPERATORID }}<br>
+              <b>STATION:</b> {{ value.TESTSTATION }}
+            </h4>
+            {% endif %}
+            {% endfor %}
+            {% endif %}
+            {% endfor %}
+          </td>
+
+          </tr>
+
+          <tr>
+
+
+            <!-- ----------------------------------------------------------------------------------- -->
+
+            <script>
+              //Click Show/hide
+              function toggleTable(elementId) {
+                var table = document.getElementById(elementId);
+                var display = table.style.display;
+
+                if (display === "none") {
+                  table.style.display = "table";
+                } else {
+                  table.style.display = "none";
+                }
+              }
+
+              // New Function
+              function toggleTableDetail(elementId) {
+                var tableID = document.getElementById(elementId);
+                var display = tableID.style.display;
+
+                if (display === "none") {
+                  tableID.style.display = "block";
+                } else {
+                  tableID.style.display = "none";
+                }
+              }
+
+            </script>
+
+            <!-- Task -->
+
+          <tr>
+            {% for Oparation_num_id in Oparation_id %}
+
+            {% if loop.index0 == num_item %}
+            {% for serItem in last_serItemData %} <!-- if show all attempts use lst_serItem than last_serItemData -->
+
+            {% if serItem.4 == Oparation_num_id %}
+          <tr>
+            <td>
+              <!-- <h3 onclick="toggleTable('table{{ loop.index }}')" class="clickable-text" >&nbsp;&nbsp;TestHeaderID: {{ serItem.0 }}</h3>
+                          <table id="table{{ loop.index }}" margin-right: 50px;"> -->
+
+          <tr>
+            {% for stepName in lst_stepName %}
+
+            {% if stepName.0 == serItem.0 %}
+          <tr>
+            <td>
+              <div class="button-text">
+
+                <div style="display: flex; 
+                          align-items: center;">
+
+                  {% if stepName.6 == "Done" or stepName.6 == "Passed" %}
+                  <h3 onclick="toggleTableDetail('tableID{{ loop.index }}_{{ numstepName }}')" class="show-table-detail"
+                    style="font-size: 16px; display: inline-block; margin-left: 10px; cursor: pointer; margin-top: 10px; border: 4px solid green; padding: 5px; display: inline-block; min-width: 30vw;"
+                    id="stepName{{ loop.index }}_{{ numstepName }}">
+                    {% elif stepName.6 == "Aborted"%}
+                    <h3 onclick="toggleTableDetail('tableID{{ loop.index }}_{{ numstepName }}')"
+                      class="show-table-detail"
+                      style="font-size: 16px; display: inline-block; margin-left: 10px; cursor: pointer; margin-top: 10px; border: 4px solid rgb(255, 196, 0); padding: 5px; display: inline-block; min-width: 30vw;"
+                      id="stepName{{ loop.index }}_{{ numstepName }}">
+                      {%else%}
+                      <h3 onclick="toggleTableDetail('tableID{{ loop.index }}_{{ numstepName }}')"
+                        class="show-table-detail"
+                        style="font-size: 16px; display: inline-block; margin-left: 10px; cursor: pointer; margin-top: 10px; border: 4px solid red; padding: 5px; display: inline-block; min-width: 30vw;"
+                        id="stepName{{ loop.index }}_{{ numstepName }}">
+                        {% endif %}
+                        <b>STEP NAME: {{ stepName.5 }}</b>
+                      </h3>
+                      <h4
+                        style="font-size: 16px; display: inline-block; margin-left: 10px; cursor: pointer; margin-top: 10px; padding: 5px; display: inline-block; ">
+                        {{ stepName.6 }}</h4>
+
+
+                </div>
+              </div>
+              <!-- in StepName after click stepName---------------------------------------------------------------------------------------------------------------------------------------------------- -->
+
+              <style>
+                .headparameter th {
+                  font-size: 16px;
+                  width: 100vw;
+                }
+
+                #tableID {
+                    {
+                    loop.index
+                  }
+                }
+
+                _ {
+                    {
+                    numstepName
+                  }
+                }
+
+                tr:nth-child(odd) td {
+                  background-color: #ffffff;
+                }
+
+                #tableID {
+                    {
+                    loop.index
+                  }
+                }
+
+                _ {
+                    {
+                    numstepName
+                  }
+                }
+
+                tr:nth-child(even) td {
+                  background-color: #fafafa;
+                }
+              </style>
+
+
+              <table id="tableID{{ loop.index }}_{{ numstepName }}" style="display: none;">
+
+                {% if stepName.1 not in dic_all %}
+                <tr>
+                  <td id="demo">No data available</td>
+                </tr>
+                {% else %}
+                <thead class="headparameter">
+                  <tr class="head_detail">
+                    <th>Parameter Name</th>
+                    <th>Value</th>
+                    <th>Unit</th>
+                    <th>Min Limit</th>
+                    <th>Trend</th>
+                    <th>Max Limit</th>
+                  </tr>
+                </thead>
+
+                {% set value = dic_all.get(stepName.1) %}
+                {% for parameter, item in value.items() %}
+                <div style="display: flex;">
+                  <tr>
+                    <td>{{ parameter }}</td>
+                    <td>
+                      {% if item.imagename == 'ReportText' %}
+
+
+
+
+                      <form action="fetch_file" method="POST" action="{{ url_for('fetch_file') }}  ">
+
+                        <button type="submit" name="filename" value="{{ item.filenamelong }}"
+                          class="btn btn-lg btn-info pull-left"
+                          style="font-size: 13px; padding: 1px 1px; ">Download</button>
+
+                      </form>
+                      <form action="Chart2" target="_blank" method="POST" action="{{ url_for('Chart2') }}  ">
+
+                        <button type="submit" name="text3" value="{{ item.filenamelong }}"
+                          class="btn btn-lg btn-primary pull-left" style="font-size: 13px; padding: 1px 1px; ">View
+                          image</button>
+
+                      </form>
+
+
+
+
+                      {% elif item.valuemean == None or item.valuemean == null %}
+                      {{ item.valuestring }}
+                      {% else %} {{ item.valuemean }}
+
+                      {% endif %}
+                    </td>
+                    {# <td>{% if item.units != 'NA' and item.status != 'NA' %}{{ item.units }}{% endif %}</td> #}
+                    <td>{% if item.units != 'NA' and item.status != 'NA' %}{{ item.units }}{% endif %}</td>
+
+                    <td>
+                      {% if item.specmin != None %}
+                      {{ item.specmin }}
+                      {%elif item.specmin == None and item.specmax != None %}
+                      -999
+                      {% endif %}
+                    </td>
+                    {% if (item.specmin != None and item.specmin != null) or (item.specmax != None and item.specmax !=
+                    null)
+                    %}
+                    <td style="border-spacing: 0px 0px; background-color: #58D68D">
+                      <input type="range" min="{{ item.specmin }}" max="{{ item.specmax }}" value="{{ item.valuemean }}"
+                        disabled>
+                    </td>
+                    {%else%} <td></td>
+                    {%endif%}
+                    <td>
+                      {% if item.specmax != None %}
+                      {{ item.specmax }}
+                      {%elif item.specmax == None and item.specmin != None %}
+                      999
+                      {% endif %}
+                    </td>
+                  </tr>
+                </div>
+                {% endfor %}
+                {% endif %}
+
+              </table>
+            </td>
+          </tr>
+          </tr>
+          </td>
+          {% endif %}
+          {% endfor %}
+          </tr>
+      </table>
+      </td>
+      </tr>
+      {% endif %}
+      {% endfor %}
+      {% endif %}
+      {% endfor %}
+      </tr>
+
+      </tbody>
+      </table>
+
+      {% endfor %}
+
+      <script>
+        function toggleAllTable() {
+          var table = document.getElementById("allTable");
+          if (table.style.display === "none") {
+            table.style.display = "table";
+          } else {
+            table.style.display = "none";
+          }
+
+          var button = document.getElementById("expandButton");
+          if (table.style.display === "none") {
+            button.innerHTML = "EXPAND ALL- Click to review complete database information for : {{serial_num}}";
+          } else {
+            button.innerHTML = "COLLAPSE ALL- Click to hide complete database information for : {{serial_num}}";
+          }
+        }
+      </script>
+
+      {# EXpand all
+      -----------------------------------------------------------------------------------------------------------------------------------------
+      #}
+
+      <button id="expandButton" type="button" class="expand_all"
+        style="text-align:left; padding-left:10px; min-width: 520px; margin-top: 10px; margin-bottom: 20px; "
+        onclick="toggleAllTable()">EXPAND ALL- Click to review complete database information for :
+        {{serial_num}}</button>
+
+
+      <style>
+        .EXheadparameter th {
+          font-size: 16px;
+          width: 100vw;
+        }
+
+        .EXheadparameter th:last-child,
+        .EXheadparameter td:last-child {
+          padding-right: 100px;
+        }
+
+        .EXheadparameter th {
+          font-size: 16px;
+          width: calc(100% / 6);
+        }
+      </style>
+      <table id="allTable" class="table-striped" cellspacing="0"
+        style="display: none; clear: both; border-collapse: separate; border-spacing: 0px 0px; width: 100%;">
+        <td>
+          {% for index in range(Oparation_id|length) %}
+          {% set Oparation_num_id = Oparation_id[index] %}
+          {% set Oparation_num_name = Oparation_name[index] %}
+          <h3>OPERATION_ID: {{ Oparation_num_id }} - {{ Oparation_num_name }}</h3>
+          {% for serItem in last_serItemData %}
+          {% if serItem.4 == Oparation_num_id %}
+          {% for stepName in lst_stepName %}
+          {% if stepName.0 == serItem.0 %}
+
+
+          <table id="EXtableID{{ loop.index }}_{{ numstepName }}">
+            {% if stepName.1 in dic_all %}
+            {% set value = dic_all.get(stepName.1) %}
+            <thead class="EXheadparameter">
+              <tr class="EXhead_detail">
+                <th></th>
+                <th></th>
+                <th></th>
+                <th></th>
+                <th></th>
+                <th></th>
+                <th></th>
+              </tr>
+            </thead>
+            {% for parameter, item in value.items() %}
+            <tr class="body_expandAll">
+              <td>{{ item.testheaderstepid }}</td>
+              <td>{{ parameter }}</td>
+              <td>
+                {% if item.imagename == 'ReportText' %}
+                <form action="fetch_file" method="POST" action="{{ url_for('fetch_file') }}  ">
+                  <button type="submit" name="filename" value="{{ item.filenamelong }}"
+                    class="btn btn-lg btn-info pull-left" style="font-size: 13px; padding: 1px 1px; ">Download</button>
+                </form>
+                <form action="Chart2" target="_blank" method="POST" action="{{ url_for('Chart2') }}  ">
+                  <button type="submit" name="text3" value="{{ item.filenamelong }}"
+                    class="btn btn-lg btn-primary pull-left" style="font-size: 13px; padding: 1px 1px; ">View
+                    image</button>
+                </form>
+                {% elif item.valuemean == None or item.valuemean == null %}
+                {{ item.valuestring }}
+                {% else %} {{ item.valuemean }}
+                {% endif %}
+              </td>
+              {# <td>{% if item.units != 'NA' and item.status != 'NA' %}{{ item.units }}{% endif %}</td> #}
+              <td>{% if item.units != 'NA' and item.status != 'NA' %}{{ item.units }}{% endif %}</td>
+              <td>
+                {% if item.specmin != None %}
+                {{ item.specmin }}
+                {%elif item.specmin == None and item.specmax != None %}
+                -999
+                {% endif %}
+              </td>
+              {% if (item.specmin != None and item.specmin != null) or (item.specmax != None and item.specmax != null)
+              %}
+              <td style="border-spacing: 0px 0px; background-color: #58D68D">
+                <input type="range" min="{{ item.specmin }}" max="{{ item.specmax }}" value="{{ item.valuemean }}"
+                  disabled>
+              </td>
+              {%endif%}
+              <td>
+                {% if item.specmax != None %}
+                {{ item.specmax }}
+                {%elif item.specmax == None and item.specmin != None %}
+                999
+                {% endif %}
+              </td>
+            </tr>
+            {% endfor %}
+            {% endif %}
+          </table>
+
+          {% endif %}
+          {% endfor %}
+          {% endif %}
+          {% endfor %}
+          {% endfor %}
+        </td>
+      </table>
+    </div>
+
+  </div>
+  </div>
+
+
+  <footer class="footer">
+    <p>© Lumentum</p>
+  </footer>
+
+</body>
+
+</html>
